@@ -1,6 +1,7 @@
 [build]
 command = "npm run build"
-publish = "build/client"
+publish = "/build"
+base = "/"
 
 [dev]
 command = "npm run dev"
