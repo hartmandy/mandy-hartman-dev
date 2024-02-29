@@ -1,4 +1,3 @@
-import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -11,11 +10,7 @@ import {
 import Footer from "~/components/Footer";
 import Menu from "~/components/Menu";
 
-import stylesheet from "~/tailwind.css";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-];
+import "./tailwind.css";
 
 export default function App() {
   return (
