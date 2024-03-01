@@ -66,6 +66,15 @@ const HamburgerMenu = () => {
                   About
                 </Link>
               </li>
+              <li className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                <Link
+                  to="/contact"
+                  className="block w-full"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
         )}

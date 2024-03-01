@@ -51,7 +51,7 @@ export default function Home() {
           <a href="https://linkedin.com/in/hartmandy" className="h-8 w-8">
             <LinkedInLogoIcon className="h-full w-full text-neutral-700" />
           </a>
-          <a href="mailto:blackmountainarchives@gmail.com" className="h-8 w-8">
+          <a href="mailto:hello@mandyhartman.dev" className="h-8 w-8">
             <EnvelopeClosedIcon className="h-full w-full text-neutral-700" />
           </a>
         </div>
