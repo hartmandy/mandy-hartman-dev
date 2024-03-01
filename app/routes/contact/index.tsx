@@ -18,7 +18,7 @@ export default function contact() {
       </a>
 
       {/* Gallery Container */}
-      <div className="flex md:flex-nowrap flex-wrap  gap-4 mt-8">
+      {/* <div className="flex md:flex-nowrap flex-wrap  gap-4 mt-8">
         <img
           src={gal1}
           alt="weather app drawing"
@@ -39,7 +39,7 @@ export default function contact() {
           alt="clock app drawing"
           className="md:w-auto w-full h-48 object-cover"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
