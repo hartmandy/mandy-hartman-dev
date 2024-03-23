@@ -55,28 +55,37 @@ export const skills = [
 export const education = [
   {
     degree: "PhD in Digital History",
-    details: "(1 year completed)",
     institution: "Clemson University",
-    year: "2023",
+    year: "2023- Current",
   },
   {
     degree: "MLIS in Library & Information Science",
     institution: "University of South Florida",
-    year: "2021",
+    year: "2020-2021",
   },
   {
     degree: "MA in Art/Design",
     institution: "University of Florida",
-    year: "2018",
+    year: "2017-2018",
   },
   {
     degree: "BA in Art/Design",
     institution: "Florida International University",
-    year: "2016",
+    year: "2013-2016",
+  },
+  {
+    degree: "AA in Art/Design",
+    institution: "Eastern Florida State College",
+    year: "2011-2012",
   },
 ];
 
 export const bootcamps = [
+  {
+    name: "Authentication Strategies & Implementation (Remix, Prisma, Oauth, 2FA, etc.)",
+    institution: "Epic Web, Kent C Dodds",
+    year: "03/2024",
+  },
   {
     name: "Data Modeling Workshop (Remix, SQLite, Prisma)",
     institution: "Epic Web, Kent C Dodds",

@@ -86,8 +86,7 @@ export default function Projects() {
               <li key={index} className="mb-2">
                 <p className="font-bold">{edu.degree} </p>
                 <p className="font-normal">
-                  {edu.details && `${edu.details}`} {edu.institution},{" "}
-                  {edu.year}
+                  {edu.institution}, {edu.year}
                 </p>
               </li>
             ))}
