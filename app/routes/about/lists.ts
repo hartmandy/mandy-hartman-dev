@@ -82,6 +82,11 @@ export const education = [
 
 export const bootcamps = [
   {
+    name: "Web Application Testing (E2E, unit testing, component and mock testing)",
+    institution: "Epic Web, Kent C Dodds",
+    year: "04/2024",
+  },
+  {
     name: "Authentication Strategies & Implementation (Remix, Prisma, Oauth, 2FA, etc.)",
     institution: "Epic Web, Kent C Dodds",
     year: "03/2024",
