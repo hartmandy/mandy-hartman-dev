@@ -5,10 +5,9 @@ export const jobs = [
     blurb:
       "AI Chatbot and Analytics team for higher education software solutions for colleges and universities",
     points: [
-      "Presented and implemented architectural approaches for software applications, including integration of Artificial Intelligence components for the Chatbot product.",
-      "Specialized in creating responsive web applications using technologies and tools such as React, Remix, and MUI, ensuring compatibility across multiple devices.",
-      "Proven experience working in agile teams, efficiently managing tasks in two-week sprints, and effectively collaborating with team members and management utilizing Azure and Azure DevOps.",
-      "Skilled in debugging, troubleshooting, and resolving complex software issues, with a strong focus on delivering responsive and accessible software solutions and maintaining architectural consistency.",
+      "Led the frontend development of a new application, meticulously rewriting and modernizing the previous codebase to enhance performance and maintainability, resulting in a significant reduction of the code volume and improved system responsiveness across various devices.",
+      "Presented and implemented architectural approaches for software applications, including integration of AI components for the Chatbot product within Jenzabar One higher education softwares.",
+      "Excelled within agile frameworks, managing tasks in bi-weekly sprints, fostering collaboration among team members, and leveraging Azure and Azure DevOps for project tracking and code management, enhancing team productivity.",
     ],
   },
   {
@@ -81,6 +80,11 @@ export const education = [
 ];
 
 export const bootcamps = [
+  {
+    name: "Python for Everyone",
+    institution: "Univ. of Michigan, Dr. Charles Severance",
+    year: "Currently enrolled",
+  },
   {
     name: "Web Application Testing (E2E, unit testing, component and mock testing)",
     institution: "Epic Web, Kent C Dodds",
