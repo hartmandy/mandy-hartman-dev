@@ -81,9 +81,14 @@ export const education = [
 
 export const bootcamps = [
   {
-    name: "Python for Everyone",
+    name: "Python Data Structures",
     institution: "Univ. of Michigan, Dr. Charles Severance",
     year: "Currently enrolled",
+  },
+  {
+    name: "Python for Everyone",
+    institution: "Univ. of Michigan, Dr. Charles Severance",
+    year: "04/2024",
   },
   {
     name: "Web Application Testing (E2E, unit testing, component and mock testing)",
