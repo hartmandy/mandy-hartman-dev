@@ -5,7 +5,7 @@ export const jobs = [
     blurb:
       "AI Chatbot and Analytics team for higher education software solutions for colleges and universities",
     points: [
-      "Led the frontend development of a new application, meticulously rewriting and modernizing the previous codebase to enhance performance and maintainability, resulting in a significant reduction of the code volume and improved system responsiveness across various devices.",
+      "Led the frontend development of a new Live Agent/ Chatbot application, and meticulously refactored and modernized the previous codebase to enhance performance and maintainability, resulting in a significant reduction of the code volume and improved application speed for clients and system responsiveness across various devices.",
       "Presented and implemented architectural approaches for software applications, including integration of AI components for the Chatbot product within Jenzabar One higher education softwares.",
       "Excelled within agile frameworks, managing tasks in bi-weekly sprints, fostering collaboration among team members, and leveraging Azure and Azure DevOps for project tracking and code management, enhancing team productivity.",
     ],
@@ -16,9 +16,10 @@ export const jobs = [
     blurb:
       "Non-profit organization that specializes in software solutions for museums, archives, and higher education",
     points: [
-      "Founder and Executive Director of Visual Archives, spearheading the development of digital resources for museums, archives, and higher education institutions to promote inclusivity and accessibility.",
-      "Acting as the Chief Technology Officer, engaging directly with clients to identify and implement optimal digital solutions, ensuring each project aligns with their unique needs and vision.",
+      "Founded nonprofit organization that develops digital resources for museums, archives, and higher education institutions that promote inclusivity and accessibility.",
+      "Engaging directly with clients to identify and implement optimal digital solutions, ensuring each project aligns with their unique needs and vision.",
       "Lead the design and implementation of web applications and databases, utilizing the most effective frameworks and working collaboratively in small teams to deliver high-quality digital products.",
+      "Clients: Kingdom of Happy Land, historical project 2024; NC State Archives, Western Regional Archives 2022-2024; Clemson University Woodland Cemetery & African American Burial Grounds Project, 2023; Asheville Art Museum, 2022",
     ],
   },
   {
@@ -27,7 +28,7 @@ export const jobs = [
     blurb:
       "Extensive portfolio of completed projects for various clients while freelancing as a web developer, UI/UX designer, and digital marketing manager.",
     points: [
-      "App Scripts Automation LLC, 2023-2024; Blowing Rock Woodworks 2014-2022; Continuum Art Gallery 2020-2022; University of South Florida, 2020-2021; Asheville Fine Furnishings 2019-2020; Blowing Rock Homesource 2020; Blowing Rock Art & History Museum 2016-2019; Town of Seven Devils 2019; Cade Museum for Invention and Creativity 2018; Foosaner Art Museum 2012; Retro Room 2011-2013; and many other one time projects.",
+      "Clients: App Scripts Automation LLC, 2023-2024; Blowing Rock Woodworks 2014-2022; Continuum Art Gallery 2020-2022; University of South Florida, 2020-2021; Asheville Fine Furnishings 2019-2020; Blowing Rock Homesource 2020; Blowing Rock Art & History Museum 2016-2019; Town of Seven Devils 2019; Cade Museum for Invention and Creativity 2018; Foosaner Art Museum 2012; Retro Room 2011-2013; and many other one time projects.",
     ],
   },
 ];
@@ -37,6 +38,7 @@ export const skills = [
   "Remix",
   "Typescript",
   "Javascript",
+  "Python",
   "Git",
   "Node",
   "Tailwind",
@@ -55,7 +57,7 @@ export const education = [
   {
     degree: "PhD in Digital History",
     institution: "Clemson University",
-    year: "2023- Current",
+    year: "2023 (1 yr completed)",
   },
   {
     degree: "MLIS in Library & Information Science",
@@ -83,7 +85,7 @@ export const bootcamps = [
   {
     name: "Python Data Structures",
     institution: "Univ. of Michigan, Dr. Charles Severance",
-    year: "Currently enrolled",
+    year: "05/2024",
   },
   {
     name: "Python for Everyone",
