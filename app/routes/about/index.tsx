@@ -1,7 +1,6 @@
 import SkillsChip from "~/components/SkillChips";
 import profileImage from "./about.jpg";
 import { jobs, skills, bootcamps, education } from "./lists";
-import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 
 export default function Projects() {
   return (
@@ -20,15 +19,16 @@ export default function Projects() {
         </div>
         <div>
           <p className="text-xl md:text-2xl xl:text-3xl font-light py-4 md:pt-8">
-            As a Software Developer, I blend my background in digital
-            preservation with modern web technologies to create accessible and
-            engaging digital experiences.
+            I am a versatile Software Engineer with expertise in React and Remix
+            frameworks, dedicated to developing intuitive and impactful web
+            applications.
           </p>
-          <p className="text-xl md:text-2xl xl:text-3xl font-light py-4 md:pt-4">
-            With expertise in React, Remix, and TypeScript, I specialize in
-            developing responsive web applications. My work spans from AI-driven
-            solutions in higher education to digital projects for museums and
-            archives, underpinned by a strong foundation in UI/UX design.
+          <p className="text-xl md:text-2xl xl:text-3xl font-light py-4 md:pt-8">
+            My approach to software development emphasizes detail, user
+            engagement, and accessibility. I craft solutions that are
+            technically robust and enhance the overall user experience, driven
+            by a passion for innovation and continuous learning in the tech
+            industry.
           </p>
         </div>
       </div>
@@ -58,22 +58,21 @@ export default function Projects() {
             </ul>
           </div>
         ))}
+
         <p className="text-lg flex flex-wrap items-center">
-          Previous professional experience can be seen on my Linkedin -
           <a
-            href="https://www.linkedin.com/in/hartmandy/"
+            href="https://read.cv/hartmandy"
             className="flex items-center ml-1"
           >
-            <LinkedInLogoIcon
-              style={{ width: "24px", height: "24px", display: "block" }}
-            />
+            To see a full list of work experiences, volunteer roles, speaking
+            engagements, etc., view my full read.cv here
           </a>
         </p>
       </div>
 
       <hr className="border-t border-neutral-700 my-8" />
 
-      <div>
+      <div className="max-w-2xl">
         <h3 className="text-2xl font-bold text-neutral-700 pb-4">
           Education & Lifelong Learning
         </h3>
