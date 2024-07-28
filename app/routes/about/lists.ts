@@ -4,13 +4,11 @@ export const jobs = [
     dates: "November 2023 - Present",
     blurb:
       "AI Chatbot and Analytics team for higher education software solutions for colleges and universities",
-    points: [
-      "Led the front-end development of two new Chatbot applications for live agents and admins. Meticulously refactored and modernized the previous codebase to enhance performance and maintainability, resulting in a significant reduction of the code volume, improved application speed for clients, and system responsiveness across various devices.",
-    ],
+    points: ["Front-end developer for Chatbot and Analytics product teams"],
   },
   {
     title: "Software Engineer & Executive Director - Visual Archives",
-    dates: "August 2022 - April 2024",
+    dates: "January 2022 - April 2024",
     blurb:
       "Non-profit organization that specializes in software solutions for museums, archives, and higher education",
     points: [
@@ -24,19 +22,32 @@ export const jobs = [
     dates: "August 2023 - December 2023",
     blurb: "App and Google Sheet Automation Agency",
     points: [
-      "Developed web applications for clients in a high-traffic agency, managing multiple projects simultaneously and delivering comprehensive full-stack solutions. Utilized React and Remix to ensure high performance and seamless user interactions across all projects.",
-      "Mapbox Application: Created an interactive map application to track customers using React and Remix.",
-      "Analytics Dashboard: Built a dynamic analytics dashboard with Recharts for data visualization.",
-      "Shopify Storefront: Developed a custom Remix/ Shopify storefront with complex membership/ shelving system.",
+      "Developed web applications for clients in a high-traffic agency, managing multiple projects simultaneously and delivering comprehensive full-stack solutions. I created three applications during this contract, all utilizing React and Remix; I created an interactive map application using Mapbox, an analytics dashboard using Material UI and Recharts, and a Shopify storefront using Remix / Hydrogen.",
     ],
   },
   {
-    title: "Web Developer & Designer - Freelance & Contract Positions",
-    dates: "September 2011 - June 2022",
-    blurb:
-      "Extensive portfolio of completed projects for various clients while freelancing as a web developer, UI/UX designer, and digital marketing manager.",
+    title: "Web Developer & Designer - Blowing Rock Woodworks",
+    dates: "May 2015 - June 2022",
+    blurb: "Handcrafted furniture and woodworking",
     points: [
-      "Clients: Blowing Rock Woodworks 2014-2022; Continuum Art Gallery 2020-2022; University of South Florida, 2020-2021; Asheville Fine Furnishings 2019-2020; Blowing Rock Homesource 2020; Blowing Rock Art & History Museum 2016-2019; Town of Seven Devils 2019; Cade Museum for Invention and Creativity 2018; Foosaner Art Museum 2012; Retro Room 2011-2013; and many other one time projects.",
+      "Created all websites, designs, print/ digital marketing material, and most social media posts for Blowing Rock Woodworks and sister companies; Blowing Rock Home Source and Asheville Fine Furnishings.",
+    ],
+  },
+  {
+    title:
+      "Collections Software Manager/ Database Manager - Various Institutions",
+    dates: "May 2015 - June 2022",
+    blurb: "Collections and digital asset management at museums and archives",
+    points: [
+      "Worked as collections software/ database manager for contracts at Asheville Art Museum (2022), Penland School of Craft (2021), National Crime Museum (2019), Appleton Museum of Art (2018), Florida Natural History Museum (2018), and Blowing Rock Art & History Museum (2015-2017). Roles involved metadata creation, entering new collections records, migration of data between software systems, and handling large datasets with a focus on accuracy and accessibility. Developed strong analytical and problem-solving skills while collaborating with cross-functional teams. Gained experience in database management, software integration, and generating reports through advanced querying in SQL and NoSQL.",
+    ],
+  },
+  {
+    title: "UX Researcher",
+    dates: "August 2020 - December 2021",
+    blurb: "School of Information",
+    points: [
+      "Assisted a professor in the School of Information with UX research for a personal archiving app, conducting user interviews and usability testing to gather valuable insights. Completed training on research ethics and contributed to grant applications, enhancing the project's funding prospects. Analyzed data and presented findings, informing design decisions to improve user experience and project outcomes.",
     ],
   },
 ];
@@ -44,9 +55,11 @@ export const jobs = [
 export const skills = [
   "React",
   "Remix",
+  "NextJS",
   "Typescript",
   "Javascript",
   "Python",
+  "SQL",
   "Git",
   "Node",
   "Tailwind",
@@ -84,6 +97,11 @@ export const bootcamps = [
     name: "Python Data Structures, Python Basics",
     institution: "Univ. of Michigan, Dr. Charles Severance",
     year: "04/2024 - 05/2024",
+  },
+  {
+    name: "History of Technology, Data Ethics, and Digital Methodologies PhD courses",
+    institution: "Clemson University",
+    year: "08/2023 - 12/2023",
   },
   {
     name: "Epic Web Workshops: Web Application, Authentication Strategies & Implementation, Data Modeling, Web Forms, Full-Stack Applications, React Development",

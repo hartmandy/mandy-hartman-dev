@@ -58,16 +58,6 @@ export default function Projects() {
             </ul>
           </div>
         ))}
-
-        <p className="text-lg flex flex-wrap items-center">
-          <a
-            href="https://read.cv/hartmandy"
-            className="flex items-center ml-1"
-          >
-            To see a full list of work experiences, volunteer roles, speaking
-            engagements, etc., view my full read.cv here
-          </a>
-        </p>
       </div>
 
       <hr className="border-t border-neutral-700 my-8" />
@@ -95,7 +85,7 @@ export default function Projects() {
         {/* Bootcamps and Workshops */}
         <div>
           <h4 className="text-lg md:text-xl xl:text-2xl font-light pb-4">
-            Bootcamps & Workshops
+            Continuing Education, Bootcamps, & Workshops
           </h4>
           <ul className="list-disc pl-5">
             {bootcamps.map((bootcamp, index) => (
