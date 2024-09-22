@@ -1,26 +1,24 @@
 export const jobs = [
   {
-    title: "Software Developer III - Jenzabar",
-    dates: "November 2023 - Present",
+    title: "Software Engineer - Virtu Studios",
+    dates: "August 2022 - Present",
     blurb:
-      "AI Chatbot and Analytics team for higher education software solutions for colleges and universities",
-    points: ["Front-end developer for Chatbot and Analytics product teams"],
+      "Software development studio specializing in website and web applications",
+    points: [
+      "Currently building two products; Sigil & Paw Profile",
+      "BMC Yearbook Project: Built and launched a digital archive site for the Western Regional Archives' Black Mountain College collection using Remix and Sanity CMS. The site improved access to over 10,000 digitized items and access to over 1,500 biographical profiles, enhancing both usability and preservation of the collection.",
+    ],
   },
   {
-    title: "Software Engineer & Executive Director - Visual Archives",
-    dates: "January 2022 - April 2024",
-    blurb:
-      "Non-profit organization that specializes in software solutions for museums, archives, and higher education",
-    points: [
-      "Engaged directly with clients to identify and implement optimal digital solutions, ensuring each project aligns with their unique needs and vision. Lead the design and implementation of web applications and databases, utilizing the most effective frameworks and working collaboratively in small teams to deliver high-quality digital products.",
-      "Built and launched a digital archive site for the Western Regional Archives' Black Mountain College collection using Remix and Sanity CMS. The site improved access to over 10,000 digitized items, enhancing both usability and preservation of the collection. www.bmcyearbook.org ",
-      "Collaborated with curatorial and development teams to digitize and put the Asheville Art Museum collection online at www.collection.asheville.org. Integrated The Museum System (TMS)/ Embark collection management software with a public-facing website, managing metadata and digital assets to make accessible over 10,000 items. Initiated the development of a timeline feature to enhance the presentation of the college's historical data.",
-    ],
+    title: "Software Developer III - Jenzabar",
+    dates: "November 2023 - September 2024",
+    blurb: "Higher education software company",
+    points: ["Front-end developer for Chatbot and Analytics product teams"],
   },
   {
     title: "Software Engineer - Apps Scripts Automation",
     dates: "August 2023 - December 2023",
-    blurb: "App and Google Sheet Automation Agency",
+    blurb: "Web App Agency",
     points: [
       "Developed web applications for clients in a high-traffic agency, managing multiple projects simultaneously and delivering comprehensive full-stack solutions. I created three applications during this contract, all utilizing React and Remix; I created an interactive map application using Mapbox, an analytics dashboard using Material UI and Recharts, and a Shopify storefront using Remix / Hydrogen.",
     ],

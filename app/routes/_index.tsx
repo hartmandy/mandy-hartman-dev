@@ -45,7 +45,7 @@ export default function Home() {
           <a href="https://github.com/hartmandy" className="h-8 w-8">
             <GitHubLogoIcon className="h-full w-full text-neutral-700" />
           </a>
-          <a href="https://twitter.com/hartmandyyy" className="h-8 w-8">
+          <a href="https://twitter.com/virtu_studios" className="h-8 w-8">
             <TwitterLogoIcon className="h-full w-full text-neutral-700" />
           </a>
           <a href="https://linkedin.com/in/hartmandy" className="h-8 w-8">
