@@ -1,68 +1,8 @@
-# Welcome to Remix!
+## Portfolio Website 
+I used this website to showcase projects that I completed and blog posts about development
+<img width="529" alt="Screenshot 2024-09-23 at 10 13 54 AM" src="https://github.com/user-attachments/assets/5e2c7df3-1049-4619-8dfa-eee250cf8766">
+<img width="1012" alt="Screenshot 2024-09-23 at 10 14 09 AM" src="https://github.com/user-attachments/assets/b97823c4-8afc-4903-922c-679f5bc6f7fd">
+<img width="522" alt="Screenshot 2024-09-23 at 10 14 25 AM" src="https://github.com/user-attachments/assets/df8f8aa5-6c3c-401d-9b48-e688f5def833">
 
-- [Remix Docs](https://remix.run/docs)
-- [Netlify Functions Overview](https://docs.netlify.com/functions/overview)
-
-## Netlify Setup
-
-1. Install the [Netlify CLI](https://docs.netlify.com/cli/get-started/):
-
-```sh
-npm i -g netlify-cli
-```
-
-If you have previously installed the Netlify CLI, you should update it to the latest version:
-
-```sh
-npm i -g netlify-cli@latest
-```
-
-2. Sign up and log in to Netlify:
-
-```sh
-netlify login
-```
-
-3. Create a new site:
-
-```sh
-netlify init
-```
-
-## Development
-
-Ensure all packages are installed by running:
-
-```sh
-npm install
-```
-
-Run
-
-```sh
-netlify dev
-```
-
-Open up [http://localhost:8888](http://localhost:8888), and you're ready to go!
-
-### Serve your site locally
-
-To serve your site locally in a production-like environment, run
-
-```sh
-netlify serve
-```
-
-Your site will be available at [http://localhost:8888](http://localhost:8888). Note that it will not auto-reload when you make changes.
-
-## Deployment
-
-There are two ways to deploy your app to Netlify, you can either link your app to your git repo and have it auto deploy changes to Netlify, or you can deploy your app manually. If you've followed the setup instructions already, all you need to do is run this:
-
-```sh
-# preview deployment
-netlify deploy --build
-
-# production deployment
-netlify deploy --build --prod
-```
+### to run the app
+If you decide to clone, just npm i, npm run dev to get it running!
