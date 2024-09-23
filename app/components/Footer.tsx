@@ -20,7 +20,7 @@ export default function Footer() {
           <a href="https://linkedin.com/in/hartmandy" className="h-5 w-5">
             <LinkedInLogoIcon className="h-full w-full" />
           </a>
-          <a href="mailto:hello@mandyhartman.dev" className="h-5 w-5">
+          <a href="mailto:mandy@virtu-studios.com" className="h-5 w-5">
             <EnvelopeClosedIcon className="h-full w-full" />
           </a>
         </div>

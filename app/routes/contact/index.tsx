@@ -8,8 +8,8 @@ export default function contact() {
         Let's make something together.
       </h2>
 
-      <a href="mailto:hello@mandyhartman.dev" className="text-2xl font-normal">
-        hello@mandyhartman.dev
+      <a href="mailto:mandy@virtu-studios.com" className="text-2xl font-normal">
+        mandy@virtu-studios.com
       </a>
     </div>
   );
