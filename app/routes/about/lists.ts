@@ -5,22 +5,31 @@ export const jobs = [
     blurb:
       "Software development studio specializing in website and web applications",
     points: [
-      "Currently building two products; Sigil & Paw Profile",
-      "BMC Yearbook Project: Built and launched a digital archive site for the Western Regional Archives' Black Mountain College collection using Remix and Sanity CMS. The site improved access to over 10,000 digitized items and access to over 1,500 biographical profiles, enhancing both usability and preservation of the collection.",
+      "Collaborating with clients to design, develop, and deploy complex web and mobile applications, including end-to-end project management from ideation to launch. Led technical implementation using modern JavaScript frameworks (React, Remix), CMS tools (Sanity CMS), and mobile tech (React Native).",
+      "Developed and launched a digital archive site, BMC Yearbook, that incorporated over 10,000 digitized items, improving access to archival data for multiple institutions. This project led to the successful sale of the platform to a museum for ongoing use.",
+      "Optimized user interfaces for web and mobile platforms, driving usability improvements that significantly enhanced user engagement for clients.",
+      "Currently building a mobile application that includes features such as booking and scheduling, customer communication, and waiver management.",
     ],
   },
   {
     title: "Software Developer III - Jenzabar",
     dates: "November 2023 - September 2024",
     blurb: "Higher education software company",
-    points: ["Front-end developer for Chatbot and Analytics product teams"],
+    points: [
+      "Led the development and modernization of front-end web application (React, Typescript, Material UI) for Chatbot team. Collaborated closely with backend teams (C#) and AI teams (Python) to deliver innovative, responsive interfaces.",
+      "Revamped existing web codebases, reducing code volume by 70% and enhancing performance across devices. Resulted in faster load times and increased app responsiveness.",
+      "Improved accessibility by creating a working group with designers, QA, and developers, to meet current WCAG standards, ensuring inclusivity for diverse user groups.",
+      "Integrated AI functionality into the student-facing chatbot platform, leveraging machine learning and large language models (LLM) to automate and streamline user interactions.",
+    ],
   },
   {
     title: "Software Engineer - Apps Scripts Automation",
     dates: "August 2023 - December 2023",
     blurb: "Web App Agency",
     points: [
-      "Developed web applications for clients in a high-traffic agency, managing multiple projects simultaneously and delivering comprehensive full-stack solutions. I created three applications during this contract, all utilizing React and Remix; I created an interactive map application using Mapbox, an analytics dashboard using Material UI and Recharts, and a Shopify storefront using Remix / Hydrogen.",
+      "Built and launched full-stack web applications while also providing UI/UX design expertise for a high-traffic agency. Managed multiple projects simultaneously, ensuring high-quality solutions were delivered on time.",
+      "Designed and developed three web applications, including a custom analytics dashboard, interactive map with Mapbox, and Shopify storefront using Remix/Hydrogen, leading to enhanced client engagement and increased sales.",
+      "Streamlined design workflows by collaborating with clients and developers to create intuitive, user-friendly interfaces for high-volume, complex applications.",
     ],
   },
   {
@@ -28,24 +37,21 @@ export const jobs = [
     dates: "May 2015 - June 2022",
     blurb: "Handcrafted furniture and woodworking",
     points: [
-      "Created all websites, designs, print/ digital marketing material, and most social media posts for Blowing Rock Woodworks and sister companies; Blowing Rock Home Source and Asheville Fine Furnishings.",
+      "Designed and developed websites and digital experiences for multiple sister companies, contributing to their growth from a warehouse operation to a major showroom presence.",
+      "Led the design and development of multiple e-commerce platforms, expanding brand recognition and driving sales for the company's three distinct brands.",
+      "Managed digital marketing efforts across social media and print campaigns, resulting in increased brand awareness and customer engagement.",
+      "Collaborated on a cross-functional team, improving internal processes and project timelines by introducing structured project management tools.",
     ],
   },
   {
-    title:
-      "Collections Software Manager/ Database Manager - Various Institutions",
-    dates: "May 2015 - June 2022",
+    title: "Digital Archivist & Collections Database Manager",
+    dates: "January 2014 - June 2022",
     blurb: "Collections and digital asset management at museums and archives",
     points: [
-      "Worked as collections software/ database manager for contracts at Asheville Art Museum (2022), Penland School of Craft (2021), National Crime Museum (2019), Appleton Museum of Art (2018), Florida Natural History Museum (2018), and Blowing Rock Art & History Museum (2015-2017). Roles involved metadata creation, entering new collections records, migration of data between software systems, and handling large datasets with a focus on accuracy and accessibility. Developed strong analytical and problem-solving skills while collaborating with cross-functional teams. Gained experience in database management, software integration, and generating reports through advanced querying in SQL and NoSQL.",
-    ],
-  },
-  {
-    title: "UX Researcher",
-    dates: "August 2020 - December 2021",
-    blurb: "School of Information",
-    points: [
-      "Assisted a professor in the School of Information with UX research for a personal archiving app, conducting user interviews and usability testing to gather valuable insights. Completed training on research ethics and contributed to grant applications, enhancing the project's funding prospects. Analyzed data and presented findings, informing design decisions to improve user experience and project outcomes.",
+      "Worked for nearly a decade in museums and archives, leading digitization initiatives and improving access to collections through technology, project management, and collaboration. Specialized in digitizing archival records, creating metadata, and ensuring digital preservation for long-term access.",
+      "Led digitization efforts for 7 institutions, converting tens of thousands of archival items into digital formats, increasing public access and ensuring long-term preservation.",
+      "Developed efficient workflows for metadata creation and digital preservation, improving discoverability and sustainability of collections across various media types.",
+      "Full list of institutions that I worked with can be seen on my Linkedin and can be shared in more detail, upon request.",
     ],
   },
 ];
@@ -55,7 +61,7 @@ export const skills = [
   "Remix",
   "NextJS",
   "Typescript",
-  "Javascript",
+  "JavaScript",
   "Python",
   "SQL",
   "Git",
@@ -92,6 +98,21 @@ export const education = [
 
 export const bootcamps = [
   {
+    name: "React Native Workshop",
+    institution: "Academind",
+    year: "11/2024 - 12/2024",
+  },
+  {
+    name: "Epic Web Workshops (React): React Server Components, Advanced APIs, Patterns, Performance, Hooks, Fundamentals",
+    institution: "Epic Web, Kent C Dodds",
+    year: "10/2024 - 12/2024",
+  },
+  {
+    name: "Dynamic Programming, Greedy Algorithms",
+    institution: "Univ. of Colorado, Boulder",
+    year: "06/2024 - 08/2024",
+  },
+  {
     name: "Python Data Structures, Python Basics",
     institution: "Univ. of Michigan, Dr. Charles Severance",
     year: "04/2024 - 05/2024",
@@ -102,12 +123,12 @@ export const bootcamps = [
     year: "08/2023 - 12/2023",
   },
   {
-    name: "Epic Web Workshops: Web Application, Authentication Strategies & Implementation, Data Modeling, Web Forms, Full-Stack Applications, React Development",
+    name: "Epic Web Workshops (Remix, React): Web Application, Authentication Strategies & Implementation, Data Modeling, Web Forms, Full-Stack Applications, React Development",
     institution: "Epic Web, Kent C Dodds",
     year: "12/2023 - 04/2024",
   },
   {
-    name: "React Bootcamp",
+    name: "React Workshop",
     institution: "Academind",
     year: "11/2023",
   },
