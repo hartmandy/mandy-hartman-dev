@@ -1,5 +1,14 @@
 export const jobs = [
   {
+    title: "Front End Engineer - Sports Card Investor",
+    dates: "January 2025 - Present",
+    blurb:
+      "Web and mobile applications for collecting and investing in sports and trading cards.",
+    points: [
+      "Building front end web applications (React, NextJS) and a mobile application (React Native) for Sports Card Investor and Market Movers products.",
+    ],
+  },
+  {
     title: "Software Engineer - Virtu Studios",
     dates: "August 2022 - Present",
     blurb:
@@ -8,7 +17,6 @@ export const jobs = [
       "Collaborating with clients to design, develop, and deploy complex web and mobile applications, including end-to-end project management from ideation to launch. Led technical implementation using modern JavaScript frameworks (React, Remix), CMS tools (Sanity CMS), and mobile tech (React Native).",
       "Developed and launched a digital archive site, BMC Yearbook, that incorporated over 10,000 digitized items, improving access to archival data for multiple institutions. This project led to the successful sale of the platform to a museum for ongoing use.",
       "Optimized user interfaces for web and mobile platforms, driving usability improvements that significantly enhanced user engagement for clients.",
-      "Currently building a mobile application that includes features such as booking and scheduling, customer communication, and waiver management.",
     ],
   },
   {

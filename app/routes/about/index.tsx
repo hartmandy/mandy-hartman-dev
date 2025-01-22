@@ -19,8 +19,8 @@ export default function Projects() {
         </div>
         <div>
           <p className="text-xl md:text-2xl xl:text-3xl font-light py-4 md:pt-8">
-            I am a versatile Software Engineer with expertise in React and Remix
-            frameworks, dedicated to developing intuitive and impactful web
+            I am a versatile Software Engineer with expertise in React and
+            Remix, dedicated to developing intuitive and impactful web
             applications.
           </p>
           <p className="text-xl md:text-2xl xl:text-3xl font-light py-4 md:pt-8">
