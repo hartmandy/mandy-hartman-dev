@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app/entry.server.tsx": {
+      "includeFiles": "app/**"
+    }
+  }
+}
