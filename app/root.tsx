@@ -21,13 +21,17 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="container mx-auto">
-        <Menu />
-        <Outlet />
+      <body className="p-4 md:p-8">
+        <div className="max-w-7xl mx-auto border border-neutral-700 rounded-lg overflow-hidden">
+          <Menu />
+          <div className="px-4 md:px-8">
+            <Outlet />
+          </div>
+          <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "production" ? null : <LiveReload />}
-        <Footer />
       </body>
     </html>
   );

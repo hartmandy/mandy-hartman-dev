@@ -27,7 +27,10 @@ export default function Post() {
 
   return (
     <div className="m-auto">
-      <button className="mt-11 pb-8 text-lg" onClick={() => navigate(-1)}>
+      <button className="mt-11 pb-8 text-lg flex items-center gap-2 hover:font-bold transition-all" onClick={() => navigate(-1)}>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
         Go Back
       </button>
       <div className="grid gap-2 md:gap-0 md:grid-cols-2 border-t border-b border-neutral-700">
@@ -51,17 +54,20 @@ export default function Post() {
       </div>
 
       {post.galleryImages && post.galleryImages.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {post.galleryImages.map((image: SanityImageObject, index: number) => (
-            <div key={index}>
-              <SanityImage
-                className="w-full object-cover h-auto"
-                image={image}
-                maxWidth={300}
-                alt={`Gallery Image ${index + 1}`}
-              />
-            </div>
-          ))}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold text-neutral-700 mb-6">Gallery</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {post.galleryImages.map((image: SanityImageObject, index: number) => (
+              <div key={index}>
+                <SanityImage
+                  className="w-full object-cover h-64 rounded-lg border border-neutral-700 grayscale hover:grayscale-0 transition-all duration-300"
+                  image={image}
+                  maxWidth={600}
+                  alt={`Gallery Image ${index + 1}`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

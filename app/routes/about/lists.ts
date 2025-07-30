@@ -1,46 +1,46 @@
 export const jobs = [
   {
-    title: "Software Engineer - Virtu Studios",
-    dates: "August 2022 - Present",
+    title: "Frontend Engineer - Sports Card Investor",
+    dates: "January 2025 - Present",
     blurb:
-      "Software development studio specializing in website and web applications",
+      "Software development team specializing in collectible investment and management for sports and TCG cards",
     points: [
-      "Collaborating with clients to design, develop, and deploy complex web and mobile applications, including end-to-end project management from ideation to launch. Led technical implementation using modern JavaScript frameworks (React, Remix), CMS tools (Sanity CMS), and mobile tech (React Native).",
-      "Developed and launched a digital archive site, BMC Yearbook, that incorporated over 10,000 digitized items, improving access to archival data for multiple institutions. This project led to the successful sale of the platform to a museum for ongoing use.",
-      "Optimized user interfaces for web and mobile platforms, driving usability improvements that significantly enhanced user engagement for clients.",
-      "Currently building a mobile application that includes features such as booking and scheduling, customer communication, and waiver management.",
+      "Leading front-end development across web (React, Next.js, Typescript) and mobile applications (React Native, Expo), driving user experience and interface design for high-traffic consumer products.",
+      "Actively shaping product direction through close collaboration with product and design teams, contributing to all UI/UX discussions and driving design system consistency across platforms.",
+      "Building scalable component libraries and design systems, enabling faster product iteration and ensuring visual consistency across apps.",
     ],
   },
   {
-    title: "Software Developer III - Jenzabar",
+    title: "Software Engineer - Virtu Studios",
+    dates: "August 2022 - Present",
+    blurb:
+      "Software development studio that builds web and mobile applications for clients and internal projects",
+    points: [
+      "Leading front-end architecture and implementation for a wide range of client projects, delivering high-performance web and mobile applications tailored to industries including cybersecurity, enterprise IT (e.g., Dell), and independent startups.",
+      "Collaborating directly with clients and stakeholders to scope features, design intuitive user interfaces, and develop scalable frontend solutions using React, Remix, React Native, and Sanity CMS.",
+      "Working in fast-paced, multi-project environments—balancing design, development, and client communication to ensure successful project delivery on tight timelines.",
+      "Advocating for user-centered design through prototyping, usability feedback loops, and custom component libraries that improved design consistency across client projects.",
+    ],
+  },
+  {
+    title: "Front End Lead - Software Developer III - Jenzabar",
     dates: "November 2023 - September 2024",
     blurb: "Higher education software company",
     points: [
-      "Led the development and modernization of front-end web application (React, Typescript, Material UI) for Chatbot team. Collaborated closely with backend teams (C#) and AI teams (Python) to deliver innovative, responsive interfaces.",
-      "Revamped existing web codebases, reducing code volume by 70% and enhancing performance across devices. Resulted in faster load times and increased app responsiveness.",
-      "Improved accessibility by creating a working group with designers, QA, and developers, to meet current WCAG standards, ensuring inclusivity for diverse user groups.",
-      "Integrated AI functionality into the student-facing chatbot platform, leveraging machine learning and large language models (LLM) to automate and streamline user interactions.",
+      "Led front-end modernization for chatbot and analytics tools using React, TypeScript, and Material UI, improving usability and performance across enterprise applications.",
+      "Reduced code complexity by 70% during major refactor, boosting load speeds and development agility.",
+      "Established and led an accessibility working group, achieving WCAG compliance and embedding inclusive design practices into the dev workflow.",
+      "Collaborated with AI teams to integrate LLM-based automation into student-facing interfaces, streamlining common interactions and support workflows.",
     ],
   },
   {
     title: "Software Engineer - Apps Scripts Automation",
     dates: "August 2023 - December 2023",
-    blurb: "Web App Agency",
+    blurb: "Fats paced web app agency",
     points: [
-      "Built and launched full-stack web applications while also providing UI/UX design expertise for a high-traffic agency. Managed multiple projects simultaneously, ensuring high-quality solutions were delivered on time.",
+      "Delivered full-stack solutions with an emphasis on intuitive UI/UX, supporting a high-volume digital agency through rapid prototyping and deployment.",
       "Designed and developed three web applications, including a custom analytics dashboard, interactive map with Mapbox, and Shopify storefront using Remix/Hydrogen, leading to enhanced client engagement and increased sales.",
       "Streamlined design workflows by collaborating with clients and developers to create intuitive, user-friendly interfaces for high-volume, complex applications.",
-    ],
-  },
-  {
-    title: "Web Developer & Designer - Blowing Rock Woodworks",
-    dates: "May 2015 - June 2022",
-    blurb: "Handcrafted furniture and woodworking",
-    points: [
-      "Designed and developed websites and digital experiences for multiple sister companies, contributing to their growth from a warehouse operation to a major showroom presence.",
-      "Led the design and development of multiple e-commerce platforms, expanding brand recognition and driving sales for the company's three distinct brands.",
-      "Managed digital marketing efforts across social media and print campaigns, resulting in increased brand awareness and customer engagement.",
-      "Collaborated on a cross-functional team, improving internal processes and project timelines by introducing structured project management tools.",
     ],
   },
   {
@@ -54,28 +54,49 @@ export const jobs = [
       "Full list of institutions that I worked with can be seen on my Linkedin and can be shared in more detail, upon request.",
     ],
   },
+  {
+    title: "Freelance Developer/Designer",
+    dates: "May 2012 - June 2022",
+    blurb:
+      "Worked with dozens of clients over a decade, helping businesses and organizations establish their digital presence through web design, branding, and marketing materials. Long-term partnerships included:",
+    points: [
+      "Blowing Rock Art & History Museum (2015-2019): Designed their web presence and digital materials, finding ways to make art and local history feel accessible and exciting online. Created exhibition sites, interactive features, and whatever else helped connect people to the collection.",
+      "Blowing Rock Woodworks (2015-2022): As the in-house designer, developer, and digital marketer for three growing brands, I owned their full digital presence—from building and maintaining e-commerce sites to leading design across web, email, print, and packaging. Also managed SEO, performance, and marketing integrations to create seamless customer experiences and support the companies' evolution from warehouse operations to a destination retail brand.",
+      "Continuum Art (2020-2022): Handled all digital design needs for this contemporary gallery—website design and updates, social media assets, PR materials, and whatever visual content they needed to showcase artists and promote exhibitions and events.",
+      "Beyond these anchor clients, delivered projects ranging from brand identities to full website redesigns, always focused on understanding what each business needed and delivering work that actually moved the needle for them.",
+    ],
+  },
+  {
+    title: "UX Researcher - University of South Florida",
+    dates: "August 2020 - December 2021",
+    blurb: "School of Information Science",
+    points: [
+      "Partnered with faculty on grant-funded research to validate and shape web app concepts from idea to implementation. Led user interviews and usability studies, turning raw feedback into actionable insights that directly influenced product direction and feature decisions.",
+      "Designed and conducted user interviews, developing research protocols that uncovered real user needs versus assumed ones.",
+      "Synthesized qualitative data into clear recommendations that helped secure continued grant funding.",
+      "Collaborated with professors to pivot app concepts based on research findings, ensuring proposals addressed actual user pain points rather than theoretical solutions.",
+      "Presented findings to stakeholders, translating complex user behavior patterns into straightforward design implications.",
+    ],
+  },
 ];
 
 export const skills = [
   "React",
   "Remix",
   "NextJS",
+  "React Native",
   "Typescript",
   "JavaScript",
   "Python",
   "SQL",
-  "Git",
   "Node",
   "Tailwind",
   "Prisma",
   "Planetscale",
   "Sanity",
-  "App Development",
   "UI/UX",
   "Adobe Creative Suite",
   "Figma",
-  "Azure Devops",
-  "Agile",
 ];
 
 export const education = [

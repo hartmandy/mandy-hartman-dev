@@ -9,7 +9,7 @@ export default function contact() {
       </h2>
 
       <a href="mailto:mandy@virtu-studios.com" className="text-2xl font-normal">
-        mandy@virtu-studios.com
+        mandyhartmandev@gmail.com
       </a>
     </div>
   );

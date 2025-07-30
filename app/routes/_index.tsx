@@ -29,7 +29,6 @@ export default function Home() {
   const { home } = useLoaderData<typeof loader>();
   return (
     <div className="m-auto">
-      <h1 className="text-7xl mt-11 mb-8">{home.title}</h1>
       <SanityImage
         className="w-full"
         image={home.mainImage}
@@ -37,28 +36,16 @@ export default function Home() {
         alt={home.title}
       />
 
-      <div className="flex flex-col md:flex-row my-8 border-t border-neutral-700">
-        <div className="flex flex-col mt-8 md:w-3/5">
-          <p className="text-4xl">{home.subtitle}</p>
-        </div>
-        <div className="flex items-end justify-start md:justify-end gap-3 md:w-2/5 mt-6 ">
-          <a href="https://github.com/hartmandy" className="h-8 w-8">
-            <GitHubLogoIcon className="h-full w-full text-neutral-700" />
-          </a>
-          <a href="https://twitter.com/codewithmandy" className="h-8 w-8">
-            <TwitterLogoIcon className="h-full w-full text-neutral-700" />
-          </a>
-          <a href="https://linkedin.com/in/codewithmandy" className="h-8 w-8">
-            <LinkedInLogoIcon className="h-full w-full text-neutral-700" />
-          </a>
-          <a href="mailto:mandy@virtu-studios.com" className="h-8 w-8">
-            <EnvelopeClosedIcon className="h-full w-full text-neutral-700" />
-          </a>
+      <div className="flex flex-col md:flex-row my-8 ">
+        <div className="flex flex-col mt-4 md:mt-8 md:w-4/5">
+          <p className="text-4xl md:text-6xl">{home.subtitle}</p>
         </div>
       </div>
 
-      <div className="flex my-8 border-t border-b border-neutral-700">
-        <p className="text-3xl font-normal my-12 ">{home.blurb}</p>
+      <div className="flex border-b border-neutral-700">
+        <p className="text-lg md:text-2xl font-normal my-4 md:my-8 md:w-4/5">
+          {home.blurb}
+        </p>
       </div>
 
       <div className="mb-8 mt-12">
