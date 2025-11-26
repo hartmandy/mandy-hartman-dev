@@ -1,5 +1,13 @@
 export const jobs = [
   {
+    title: "Sofware Engineer - Heron Studio",
+    dates: "July 2025 - Present",
+    blurb: "Software development studio focusing on animal welfare",
+    points: [
+      "I develop mobile and web applications focused on animal care and welfare, creating digital tools that help pet owners, wildlife rehabilitators, and animal care professionals streamline their daily tasks and improve outcomes for the animals they serve. Our growing suite of apps addresses various needs across the animal care ecosystem, from health management to professional collaboration and educational resources.",
+    ],
+  },
+  {
     title: "Frontend Engineer - Sports Card Investor",
     dates: "January 2025 - Present",
     blurb:
@@ -12,7 +20,7 @@ export const jobs = [
   },
   {
     title: "Software Engineer - Virtu Studios",
-    dates: "August 2022 - Present",
+    dates: "August 2022 - December 2024",
     blurb:
       "Software development studio that builds web and mobile applications for clients and internal projects",
     points: [
