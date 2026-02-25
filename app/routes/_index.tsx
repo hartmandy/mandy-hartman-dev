@@ -1,3 +1,33 @@
+import { type MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Mandy Hartman" },
+    { name: "description", content: "Portfolio for Mandy Hartman" },
+  ];
+};
+
+export default function Home() {
+  return (
+    <main className="min-h-[60vh] flex items-center justify-center p-8 text-center">
+      <p className="text-lg">
+        Visit my Linkedin:{" "}
+        <a
+          href="https://www.linkedin.com/in/hartmandy"
+          className="underline underline-offset-4 hover:font-semibold"
+          target="_blank"
+          rel="noreferrer"
+        >
+          https://www.linkedin.com/in/hartmandy
+        </a>
+      </p>
+    </main>
+  );
+}
+
+/*
+Previous homepage implementation (kept for later reuse):
+
 import { type MetaFunction, json } from "@remix-run/node";
 import {
   EnvelopeClosedIcon,
@@ -12,13 +42,6 @@ import { useLoaderData } from "@remix-run/react";
 import Card from "~/components/Card";
 import { SanityDocument } from "@sanity/client/csm";
 import { HOME_QUERY } from "~/sanity/queries";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Mandy Hartman" },
-    { name: "description", content: "Portfolio for Mandy Hartman" },
-  ];
-};
 
 export const loader = async () => {
   const home = await client.fetch(HOME_QUERY);
@@ -65,3 +88,4 @@ export default function Home() {
     </div>
   );
 }
+*/
