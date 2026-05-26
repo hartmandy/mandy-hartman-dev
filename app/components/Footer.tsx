@@ -2,7 +2,6 @@ import {
   EnvelopeClosedIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
-  TwitterLogoIcon,
 } from "@radix-ui/react-icons";
 
 export default function Footer() {
@@ -13,9 +12,6 @@ export default function Footer() {
         <div className="flex items-center gap-3 text-neutral-700">
           <a href="https://github.com/hartmandy" className="h-5 w-5">
             <GitHubLogoIcon className="h-full w-full" />
-          </a>
-          <a href="https://twitter.com/hartmandyyy" className="h-5 w-5">
-            <TwitterLogoIcon className="h-full w-full" />
           </a>
           <a href="https://www.linkedin.com/in/hartmandy/" className="h-5 w-5">
             <LinkedInLogoIcon className="h-full w-full" />

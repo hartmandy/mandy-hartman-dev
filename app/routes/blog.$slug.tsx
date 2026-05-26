@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, useNavigate } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import RenderBlock from "~/components/RenderBlocks";
 import { SanityImage } from "~/components/SanityImage";
@@ -23,19 +23,31 @@ function formatSanityDate(datetime: string) {
 export default function Post() {
   const { post } = useLoaderData<typeof loader>();
   const formattedDate = formatSanityDate(post.publishedAt);
-  const navigate = useNavigate();
 
   return (
     <div className="m-auto">
-      <button className="mt-11 pb-8 text-lg flex items-center gap-2 hover:font-bold transition-all" onClick={() => navigate(-1)}>
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      <a
+        href="/blog"
+        className="mt-11 pb-8 text-lg flex items-center gap-2 hover:font-bold transition-all"
+      >
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
         </svg>
-        Go Back
-      </button>
+        Back to Blog
+      </a>
       <div className="grid gap-2 md:gap-0 md:grid-cols-2 border-t border-b border-neutral-700">
         <SanityImage
-          className="w-full"
+          className="w-full border border-neutral-700 rounded-lg grayscale hover:grayscale-0 transition-all duration-300"
           image={post.mainImage}
           maxWidth={500}
           alt={post.title}

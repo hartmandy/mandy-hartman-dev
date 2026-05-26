@@ -1,4 +1,3 @@
-import { Link } from "@remix-run/react";
 import { useState } from "react";
 
 const Menu = () => {
@@ -10,54 +9,38 @@ const Menu = () => {
     <nav className="py-6 mb-8 border-b border-neutral-700 px-4 md:px-8">
       <div className="flex justify-between items-center">
         {/* Logo/Name */}
-        <Link
-          to="/"
+        <a
+          href="/"
           className="text-2xl font-bold text-neutral-700 hover:text-black transition-colors"
         >
           Mandy Hartman
-        </Link>
+        </a>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8">
           <li>
-            <Link
-              to="/"
+            <a
+              href="/"
               className="text-neutral-700 hover:text-black hover:font-bold transition-all"
             >
               Home
-            </Link>
+            </a>
           </li>
           <li>
-            <Link
-              to="/projects"
-              className="text-neutral-700 hover:text-black hover:font-bold transition-all"
-            >
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/blog"
+            <a
+              href="/blog"
               className="text-neutral-700 hover:text-black hover:font-bold transition-all"
             >
               Blog
-            </Link>
+            </a>
           </li>
           <li>
-            <Link
-              to="/about"
+            <a
+              href="/about"
               className="text-neutral-700 hover:text-black hover:font-bold transition-all"
             >
               Resume
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="text-neutral-700 hover:text-black hover:font-bold transition-all"
-            >
-              Contact
-            </Link>
+            </a>
           </li>
         </ul>
 
@@ -97,49 +80,31 @@ const Menu = () => {
         <div className="md:hidden mt-6 pb-4 border-t border-neutral-700 pt-6">
           <ul className="space-y-4">
             <li>
-              <Link
-                to="/"
+              <a
+                href="/"
                 className="block text-lg text-neutral-700 hover:text-black hover:font-bold transition-all"
                 onClick={() => setIsOpen(false)}
               >
                 Home
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/projects"
-                className="block text-lg text-neutral-700 hover:text-black hover:font-bold transition-all"
-                onClick={() => setIsOpen(false)}
-              >
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/blog"
+              <a
+                href="/blog"
                 className="block text-lg text-neutral-700 hover:text-black hover:font-bold transition-all"
                 onClick={() => setIsOpen(false)}
               >
                 Blog
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/about"
+              <a
+                href="/about"
                 className="block text-lg text-neutral-700 hover:text-black hover:font-bold transition-all"
                 onClick={() => setIsOpen(false)}
               >
                 Resume
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                className="block text-lg text-neutral-700 hover:text-black hover:font-bold transition-all"
-                onClick={() => setIsOpen(false)}
-              >
-                Contact
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

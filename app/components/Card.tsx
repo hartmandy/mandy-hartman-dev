@@ -1,26 +1,36 @@
-import { SanityImage } from "~/components/SanityImage";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { SanityDocument } from "@sanity/client/csm";
 
-export default function Card({ project }: { project: SanityDocument }) {
+function formatPostDate(datetime?: string) {
+  if (!datetime) return "Essay";
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  }).format(new Date(datetime));
+}
+
+export default function Card({ post }: { post: SanityDocument }) {
+  const postPath = `/blog/${post.slug}`;
+
   return (
-    <div className="bg-transparent flex flex-col p-5 border border-black">
-      <SanityImage
-        image={project.mainImage}
-        maxWidth={500}
-        alt={project.title}
-        className="w-full object-cover border border-black grayscale hover:grayscale-0"
-      />
-      <div className="text-left mt-4">
-        <h2 className="text-2xl font-bold text-neutral-700">{project.title}</h2>
-        <p className="text-lg mt-2 font-normal">{project.post.blurb}</p>
-        <a
-          href={`/blog/${project.post.slug.current}`}
-          className="text-sm mt-4 flex items-center hover:font-bold"
-        >
-          Read More <ArrowRightIcon />
-        </a>
+    <article className="flex h-full flex-col justify-between rounded-lg border border-neutral-700 bg-transparent p-5">
+      <div>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">
+          {formatPostDate(post.publishedAt)}
+        </p>
+        <h2 className="mt-4 text-2xl font-bold text-neutral-800">
+          {post.title}
+        </h2>
+        <p className="mt-3 text-lg font-normal leading-relaxed">{post.blurb}</p>
       </div>
-    </div>
+      <a
+        href={postPath}
+        className="mt-6 inline-flex items-center text-sm hover:font-bold"
+      >
+        Read More <ArrowRightIcon />
+      </a>
+    </article>
   );
 }
