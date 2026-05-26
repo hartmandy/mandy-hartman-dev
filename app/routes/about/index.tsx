@@ -65,7 +65,7 @@ export default function About() {
           >
             mandyhartmandev@gmail.com
           </a>
-          . You can also view my resume as a PDF or download a copy.
+
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a
