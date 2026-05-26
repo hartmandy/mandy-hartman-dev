@@ -21,18 +21,10 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'featuredProjects',
-      title: 'Featured Projects',
+      name: 'featuredPosts',
+      title: 'Featured Posts',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'portfolio'}}],
+      of: [{type: 'reference', to: {type: 'post'}}],
     }),
   ],
 
@@ -40,7 +32,6 @@ export default defineType({
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'mainImage',
     },
     prepare(selection) {
       const {author} = selection

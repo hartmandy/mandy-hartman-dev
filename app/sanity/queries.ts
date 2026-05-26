@@ -5,31 +5,22 @@ export const HOME_QUERY = groq`*[_type == "home"][0]{
     title,
     subtitle,
     blurb,
-    mainImage,
-    featuredProjects[] -> {
+    featuredPosts[] -> {
       _id,
       title,
-      projectWebsite,
-      mainImage,
-      "categories": categories[] -> {
-        _id,
-        title
-      },
-      "post": post -> {
-        _id,
-        title,
-        slug,
-        blurb
-      }
+      blurb,
+      "slug": slug.current,
+      publishedAt
     }
   }`;
 
-export const BLOGS_QUERY = groq`*[_type == "post"] | order(publishedAt desc) {
+export const BLOGS_QUERY = groq`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     blurb,
     mainImage,
-    slug
+    "slug": slug.current,
+    publishedAt
   }`;
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug] {
@@ -43,13 +34,3 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug] {
     body
   }[0]`;
 
-export const PORTFOLIO_QUERY = groq`*[_type == "portfolio"] {
-    _id,
-    title,
-    blurb,
-    mainImage,
-    "post": post->{
-      _id,
-      slug,
-    }
-  }`;
