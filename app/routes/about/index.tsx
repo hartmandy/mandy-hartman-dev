@@ -9,9 +9,12 @@ import {
 export default function About() {
   return (
     <>
-      <div className="grid md:grid-cols-2 gap-6 my-8">
+      <div className="grid gap-6 my-8 md:grid-cols-2 md:items-start">
         {/* Professional Summary */}
         <div>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
+            Resume
+          </p>
           <h2 className="text-2xl font-bold text-neutral-700 pb-4">Summary</h2>
           <p className="text-neutral-700 leading-relaxed text-xl">
             Software developer focused on creating accessible, user-friendly web
@@ -39,6 +42,17 @@ export default function About() {
             </a>
           </div>
         </div>
+
+        <figure className="overflow-hidden rounded-lg border border-neutral-700 md:sticky md:top-8">
+          <img
+            src="/me.png"
+            alt="Mandy Hartman"
+            className="aspect-[16/9] w-full object-cover object-center grayscale transition-all duration-300 hover:grayscale-0"
+          />
+          <figcaption className="border-t border-neutral-700 px-4 py-3 text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">
+            Mandy Hartman
+          </figcaption>
+        </figure>
       </div>
 
       <hr className="border-t border-neutral-700 my-8" />

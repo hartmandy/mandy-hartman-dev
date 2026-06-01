@@ -52,6 +52,17 @@ export default function Home() {
         </div>
       </header>
 
+      <figure className="overflow-hidden rounded-lg border border-neutral-700">
+        <img
+          src="/home.png"
+          alt="Workspace at the desk"
+          className="aspect-[21/9] w-full object-cover object-center grayscale transition-all duration-300 hover:grayscale-0"
+        />
+        <figcaption className="border-t border-neutral-700 px-4 py-3 text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">
+          Field notes from the desk
+        </figcaption>
+      </figure>
+
       <section className="grid gap-4 border-b border-neutral-700 py-8 md:grid-cols-3">
         <div className="rounded-lg border border-neutral-700 p-5">
           <p className="text-xs font-bold uppercase tracking-[0.25em]">
