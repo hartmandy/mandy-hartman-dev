@@ -1,0 +1,1390 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walden — Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @font-face {
+        font-family: "Vintage";
+        font-style: normal;
+        font-weight: 400 600;
+        font-display: block;
+        src:
+          url("vintage-webfont.woff2") format("woff2"),
+          url("vintage-webfont.woff") format("woff");
+      }
+      @font-face {
+        font-family: "DM Sans";
+        font-style: normal;
+        font-weight: 300 600;
+        font-display: block;
+        src: url("dm-sans.woff2") format("woff2");
+      }
+
+      /* ── Light mode tokens (mirrors app/app.css) ── */
+      :root,
+      html.light {
+        --ink: #1a1a1a;
+        --paper: #faf9f7;
+        --stone: #e8e6e1;
+        --surface: #ffffff;
+        --soft: rgba(26, 26, 26, 0.5);
+        --faint: rgba(26, 26, 26, 0.25);
+        --hairline: rgba(26, 26, 26, 0.08);
+
+        --celadon: #93a696;
+        --clay: #b36a40;
+        --kiln: #2d2a26;
+        --ash: #495e70;
+        --celadon-light: #e8f0e9;
+        --clay-light: #fdf3ed;
+        --kiln-light: #f5f4f3;
+        --ash-light: #eef1f3;
+
+        --background: #faf9f7;
+        --foreground: #1a1a1a;
+        --card: #ffffff;
+        --card-foreground: #1a1a1a;
+        --popover: #ffffff;
+        --popover-foreground: #1a1a1a;
+        --primary: #1a1a1a;
+        --primary-foreground: #faf9f7;
+        --secondary: #f5f4f3;
+        --secondary-foreground: #1a1a1a;
+        --muted: #f5f4f3;
+        --muted-foreground: rgba(26, 26, 26, 0.5);
+        --accent: #efedea;
+        --accent-foreground: #1a1a1a;
+        --destructive: #b36a40;
+        --border: rgba(26, 26, 26, 0.08);
+        --input: rgba(0, 0, 0, 0.06);
+        --ring: #93a696;
+
+        --sidebar: #faf9f7;
+        --sidebar-foreground: rgba(14, 14, 16, 0.5);
+        --sidebar-primary: #93a696;
+        --sidebar-accent: rgba(232, 230, 225, 0.5);
+
+        --radius: 0.625rem;
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --radius-xl: calc(var(--radius) + 4px);
+
+        --chart-1: #93a696;
+        --chart-2: #b36a40;
+        --chart-3: #495e70;
+        --chart-4: #2d2a26;
+        --chart-5: #93a696;
+
+        --page-bg: var(--paper);
+        --page-text: var(--ink);
+        --panel-bg: var(--surface);
+        --panel-border: var(--hairline);
+        --chip-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+        --code-bg: #f5f4f3;
+      }
+
+      /* ── Dark mode tokens ── */
+      html.dark {
+        --ink: #e8e6e1;
+        --paper: #0e0e10;
+        --stone: #2a2a2e;
+        --surface: #18181b;
+        --soft: rgba(232, 230, 225, 0.6);
+        --faint: rgba(232, 230, 225, 0.3);
+        --hairline: rgba(232, 230, 225, 0.08);
+
+        --celadon: #b0c2b3;
+        --clay: #d08661;
+        --kiln: #b5b1ac;
+        --ash: #738899;
+        --celadon-light: rgba(176, 194, 179, 0.12);
+        --clay-light: rgba(208, 134, 97, 0.12);
+        --kiln-light: rgba(181, 177, 172, 0.12);
+        --ash-light: rgba(115, 136, 153, 0.12);
+
+        --background: #0e0e10;
+        --foreground: #e8e6e1;
+        --card: #18181b;
+        --card-foreground: #e8e6e1;
+        --popover: #18181b;
+        --popover-foreground: #e8e6e1;
+        --primary: #e8e6e1;
+        --primary-foreground: #0e0e10;
+        --secondary: #27272a;
+        --secondary-foreground: #e8e6e1;
+        --muted: #27272a;
+        --muted-foreground: rgba(232, 230, 225, 0.6);
+        --accent: #1c1c1f;
+        --accent-foreground: #e8e6e1;
+        --destructive: #d08661;
+        --border: rgba(232, 230, 225, 0.08);
+        --input: rgba(255, 255, 255, 0.1);
+        --ring: #b0c2b3;
+
+        --sidebar: #0e0e10;
+        --sidebar-foreground: rgba(255, 255, 255, 0.5);
+        --sidebar-primary: #b0c2b3;
+        --sidebar-accent: rgba(255, 255, 255, 0.05);
+
+        --chart-1: #b0c2b3;
+        --chart-2: #d08661;
+        --chart-3: #738899;
+        --chart-4: #b5b1ac;
+        --chart-5: #b0c2b3;
+
+        --page-bg: var(--paper);
+        --page-text: var(--ink);
+        --panel-bg: var(--surface);
+        --panel-border: var(--hairline);
+        --chip-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+        --code-bg: #27272a;
+      }
+
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      html,
+      body {
+        background: var(--page-bg);
+        color: var(--page-text);
+        font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+        font-weight: 400;
+        letter-spacing: -0.005em;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      .font-display {
+        font-family: "Vintage", serif;
+        font-feature-settings: "liga";
+      }
+
+      .eyebrow {
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--soft);
+        font-weight: 500;
+      }
+
+      .hairline {
+        border-color: var(--hairline);
+      }
+
+      .panel {
+        background: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .chip {
+        border-radius: 14px;
+        aspect-ratio: 1 / 1.05;
+        box-shadow: var(--chip-shadow);
+      }
+
+      .chip-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        aspect-ratio: 2 / 1.05;
+      }
+
+      .chip-pair .chip {
+        aspect-ratio: auto;
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .token-row {
+        display: grid;
+        grid-template-columns: 140px 1fr 120px;
+        gap: 16px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--hairline);
+        font-size: 13px;
+      }
+
+      .token-row:last-child {
+        border-bottom: none;
+      }
+
+      .token-swatch {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        box-shadow: var(--chip-shadow);
+        flex-shrink: 0;
+      }
+
+      .token-name {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--foreground);
+      }
+
+      .token-value {
+        color: var(--soft);
+        font-size: 12px;
+        text-align: right;
+      }
+
+      .token-class {
+        color: var(--celadon);
+        font-size: 11px;
+      }
+
+      code.inline {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        background: var(--code-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      /* ── Component demos ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 36px;
+        padding: 0 16px;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        font-family: inherit;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: var(--primary-foreground);
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+      }
+
+      .btn-secondary {
+        background: var(--secondary);
+        color: var(--secondary-foreground);
+      }
+      .btn-secondary:hover {
+        opacity: 0.85;
+      }
+
+      .btn-destructive {
+        background: var(--destructive);
+        color: #fff;
+      }
+      .btn-destructive:hover {
+        opacity: 0.9;
+      }
+
+      .btn-outline {
+        background: var(--background);
+        color: var(--foreground);
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      }
+      .btn-outline:hover {
+        background: var(--accent);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--foreground);
+      }
+      .btn-ghost:hover {
+        background: var(--accent);
+      }
+
+      .btn-icon {
+        width: 36px;
+        padding: 0;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        font-weight: 500;
+        padding: 2px 8px;
+        border-radius: 9999px;
+      }
+
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      }
+
+      .input-demo {
+        width: 100%;
+        max-width: 320px;
+        height: 36px;
+        padding: 0 12px;
+        font-size: 14px;
+        font-family: inherit;
+        background: var(--background);
+        color: var(--foreground);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .input-demo::placeholder {
+        color: var(--faint);
+      }
+      .input-demo:focus {
+        border-color: var(--ring);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 20%, transparent);
+      }
+
+      .textarea-demo {
+        width: 100%;
+        max-width: 400px;
+        min-height: 80px;
+        padding: 12px 16px;
+        font-size: 14px;
+        font-family: inherit;
+        background: var(--background);
+        color: var(--foreground);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        outline: none;
+        resize: none;
+        line-height: 1.5;
+      }
+      .textarea-demo:focus {
+        border-color: var(--ring);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 20%, transparent);
+      }
+
+      .card-demo {
+        background: var(--card);
+        color: var(--card-foreground);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: 20px;
+        transition: all 0.2s ease;
+      }
+      .card-demo:hover {
+        border-color: var(--celadon);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: var(--radius-lg);
+        font-size: 14px;
+        color: var(--muted-foreground);
+        transition: all 0.15s ease;
+        cursor: pointer;
+      }
+      .nav-item:hover {
+        background: color-mix(in srgb, var(--stone) 40%, transparent);
+        color: var(--foreground);
+      }
+      .nav-item.active {
+        background: var(--card);
+        color: var(--foreground);
+        border: 1px solid var(--stone);
+      }
+
+      .radius-demo {
+        width: 64px;
+        height: 64px;
+        background: var(--celadon-light);
+        border: 2px solid var(--celadon);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: var(--celadon);
+        font-weight: 500;
+      }
+
+      .spacing-bar {
+        height: 24px;
+        background: var(--celadon);
+        border-radius: 4px;
+        opacity: 0.7;
+      }
+
+      .mode-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 9999px;
+        border: 1px solid var(--hairline);
+        background: var(--panel-bg);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--foreground);
+        transition: all 0.15s ease;
+      }
+      .mode-toggle:hover {
+        background: var(--accent);
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise {
+        animation: rise 0.6s ease-out both;
+      }
+
+      @keyframes page-enter {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-page-demo {
+        animation: page-enter 0.5s ease-out both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up-demo {
+        animation: fadeUp 0.4s ease-out both;
+      }
+
+      .section-num {
+        font-family: "Vintage", serif;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen">
+    <!-- ── COVER ── -->
+    <section class="relative min-h-screen px-8 md:px-16 lg:px-24 pt-10 pb-24 rise">
+      <header class="flex items-center justify-between">
+        <span
+          class="font-display text-xl"
+          style="letter-spacing: -0.01em; color: var(--foreground)"
+          >Walden.</span
+        >
+        <div class="flex items-center gap-6">
+          <button class="mode-toggle" onclick="toggleMode()" id="mode-btn">
+            <span id="mode-icon">☀</span>
+            <span id="mode-label">Light</span>
+          </button>
+          <div class="eyebrow hidden sm:flex items-center gap-6">
+            <span>Design System</span>
+            <span style="color: var(--faint)">/</span>
+            <span>Production</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="mt-32 md:mt-44 lg:mt-56 max-w-6xl">
+        <p class="eyebrow mb-6">Tokens · components · patterns</p>
+        <h1
+          class="font-display text-[14vw] md:text-[11vw] lg:text-[9vw] leading-[0.9] select-none"
+          style="font-weight: 500; color: var(--foreground)"
+        >
+          Design<br />System
+        </h1>
+      </div>
+
+      <footer class="mt-32 grid grid-cols-1 md:grid-cols-12 gap-10 max-w-6xl">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-3">Source of truth</p>
+          <p class="text-[15px] leading-[1.7]" style="color: var(--soft)">
+            Mirrors <code class="inline">app/app.css</code> — Tailwind v4 +
+            shadcn/ui. Toggle dark mode above to preview both themes. Built for
+            Figma import and portfolio reference.
+          </p>
+        </div>
+        <div class="md:col-span-5 md:col-start-8">
+          <p class="eyebrow mb-3">Contents</p>
+          <ol class="text-[15px] leading-[1.9]" style="color: var(--foreground)">
+            <li class="flex justify-between">
+              <span>01 — Typography</span
+              ><span style="color: var(--faint)">p. 02</span>
+            </li>
+            <li class="flex justify-between">
+              <span>02 — Color</span
+              ><span style="color: var(--faint)">p. 03</span>
+            </li>
+            <li class="flex justify-between">
+              <span>03 — Semantic tokens</span
+              ><span style="color: var(--faint)">p. 04</span>
+            </li>
+            <li class="flex justify-between">
+              <span>04 — Radius &amp; spacing</span
+              ><span style="color: var(--faint)">p. 05</span>
+            </li>
+            <li class="flex justify-between">
+              <span>05 — Components</span
+              ><span style="color: var(--faint)">p. 06</span>
+            </li>
+            <li class="flex justify-between">
+              <span>06 — Motion</span
+              ><span style="color: var(--faint)">p. 07</span>
+            </li>
+          </ol>
+        </div>
+      </footer>
+    </section>
+
+    <hr class="hairline border-t mx-8 md:mx-16 lg:mx-24" />
+
+    <!-- ── 01 TYPOGRAPHY ── -->
+    <section class="px-8 md:px-16 lg:px-24 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-x-8 mb-16">
+        <div class="col-span-12 md:col-span-2">
+          <p class="eyebrow">01</p>
+        </div>
+        <div class="col-span-12 md:col-span-10">
+          <h2
+            class="font-display text-5xl md:text-6xl tracking-tight"
+            style="font-weight: 500"
+          >
+            Typography
+          </h2>
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+            Two families. Vintage for display moments. DM Sans for everything
+            else. Avoid <code class="inline">font-bold</code> — this system
+            favors medium and semibold.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="panel p-10">
+          <div class="flex items-baseline justify-between mb-8">
+            <p class="eyebrow">Display</p>
+            <p class="eyebrow" style="color: var(--faint)">font-display · Vintage</p>
+          </div>
+          <p class="font-display text-[72px] leading-[0.95]" style="font-weight: 500">Aa</p>
+          <p class="font-display text-[22px] mt-6" style="font-weight: 500; color: var(--foreground)">
+            Pitch Editor · Cycle 4
+          </p>
+          <p class="text-[13px] mt-4" style="color: var(--soft)">
+            Weights 400–600 · Tailwind: <code class="inline">font-display</code>
+          </p>
+        </div>
+        <div class="panel p-10">
+          <div class="flex items-baseline justify-between mb-8">
+            <p class="eyebrow">UI / Body</p>
+            <p class="eyebrow" style="color: var(--faint)">font-sans · DM Sans</p>
+          </div>
+          <p class="text-[72px] leading-[0.95]" style="font-weight: 500">Aa</p>
+          <p class="text-[14px] mt-6 leading-[1.65]" style="color: var(--foreground)">
+            Default body size is 14px. Most interface copy, buttons, labels, and
+            form fields use <code class="inline">text-sm</code>.
+          </p>
+          <p class="text-[13px] mt-4" style="color: var(--soft)">
+            Weights 300–600 · Tailwind: <code class="inline">font-sans</code> (default)
+          </p>
+        </div>
+      </div>
+
+      <div class="panel p-10 md:p-14 mb-6">
+        <p class="eyebrow mb-10">Production type scale</p>
+        <div class="space-y-0">
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow" style="font-size: 10px">Page title</span>
+            <span class="font-display text-4xl font-semibold">Active Pitches</span>
+            <span class="token-value">36px · semibold</span>
+          </div>
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow" style="font-size: 10px">Section heading</span>
+            <span class="font-display text-2xl font-semibold">Betting Table</span>
+            <span class="token-value">24px · semibold</span>
+          </div>
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow" style="font-size: 10px">Subheading</span>
+            <span class="text-lg font-medium">Problem statement</span>
+            <span class="token-value">18px · medium</span>
+          </div>
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow" style="font-size: 10px">Body (default)</span>
+            <span class="text-sm">The pitch board is a place to put things down — not to finish them.</span>
+            <span class="token-value">14px · normal</span>
+          </div>
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow" style="font-size: 10px">Label / small</span>
+            <span class="text-xs" style="color: var(--muted-foreground)">Last updated 2 hours ago</span>
+            <span class="token-value">12px · medium</span>
+          </div>
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow" style="font-size: 10px">Badge / micro</span>
+            <span class="text-[10px] font-medium">In Progress</span>
+            <span class="token-value">10px · medium</span>
+          </div>
+          <div class="token-row" style="grid-template-columns: 160px 1fr 100px">
+            <span class="eyebrow">Eyebrow</span>
+            <span class="eyebrow">Section · navigation · meta</span>
+            <span class="token-value">11px · 0.18em</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel p-10 md:p-14">
+        <p class="eyebrow mb-8">Font weights</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <p class="text-sm font-light mb-1">Light · 300</p>
+            <p class="text-[12px]" style="color: var(--soft)">font-light</p>
+          </div>
+          <div>
+            <p class="text-sm font-normal mb-1">Normal · 400</p>
+            <p class="text-[12px]" style="color: var(--soft)">font-normal</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium mb-1">Medium · 500</p>
+            <p class="text-[12px]" style="color: var(--soft)">font-medium</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold mb-1">Semibold · 600</p>
+            <p class="text-[12px]" style="color: var(--soft)">font-semibold</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hairline border-t mx-8 md:mx-16 lg:mx-24" />
+
+    <!-- ── 02 COLOR ── -->
+    <section class="px-8 md:px-16 lg:px-24 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-x-8 mb-16">
+        <div class="col-span-12 md:col-span-2">
+          <p class="eyebrow">02</p>
+        </div>
+        <div class="col-span-12 md:col-span-10">
+          <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
+            Color
+          </h2>
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+            Foundation neutrals plus the Ceramic accent palette. Each accent has
+            a full-strength value and a <code class="inline">-light</code> background
+            variant for badges and status fills.
+          </p>
+        </div>
+      </div>
+
+      <!-- Foundation -->
+      <p class="eyebrow mb-6">Foundation</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
+        <div>
+          <div class="chip" style="background: var(--paper); box-shadow: var(--chip-shadow)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Paper</p>
+          <p class="text-[12px] mt-1 token-name">--paper</p>
+          <p class="text-[12px]" style="color: var(--soft)">#FAF9F7 · bg-paper</p>
+        </div>
+        <div>
+          <div class="chip" style="background: var(--ink)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Ink</p>
+          <p class="text-[12px] mt-1 token-name">--ink</p>
+          <p class="text-[12px]" style="color: var(--soft)">#1A1A1A · text-ink</p>
+        </div>
+        <div>
+          <div class="chip" style="background: var(--stone)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Stone</p>
+          <p class="text-[12px] mt-1 token-name">--stone</p>
+          <p class="text-[12px]" style="color: var(--soft)">#E8E6E1 · border-stone</p>
+        </div>
+        <div>
+          <div class="chip" style="background: var(--surface); box-shadow: var(--chip-shadow)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Surface</p>
+          <p class="text-[12px] mt-1 token-name">--card / --surface</p>
+          <p class="text-[12px]" style="color: var(--soft)">#FFFFFF · bg-card</p>
+        </div>
+        <div>
+          <div class="chip" style="background: var(--soft)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Soft</p>
+          <p class="text-[12px] mt-1 token-name">--soft</p>
+          <p class="text-[12px]" style="color: var(--soft)">50% ink · secondary text</p>
+        </div>
+        <div>
+          <div class="chip" style="background: var(--faint)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Faint</p>
+          <p class="text-[12px] mt-1 token-name">--faint</p>
+          <p class="text-[12px]" style="color: var(--soft)">25% ink · placeholders</p>
+        </div>
+      </div>
+
+      <!-- Ceramic -->
+      <p class="eyebrow mb-6">Ceramic palette</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div class="panel p-6">
+          <div class="chip-pair mb-4">
+            <div class="chip" style="background: var(--celadon)"></div>
+            <div class="chip" style="background: var(--celadon-light)"></div>
+          </div>
+          <p class="font-display text-[20px]" style="font-weight: 500">Celadon</p>
+          <p class="text-[12px] mt-2 token-name">--celadon / --celadon-light</p>
+          <p class="text-[12px] mt-1" style="color: var(--soft)">#93A696 / #E8F0E9</p>
+          <p class="text-[12px] mt-3" style="color: var(--soft)">Primary accent · success · focus ring · cycles</p>
+        </div>
+        <div class="panel p-6">
+          <div class="chip-pair mb-4">
+            <div class="chip" style="background: var(--clay)"></div>
+            <div class="chip" style="background: var(--clay-light)"></div>
+          </div>
+          <p class="font-display text-[20px]" style="font-weight: 500">Clay</p>
+          <p class="text-[12px] mt-2 token-name">--clay / --clay-light</p>
+          <p class="text-[12px] mt-1" style="color: var(--soft)">#B36A40 / #FDF3ED</p>
+          <p class="text-[12px] mt-3" style="color: var(--soft)">Destructive · warnings · warmth</p>
+        </div>
+        <div class="panel p-6">
+          <div class="chip-pair mb-4">
+            <div class="chip" style="background: var(--kiln)"></div>
+            <div class="chip" style="background: var(--kiln-light)"></div>
+          </div>
+          <p class="font-display text-[20px]" style="font-weight: 500">Kiln</p>
+          <p class="text-[12px] mt-2 token-name">--kiln / --kiln-light</p>
+          <p class="text-[12px] mt-1" style="color: var(--soft)">#2D2A26 / #F5F4F3</p>
+          <p class="text-[12px] mt-3" style="color: var(--soft)">Deep neutral · code tokens</p>
+        </div>
+        <div class="panel p-6">
+          <div class="chip-pair mb-4">
+            <div class="chip" style="background: var(--ash)"></div>
+            <div class="chip" style="background: var(--ash-light)"></div>
+          </div>
+          <p class="font-display text-[20px]" style="font-weight: 500">Ash</p>
+          <p class="text-[12px] mt-2 token-name">--ash / --ash-light</p>
+          <p class="text-[12px] mt-1" style="color: var(--soft)">#495E70 / #EEF1F3</p>
+          <p class="text-[12px] mt-3" style="color: var(--soft)">Informational · secondary accent</p>
+        </div>
+      </div>
+
+      <!-- Badge patterns -->
+      <p class="eyebrow mb-6">Badge patterns</p>
+      <div class="panel p-10 flex flex-wrap gap-3 mb-6">
+        <span class="badge" style="background: var(--celadon-light); color: var(--celadon)">
+          <span class="badge-dot" style="background: var(--celadon)"></span>
+          In Progress
+        </span>
+        <span class="badge" style="background: var(--clay-light); color: var(--clay)">
+          <span class="badge-dot" style="background: var(--clay)"></span>
+          Shaping
+        </span>
+        <span class="badge" style="background: var(--ash-light); color: var(--ash)">
+          Cycle 4
+        </span>
+        <span class="badge" style="background: var(--kiln-light); color: var(--kiln)">
+          Draft
+        </span>
+        <span class="badge" style="background: color-mix(in srgb, var(--muted) 40%, transparent); color: var(--muted-foreground)">
+          Only you
+        </span>
+      </div>
+      <p class="text-[13px] max-w-2xl leading-[1.7]" style="color: var(--soft)">
+        Pattern: <code class="inline">bg-{color}-light text-{color} rounded-full text-[10px] font-medium</code>.
+        Use full color for icons and dots; light variant for the fill.
+      </p>
+
+      <!-- Charts -->
+      <p class="eyebrow mb-6 mt-16">Chart colors</p>
+      <div class="flex gap-3 flex-wrap">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-lg" style="background: var(--chart-1)"></div>
+          <p class="text-[11px] mt-2 token-name">chart-1</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-lg" style="background: var(--chart-2)"></div>
+          <p class="text-[11px] mt-2 token-name">chart-2</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-lg" style="background: var(--chart-3)"></div>
+          <p class="text-[11px] mt-2 token-name">chart-3</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-lg" style="background: var(--chart-4)"></div>
+          <p class="text-[11px] mt-2 token-name">chart-4</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-lg" style="background: var(--chart-5)"></div>
+          <p class="text-[11px] mt-2 token-name">chart-5</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hairline border-t mx-8 md:mx-16 lg:mx-24" />
+
+    <!-- ── 03 SEMANTIC TOKENS ── -->
+    <section class="px-8 md:px-16 lg:px-24 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-x-8 mb-16">
+        <div class="col-span-12 md:col-span-2">
+          <p class="eyebrow">03</p>
+        </div>
+        <div class="col-span-12 md:col-span-10">
+          <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
+            Semantic tokens
+          </h2>
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+            shadcn/ui components consume these automatically. Map them as aliases
+            in Figma — they flip when you toggle dark mode above.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel p-8 md:p-10">
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--background)"></div>
+          <span class="token-name">--background</span>
+          <span class="token-class">bg-background</span>
+          <span class="token-value" id="val-background">#FAF9F7</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--foreground)"></div>
+          <span class="token-name">--foreground</span>
+          <span class="token-class">text-foreground</span>
+          <span class="token-value" id="val-foreground">#1A1A1A</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--card)"></div>
+          <span class="token-name">--card</span>
+          <span class="token-class">bg-card</span>
+          <span class="token-value" id="val-card">#FFFFFF</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--primary)"></div>
+          <span class="token-name">--primary</span>
+          <span class="token-class">bg-primary</span>
+          <span class="token-value" id="val-primary">#1A1A1A</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--primary-foreground)"></div>
+          <span class="token-name">--primary-foreground</span>
+          <span class="token-class">text-primary-foreground</span>
+          <span class="token-value" id="val-primary-foreground">#FAF9F7</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--secondary)"></div>
+          <span class="token-name">--secondary / --muted</span>
+          <span class="token-class">bg-secondary · bg-muted</span>
+          <span class="token-value" id="val-secondary">#F5F4F3</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--muted-foreground)"></div>
+          <span class="token-name">--muted-foreground</span>
+          <span class="token-class">text-muted-foreground</span>
+          <span class="token-value">50% opacity</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--accent)"></div>
+          <span class="token-name">--accent</span>
+          <span class="token-class">bg-accent · hover states</span>
+          <span class="token-value" id="val-accent">#EFEDEA</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--destructive)"></div>
+          <span class="token-name">--destructive</span>
+          <span class="token-class">bg-destructive</span>
+          <span class="token-value" id="val-destructive">#B36A40</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--border); border: 1px solid var(--hairline)"></div>
+          <span class="token-name">--border</span>
+          <span class="token-class">border-border</span>
+          <span class="token-value">8% opacity</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--ring)"></div>
+          <span class="token-name">--ring</span>
+          <span class="token-class">focus-visible:ring-ring</span>
+          <span class="token-value" id="val-ring">#93A696</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--sidebar)"></div>
+          <span class="token-name">--sidebar</span>
+          <span class="token-class">bg-sidebar</span>
+          <span class="token-value" id="val-sidebar">#FAF9F7</span>
+        </div>
+        <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
+          <div class="token-swatch" style="background: var(--sidebar-primary)"></div>
+          <span class="token-name">--sidebar-primary</span>
+          <span class="token-class">bg-sidebar-primary</span>
+          <span class="token-value" id="val-sidebar-primary">#93A696</span>
+        </div>
+      </div>
+
+      <!-- Dark mode reference -->
+      <div class="mt-10 panel p-8 md:p-10" style="background: #0e0e10; border-color: rgba(232,230,225,0.08); color: #e8e6e1">
+        <p class="eyebrow mb-6" style="color: rgba(232,230,225,0.5)">Dark mode values (reference)</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-[12px]">
+          <div>
+            <p class="token-name" style="color: #e8e6e1">background</p>
+            <p style="color: rgba(232,230,225,0.6)">#0E0E10</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">card / surface</p>
+            <p style="color: rgba(232,230,225,0.6)">#18181B</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">foreground</p>
+            <p style="color: rgba(232,230,225,0.6)">#E8E6E1</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">ring</p>
+            <p style="color: rgba(232,230,225,0.6)">#B0C2B3</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">celadon</p>
+            <p style="color: rgba(232,230,225,0.6)">#B0C2B3</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">clay</p>
+            <p style="color: rgba(232,230,225,0.6)">#D08661</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">celadon-light</p>
+            <p style="color: rgba(232,230,225,0.6)">rgba(176,194,179,0.12)</p>
+          </div>
+          <div>
+            <p class="token-name" style="color: #e8e6e1">destructive</p>
+            <p style="color: rgba(232,230,225,0.6)">#D08661</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hairline border-t mx-8 md:mx-16 lg:mx-24" />
+
+    <!-- ── 04 RADIUS & SPACING ── -->
+    <section class="px-8 md:px-16 lg:px-24 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-x-8 mb-16">
+        <div class="col-span-12 md:col-span-2">
+          <p class="eyebrow">04</p>
+        </div>
+        <div class="col-span-12 md:col-span-10">
+          <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
+            Radius &amp; spacing
+          </h2>
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+            Base radius is 10px (<code class="inline">0.625rem</code>). Spacing
+            follows Tailwind's 4px grid.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="panel p-10">
+          <p class="eyebrow mb-8">Border radius</p>
+          <div class="flex flex-wrap gap-8 items-end">
+            <div class="text-center">
+              <div class="radius-demo" style="border-radius: var(--radius-sm)">sm</div>
+              <p class="text-[11px] mt-3 token-name">6px</p>
+              <p class="text-[11px]" style="color: var(--soft)">rounded-sm</p>
+            </div>
+            <div class="text-center">
+              <div class="radius-demo" style="border-radius: var(--radius-md)">md</div>
+              <p class="text-[11px] mt-3 token-name">8px</p>
+              <p class="text-[11px]" style="color: var(--soft)">rounded-md</p>
+            </div>
+            <div class="text-center">
+              <div class="radius-demo" style="border-radius: var(--radius-lg)">lg</div>
+              <p class="text-[11px] mt-3 token-name">10px</p>
+              <p class="text-[11px]" style="color: var(--soft)">rounded-lg</p>
+            </div>
+            <div class="text-center">
+              <div class="radius-demo" style="border-radius: var(--radius-xl)">xl</div>
+              <p class="text-[11px] mt-3 token-name">14px</p>
+              <p class="text-[11px]" style="color: var(--soft)">rounded-xl</p>
+            </div>
+            <div class="text-center">
+              <div class="radius-demo" style="border-radius: 20px">2xl</div>
+              <p class="text-[11px] mt-3 token-name">20px</p>
+              <p class="text-[11px]" style="color: var(--soft)">rounded-2xl</p>
+            </div>
+            <div class="text-center">
+              <div class="radius-demo" style="border-radius: 9999px; width: 64px">full</div>
+              <p class="text-[11px] mt-3 token-name">50%</p>
+              <p class="text-[11px]" style="color: var(--soft)">badges · avatars</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel p-10">
+          <p class="eyebrow mb-8">Common spacing</p>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <span class="text-[11px] w-12 token-name">4px</span>
+              <div class="spacing-bar" style="width: 4px"></div>
+              <span class="text-[11px]" style="color: var(--soft)">gap-1 · list items</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-[11px] w-12 token-name">8px</span>
+              <div class="spacing-bar" style="width: 8px"></div>
+              <span class="text-[11px]" style="color: var(--soft)">gap-2 · tight groups</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-[11px] w-12 token-name">12px</span>
+              <div class="spacing-bar" style="width: 12px"></div>
+              <span class="text-[11px]" style="color: var(--soft)">p-3 · small buttons</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-[11px] w-12 token-name">16px</span>
+              <div class="spacing-bar" style="width: 16px"></div>
+              <span class="text-[11px]" style="color: var(--soft)">gap-4 · card padding</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-[11px] w-12 token-name">20px</span>
+              <div class="spacing-bar" style="width: 20px"></div>
+              <span class="text-[11px]" style="color: var(--soft)">p-5 · card padding (alt)</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-[11px] w-12 token-name">24px</span>
+              <div class="spacing-bar" style="width: 24px"></div>
+              <span class="text-[11px]" style="color: var(--soft)">gap-6 · section gaps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel p-10">
+        <p class="eyebrow mb-6">Shadows</p>
+        <p class="text-[14px] mb-8 max-w-2xl leading-[1.7]" style="color: var(--soft)">
+          Prefer borders over shadows for separation. When needed: subtle lift only.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-xl bg-card border border-border" style="box-shadow: 0 1px 4px rgba(0,0,0,0.04)">
+            <p class="text-sm font-medium mb-1">shadow-sm</p>
+            <p class="text-[12px]" style="color: var(--soft)">Slight lift</p>
+          </div>
+          <div class="p-6 rounded-xl bg-card border border-border" style="box-shadow: 0 4px 12px rgba(0,0,0,0.06)">
+            <p class="text-sm font-medium mb-1">shadow-md</p>
+            <p class="text-[12px]" style="color: var(--soft)">Moderate cards</p>
+          </div>
+          <div class="p-6 rounded-xl bg-card border border-border" style="box-shadow: 0 8px 24px rgba(0,0,0,0.07)">
+            <p class="text-sm font-medium mb-1">shadow-lg</p>
+            <p class="text-[12px]" style="color: var(--soft)">Hover-elevated cards</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hairline border-t mx-8 md:mx-16 lg:mx-24" />
+
+    <!-- ── 05 COMPONENTS ── -->
+    <section class="px-8 md:px-16 lg:px-24 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-x-8 mb-16">
+        <div class="col-span-12 md:col-span-2">
+          <p class="eyebrow">05</p>
+        </div>
+        <div class="col-span-12 md:col-span-10">
+          <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
+            Components
+          </h2>
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+            shadcn/ui primitives styled with Walden tokens, plus product-level
+            patterns from the codebase.
+          </p>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <p class="eyebrow mb-6">Buttons</p>
+      <div class="panel p-10 mb-6">
+        <div class="flex flex-wrap gap-3 items-center mb-8">
+          <button class="btn btn-primary">Save Changes</button>
+          <button class="btn btn-secondary">Cancel</button>
+          <button class="btn btn-destructive">Delete</button>
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-primary btn-icon">+</button>
+        </div>
+        <div class="pt-6 border-t hairline">
+          <p class="text-[13px] leading-[1.8]" style="color: var(--soft)">
+            shadcn variants: <code class="inline">default</code>,
+            <code class="inline">secondary</code>,
+            <code class="inline">destructive</code>,
+            <code class="inline">outline</code>,
+            <code class="inline">ghost</code>,
+            <code class="inline">link</code> · Sizes:
+            <code class="inline">xs</code>,
+            <code class="inline">sm</code>,
+            <code class="inline">default</code>,
+            <code class="inline">lg</code>,
+            <code class="inline">icon</code>
+          </p>
+        </div>
+      </div>
+
+      <!-- Inputs -->
+      <p class="eyebrow mb-6">Inputs</p>
+      <div class="panel p-10 mb-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <p class="text-[13px] mb-3" style="color: var(--soft)">Text input</p>
+          <input class="input-demo" type="text" placeholder="Search pitches…" />
+        </div>
+        <div>
+          <p class="text-[13px] mb-3" style="color: var(--soft)">Textarea</p>
+          <textarea class="textarea-demo" placeholder="What problem are we solving?"></textarea>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <p class="eyebrow mb-6">Cards</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="card-demo">
+          <p class="eyebrow mb-2">Pitch</p>
+          <p class="font-display text-xl mb-2" style="font-weight: 500">Notification preferences</p>
+          <p class="text-sm" style="color: var(--muted-foreground)">Small batch · 2 weeks</p>
+          <span class="badge mt-4" style="background: var(--celadon-light); color: var(--celadon)">Shaping</span>
+        </div>
+        <div class="card-demo">
+          <p class="eyebrow mb-2">Task</p>
+          <p class="text-sm font-medium mb-1">Wire up email digest</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Scope: Notifications</p>
+        </div>
+        <div class="card-demo">
+          <p class="eyebrow mb-2">Cycle</p>
+          <p class="font-display text-2xl mb-2" style="font-weight: 500">Cycle 4</p>
+          <p class="text-sm" style="color: var(--muted-foreground)">Mar 3 – Apr 11 · Building</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <p class="eyebrow mb-6">Navigation</p>
+      <div class="panel p-6 max-w-xs mb-6">
+        <div class="nav-item active">
+          <span style="width:16px;text-align:center">◉</span>
+          Pitch Board
+        </div>
+        <div class="nav-item">
+          <span style="width:16px;text-align:center">○</span>
+          Betting Table
+        </div>
+        <div class="nav-item">
+          <span style="width:16px;text-align:center">○</span>
+          Cycles
+        </div>
+        <div class="nav-item">
+          <span style="width:16px;text-align:center">○</span>
+          People
+        </div>
+      </div>
+
+      <!-- Layout sketch -->
+      <p class="eyebrow mb-6">Page layout</p>
+      <div class="panel overflow-hidden" style="height: 280px">
+        <div class="flex h-full">
+          <div class="w-48 shrink-0 border-r hairline p-4" style="background: var(--sidebar)">
+            <p class="font-display text-lg mb-4" style="font-weight: 500">Walden.</p>
+            <div class="nav-item active text-[12px]">Pitch Board</div>
+            <div class="nav-item text-[12px]">Cycles</div>
+          </div>
+          <div class="flex-1 flex flex-col">
+            <div class="border-b hairline px-5 py-3 shrink-0" style="background: var(--background)">
+              <p class="text-sm font-medium">Active Pitches</p>
+            </div>
+            <div class="flex-1 p-8 overflow-hidden" style="background: var(--background)">
+              <div class="max-w-md">
+                <div class="card-demo text-[12px]">
+                  <p class="font-display text-base mb-1" style="font-weight: 500">Example pitch card</p>
+                  <p style="color: var(--muted-foreground)">max-w-3xl content area</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Component inventory -->
+      <p class="eyebrow mb-6 mt-16">Component inventory</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="panel p-8">
+          <p class="text-sm font-medium mb-4">shadcn/ui primitives</p>
+          <p class="text-[13px] leading-[1.9]" style="color: var(--soft)">
+            Button · Input · Textarea · Card · Dialog · Sheet · Tabs · Select ·
+            Combobox · Popover · Dropdown Menu · Avatar · Sidebar · Tooltip ·
+            Switch · Toggle · Accordion · Breadcrumb · Skeleton · Sonner
+          </p>
+        </div>
+        <div class="panel p-8">
+          <p class="text-sm font-medium mb-4">Product components</p>
+          <p class="text-[13px] leading-[1.9]" style="color: var(--soft)">
+            CycleBadge · PrivateBadge · OrgBadge · TeamBadge · UserAvatar ·
+            UserAvatarGroup · ThemeToggle · AppHeader · UserMenu · BlockEditor ·
+            ~80 custom icons in <code class="inline">app/components/icons/</code>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hairline border-t mx-8 md:mx-16 lg:mx-24" />
+
+    <!-- ── 06 MOTION ── -->
+    <section class="px-8 md:px-16 lg:px-24 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-x-8 mb-16">
+        <div class="col-span-12 md:col-span-2">
+          <p class="eyebrow">06</p>
+        </div>
+        <div class="col-span-12 md:col-span-10">
+          <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
+            Motion
+          </h2>
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+            Subtle, considered timing. One page-level animation per route — never
+            nested.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="panel p-8">
+          <p class="eyebrow mb-4">animate-page</p>
+          <div class="animate-page-demo p-4 rounded-lg" style="background: var(--celadon-light)">
+            <p class="text-sm" style="color: var(--celadon)">Page enter · 500ms ease-out</p>
+            <p class="text-[12px] mt-1" style="color: var(--soft)">fade + 12px up</p>
+          </div>
+          <button class="btn btn-outline mt-4 text-[12px]" style="height:28px;padding:0 12px" onclick="replayAnim(this, 'animate-page-demo')">Replay</button>
+        </div>
+        <div class="panel p-8">
+          <p class="eyebrow mb-4">fade-up</p>
+          <div class="fade-up-demo p-4 rounded-lg" style="background: var(--clay-light)">
+            <p class="text-sm" style="color: var(--clay)">Entry stream · 400ms</p>
+            <p class="text-[12px] mt-1" style="color: var(--soft)">fade + 6px up</p>
+          </div>
+          <button class="btn btn-outline mt-4 text-[12px]" style="height:28px;padding:0 12px" onclick="replayAnim(this, 'fade-up-demo')">Replay</button>
+        </div>
+        <div class="panel p-8">
+          <p class="eyebrow mb-4">transitions</p>
+          <p class="text-[13px] leading-[1.8]" style="color: var(--soft)">
+            Nav items: <code class="inline">150ms</code><br />
+            Cards: <code class="inline">200ms</code><br />
+            Color changes: <code class="inline">transition-colors</code><br />
+            Theme switch: <code class="inline">200ms</code>
+          </p>
+        </div>
+      </div>
+
+      <div class="panel p-10">
+        <p class="eyebrow mb-6">Stagger delays</p>
+        <div class="flex gap-3">
+          <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--celadon); animation-delay: 0.05s"></div>
+          <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--clay); animation-delay: 0.1s"></div>
+          <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--ash); animation-delay: 0.15s"></div>
+          <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--kiln); animation-delay: 0.2s"></div>
+          <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--celadon); animation-delay: 0.25s"></div>
+        </div>
+        <p class="text-[13px] mt-6" style="color: var(--soft)">
+          Classes <code class="inline">.d1</code> through
+          <code class="inline">.d5</code> add 50ms increments (0.05s – 0.25s)
+        </p>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="px-8 md:px-16 lg:px-24 py-16 border-t hairline">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-baseline">
+        <div class="md:col-span-4">
+          <span class="font-display text-2xl" style="font-weight: 500; letter-spacing: -0.01em">Walden.</span>
+        </div>
+        <div class="md:col-span-4">
+          <p class="eyebrow mb-2">Source files</p>
+          <p class="text-[13px] leading-[1.7]" style="color: var(--soft)">
+            <code class="inline">app/app.css</code> ·
+            <code class="inline">app/components/ui/</code> ·
+            <code class="inline">components.json</code>
+          </p>
+        </div>
+        <div class="md:col-span-4 md:text-right">
+          <p class="eyebrow">Design system · Production</p>
+          <p class="text-[13px] mt-1" style="color: var(--faint)">
+            Toggle dark mode to preview both themes
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMode() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains("dark");
+        html.classList.toggle("dark", !isDark);
+        html.classList.toggle("light", isDark);
+        document.getElementById("mode-label").textContent = isDark ? "Light" : "Dark";
+        document.getElementById("mode-icon").textContent = isDark ? "☀" : "☾";
+        updateTokenLabels(!isDark);
+      }
+
+      function updateTokenLabels(isDark) {
+        const labels = isDark
+          ? {
+              background: "#0E0E10",
+              foreground: "#E8E6E1",
+              card: "#18181B",
+              primary: "#E8E6E1",
+              "primary-foreground": "#0E0E10",
+              secondary: "#27272A",
+              accent: "#1C1C1F",
+              destructive: "#D08661",
+              ring: "#B0C2B3",
+              sidebar: "#0E0E10",
+              "sidebar-primary": "#B0C2B3",
+            }
+          : {
+              background: "#FAF9F7",
+              foreground: "#1A1A1A",
+              card: "#FFFFFF",
+              primary: "#1A1A1A",
+              "primary-foreground": "#FAF9F7",
+              secondary: "#F5F4F3",
+              accent: "#EFEDEA",
+              destructive: "#B36A40",
+              ring: "#93A696",
+              sidebar: "#FAF9F7",
+              "sidebar-primary": "#93A696",
+            };
+        for (const [key, val] of Object.entries(labels)) {
+          const el = document.getElementById("val-" + key);
+          if (el) el.textContent = val;
+        }
+      }
+
+      function replayAnim(btn, className) {
+        const panel = btn.closest(".panel");
+        const target = panel.querySelector("." + className);
+        target.style.animation = "none";
+        target.offsetHeight;
+        target.style.animation = "";
+      }
+    </script>
+  </body>
+</html>

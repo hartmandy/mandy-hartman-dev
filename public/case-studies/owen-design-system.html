@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owen Design System — UX Engineering Portfolio</title>
+  <meta name="description" content="Design tokens, typography, and component patterns for Owen — a cross-platform pet care mobile app." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Brand */
+      --color-primary: #37393B;
+      --color-secondary: #6B7280;
+      --color-accent: #907A6C;
+      --color-primary-light: #4B4D4F;
+      --color-primary-dark: #2A2C2E;
+      --color-accent-light: #A89486;
+      --color-accent-dark: #786552;
+
+      /* Semantic */
+      --color-success: #10B981;
+      --color-success-bg: #ECFDF5;
+      --color-warning: #F59E0B;
+      --color-error: #DC2626;
+      --color-info: #3B82F6;
+
+      /* Surfaces */
+      --color-bg: #FFFFFF;
+      --color-bg-secondary: #F9FAFB;
+      --color-bg-tertiary: #F3F4F6;
+      --color-card: #FFFFFF;
+
+      /* Text */
+      --color-text: #37393B;
+      --color-text-secondary: #6B7280;
+      --color-text-tertiary: #9CA3AF;
+      --color-text-inverse: #FFFFFF;
+      --color-text-placeholder: #9CA3AF;
+
+      /* Borders */
+      --color-border: #E5E7EB;
+      --color-border-light: #F3F4F6;
+      --color-border-dark: #D1D5DB;
+      --color-border-focus: #907A6C;
+
+      /* Interactive */
+      --color-btn-primary: #37393B;
+      --color-btn-primary-hover: #2A2C2E;
+      --color-btn-secondary: #F3F4F6;
+      --color-btn-secondary-hover: #E5E7EB;
+      --color-btn-disabled: #E5E7EB;
+      --color-btn-text-disabled: #9CA3AF;
+
+      /* Input */
+      --color-input-bg: #FFFFFF;
+      --color-input-border: #E5E7EB;
+      --color-input-border-focus: #907A6C;
+      --color-input-border-error: #DC2626;
+
+      /* Reminder types */
+      --color-reminder-vet: #DC2626;
+      --color-reminder-medication: #059669;
+      --color-reminder-flea: #D97706;
+      --color-reminder-grooming: #7C3AED;
+      --color-reminder-vaccination: #2563EB;
+      --color-reminder-birthday: #F59E0B;
+      --color-reminder-other: #6B7280;
+
+      /* Status */
+      --color-status-overdue: #DC2626;
+      --color-status-upcoming: #059669;
+      --color-status-completed: #10B981;
+
+      /* Layout tokens */
+      --space-1: 4px;
+      --space-2: 6px;
+      --space-3: 8px;
+      --space-4: 12px;
+      --space-5: 16px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 48px;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(55, 57, 59, 0.06);
+      --shadow-md: 0 2px 8px rgba(55, 57, 59, 0.08);
+      --shadow-lg: 0 8px 24px rgba(55, 57, 59, 0.1);
+
+      --font-header: "Libre Baskerville", Georgia, serif;
+      --font-body: "Source Sans 3", system-ui, sans-serif;
+
+      --page-max: 960px;
+      --transition: 180ms ease;
+    }
+
+    [data-theme="dark"] {
+      --color-primary: #FFFFFF;
+      --color-secondary: #B0B0B0;
+      --color-accent: #E8E1DB;
+      --color-primary-light: #E0E0E0;
+      --color-primary-dark: #FFFFFF;
+      --color-accent-light: #F2EDE8;
+      --color-accent-dark: #D4CABE;
+
+      --color-success: #00FF88;
+      --color-success-bg: #1A2E26;
+      --color-warning: #FFB800;
+      --color-error: #FF4444;
+      --color-info: #0099FF;
+
+      --color-bg: #000000;
+      --color-bg-secondary: #1A1A1A;
+      --color-bg-tertiary: #2D2D2D;
+      --color-card: #1A1A1A;
+
+      --color-text: #FFFFFF;
+      --color-text-secondary: #B0B0B0;
+      --color-text-tertiary: #808080;
+      --color-text-inverse: #000000;
+      --color-text-placeholder: #808080;
+
+      --color-border: #404040;
+      --color-border-light: #2D2D2D;
+      --color-border-dark: #595959;
+      --color-border-focus: #E8E1DB;
+
+      --color-btn-primary: #FFFFFF;
+      --color-btn-primary-hover: #E0E0E0;
+      --color-btn-secondary: #2D2D2D;
+      --color-btn-secondary-hover: #404040;
+      --color-btn-disabled: #404040;
+      --color-btn-text-disabled: #808080;
+
+      --color-input-bg: #1A1A1A;
+      --color-input-border: #404040;
+      --color-input-border-focus: #E8E1DB;
+      --color-input-border-error: #FF4444;
+
+      --color-reminder-vet: #FF6666;
+      --color-reminder-medication: #00FF88;
+      --color-reminder-flea: #FFB800;
+      --color-reminder-grooming: #BB88FF;
+      --color-reminder-vaccination: #0099FF;
+      --color-reminder-birthday: #FFB800;
+      --color-reminder-other: #B0B0B0;
+
+      --color-status-overdue: #FF4444;
+      --color-status-upcoming: #00FF88;
+      --color-status-completed: #00FF88;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--color-text);
+      background: var(--color-bg);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-header);
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 var(--space-4);
+      color: var(--color-text);
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: 0.02em; }
+    h2 { font-size: 1.75rem; margin-top: var(--space-8); }
+    h3 { font-size: 1.25rem; font-weight: 400; }
+    h4 { font-size: 1.125rem; font-weight: 400; }
+
+    p { margin: 0 0 var(--space-5); color: var(--color-text-secondary); max-width: 65ch; }
+    a { color: var(--color-accent); }
+
+    .theme-toggle {
+      position: fixed;
+      top: var(--space-5);
+      right: var(--space-5);
+      z-index: 50;
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-card);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .theme-toggle:hover { border-color: var(--color-border-focus); }
+
+    .page {
+      margin: 0 auto;
+      padding: var(--space-8) clamp(var(--space-5), 5vw, var(--space-8));
+      padding-top: calc(var(--space-8) + 40px);
+      max-width: var(--page-max);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-7);
+      align-items: center;
+      padding: var(--space-7);
+      margin-bottom: var(--space-8);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg) 60%);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-1) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--color-bg-tertiary);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+    }
+
+    .hero-logo {
+      width: 140px;
+      height: 140px;
+      border-radius: var(--radius-md);
+      object-fit: contain;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-5);
+      margin: var(--space-6) 0 var(--space-8);
+    }
+
+    .principle-card {
+      padding: var(--space-5);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+    }
+
+    .principle-card strong {
+      display: block;
+      font-family: var(--font-header);
+      margin-bottom: var(--space-2);
+      color: var(--color-text);
+    }
+
+    .section-intro { margin-bottom: var(--space-6); }
+
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-7);
+    }
+
+    .swatch {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      background: var(--color-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .swatch:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .swatch-color {
+      height: 72px;
+    }
+
+    .swatch-info {
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .swatch-name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 2px;
+    }
+
+    .swatch-value {
+      font-size: 0.75rem;
+      font-family: ui-monospace, monospace;
+      color: var(--color-text-tertiary);
+      cursor: pointer;
+      user-select: all;
+    }
+
+    .swatch-value:hover { color: var(--color-accent); }
+
+    .type-specimen {
+      padding: var(--space-6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-card);
+      margin-bottom: var(--space-5);
+    }
+
+    .type-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      padding-bottom: var(--space-4);
+      margin-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .type-meta code {
+      font-size: 0.75rem;
+      color: var(--color-text-tertiary);
+    }
+
+    .type-h1 { font-family: var(--font-header); font-size: 2rem; line-height: 1.25; font-weight: 700; color: var(--color-text); }
+    .type-h2 { font-family: var(--font-header); font-size: 1.5rem; line-height: 1.33; font-weight: 700; color: var(--color-text); }
+    .type-h3 { font-family: var(--font-header); font-size: 1.25rem; line-height: 1.4; font-weight: 400; color: var(--color-text); }
+    .type-h4 { font-family: var(--font-header); font-size: 1.125rem; line-height: 1.33; font-weight: 400; color: var(--color-text); }
+    .type-body-lg { font-size: 1.125rem; line-height: 1.44; color: var(--color-text); }
+    .type-body { font-size: 1rem; line-height: 1.5; color: var(--color-text); }
+    .type-body-sm { font-size: 0.875rem; line-height: 1.43; color: var(--color-text-secondary); }
+    .type-label { font-size: 0.875rem; line-height: 1.43; font-weight: 600; color: var(--color-text); }
+    .type-caption { font-size: 0.75rem; line-height: 1.33; color: var(--color-text-tertiary); }
+
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .spacing-block {
+      background: var(--color-accent);
+      opacity: 0.85;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .spacing-label {
+      font-family: ui-monospace, monospace;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+
+    .radius-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      margin-bottom: var(--space-7);
+    }
+
+    .radius-demo {
+      width: 80px;
+      height: 80px;
+      background: var(--color-bg-tertiary);
+      border: 2px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .component-panel {
+      padding: var(--space-6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-secondary);
+      margin-bottom: var(--space-6);
+    }
+
+    .component-panel h3 { margin-top: 0; }
+
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      min-height: 48px;
+      padding: 14px 24px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), opacity var(--transition), border-color var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--color-btn-primary);
+      color: var(--color-text-inverse);
+    }
+
+    .btn-primary:hover { background: var(--color-btn-primary-hover); }
+
+    .btn-secondary {
+      background: var(--color-btn-secondary);
+      color: var(--color-text);
+    }
+
+    .btn-secondary:hover { background: var(--color-btn-secondary-hover); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+
+    .btn-outline:hover { background: var(--color-bg-tertiary); }
+
+    .btn:disabled, .btn.is-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Inputs */
+    .field { max-width: 360px; }
+    .field + .field { margin-top: var(--space-5); }
+
+    .field label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+      color: var(--color-text);
+    }
+
+    .field input {
+      width: 100%;
+      height: 48px;
+      padding: 0 var(--space-4);
+      border: 1px solid var(--color-input-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-input-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .field input::placeholder { color: var(--color-text-placeholder); }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--color-input-border-focus);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent);
+    }
+
+    .field.is-error input { border-color: var(--color-input-border-error); }
+
+    .field-error {
+      margin-top: var(--space-1);
+      font-size: 0.75rem;
+      color: var(--color-error);
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-5);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: var(--space-3);
+    }
+
+    .reminder-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .reminder-card.is-completed {
+      opacity: 0.6;
+    }
+
+    .reminder-header {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      align-items: flex-start;
+    }
+
+    .reminder-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: var(--color-bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .reminder-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .reminder-content { flex: 1; min-width: 0; }
+
+    .reminder-title {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+
+    .reminder-pet,
+    .reminder-time {
+      font-size: 0.875rem;
+      line-height: 1.43;
+      color: var(--color-text-secondary);
+    }
+
+    .reminder-time { margin-top: 4px; }
+
+    .reminder-time.is-overdue {
+      color: var(--color-error);
+      font-weight: 600;
+    }
+
+    .reminder-recurring {
+      margin-left: auto;
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+    }
+
+    .reminder-actions,
+    .reminder-completed-row {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .reminder-actions {
+      display: flex;
+      justify-content: center;
+    }
+
+    .complete-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-lg);
+      background: var(--color-btn-primary);
+      color: var(--color-text-inverse);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: none;
+      cursor: default;
+    }
+
+    .complete-btn svg { width: 20px; height: 20px; }
+
+    .reminder-completed-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .completed-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-status-completed);
+    }
+
+    .completed-status svg { width: 20px; height: 20px; }
+
+    .completed-actions {
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: none;
+      cursor: default;
+    }
+
+    .chip-btn-secondary {
+      background: var(--color-btn-secondary);
+      color: var(--color-text);
+    }
+
+    .chip-btn-danger {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+
+    .pet-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .pet-card-header {
+      display: flex;
+      align-items: center;
+      padding: var(--space-5);
+    }
+
+    .pet-avatar-wrap {
+      margin-right: var(--space-5);
+      flex-shrink: 0;
+    }
+
+    .pet-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-full);
+      background: var(--color-bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pet-avatar svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-text-secondary);
+    }
+
+    .pet-info { flex: 1; min-width: 0; }
+
+    .pet-name {
+      font-family: var(--font-header);
+      font-size: 1.125rem;
+      line-height: 1.33;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+
+    .pet-detail {
+      font-size: 0.875rem;
+      line-height: 1.43;
+      color: var(--color-text-secondary);
+      margin-bottom: 2px;
+    }
+
+    .pet-edit {
+      padding: var(--space-3);
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+    }
+
+    .pet-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      padding: 0 var(--space-5) var(--space-5);
+    }
+
+    .alert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      background: var(--color-bg-tertiary);
+    }
+
+    .alert-badge svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    .alert-badge span {
+      font-size: 0.75rem;
+      line-height: 1.33;
+      color: var(--color-text-secondary);
+    }
+
+    .birthday-card {
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .birthday-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .birthday-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+      border: 1px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .birthday-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--color-primary);
+    }
+
+    .birthday-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 2px;
+    }
+
+    .birthday-msg {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .birthday-countdown {
+      margin-left: auto;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .birthday-countdown svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-accent);
+    }
+
+    .days-counter {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+      font-size: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reminder-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      background: var(--color-bg-tertiary);
+      color: var(--color-text);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .code-block {
+      margin-top: var(--space-5);
+      padding: var(--space-5);
+      border-radius: var(--radius-sm);
+      background: var(--color-bg-tertiary);
+      border: 1px solid var(--color-border);
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: ui-monospace, "SF Mono", monospace;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+
+    footer {
+      display: none;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: var(--space-5);
+      right: var(--space-5);
+      padding: var(--space-3) var(--space-5);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--transition), transform var(--transition);
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-logo { margin: 0 auto; }
+      .hero-meta { justify-content: center; }
+      .theme-toggle { top: var(--space-3); right: var(--space-3); }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <button class="theme-toggle" type="button" id="themeToggle" aria-pressed="false">
+    Switch to dark mode
+  </button>
+
+  <main class="page" id="top">
+      <header class="hero">
+        <div>
+          <h1>Owen Design System</h1>
+          <p>
+            A token-driven design language for a cross-platform pet care app.
+            Built for clarity under stress, accessible touch targets, and calm
+            visual hierarchy — because pet health tasks deserve focus, not friction.
+          </p>
+          <div class="hero-meta">
+            <span class="pill">React Native · Expo</span>
+            <span class="pill">Light &amp; Dark themes</span>
+            <span class="pill">WCAG-conscious contrast</span>
+            <span class="pill">Source: <code>src/constants/</code></span>
+          </div>
+        </div>
+        <img class="hero-logo" src="owen-logo.png" alt="Owen app logo" />
+      </header>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          Owen helps pet owners track health records, reminders, and vet visits in one
+          offline-first mobile experience. The design system centralizes color, type,
+          and component patterns in <code>colors.ts</code>, <code>typography.ts</code>,
+          and shared React Native components.
+        </p>
+      </section>
+
+      <section id="principles">
+        <h2>Design Principles</h2>
+        <div class="principles">
+          <div class="principle-card">
+            <strong>Calm &amp; trustworthy</strong>
+            Warm neutrals and serif headlines signal care without clinical coldness.
+          </div>
+          <div class="principle-card">
+            <strong>Scannable hierarchy</strong>
+            Libre Baskerville for titles, Source Sans 3 for UI — distinct roles, zero ambiguity.
+          </div>
+          <div class="principle-card">
+            <strong>Semantic color</strong>
+            Reminder categories and status states use dedicated tokens, not one-off hex values.
+          </div>
+          <div class="principle-card">
+            <strong>Accessible by default</strong>
+            48px minimum touch targets, high-contrast dark mode, and focus rings on interactive elements.
+          </div>
+        </div>
+      </section>
+
+      <section id="colors">
+        <h2>Color Tokens</h2>
+        <p class="section-intro">Click any hex value to copy. Tokens map 1:1 to <code>lightColors</code> / <code>darkColors</code> in the codebase.</p>
+
+        <h3>Brand</h3>
+        <div class="token-grid" data-token-group="brand"></div>
+
+        <h3>Semantic</h3>
+        <div class="token-grid" data-token-group="semantic"></div>
+
+        <h3>Surfaces &amp; Text</h3>
+        <div class="token-grid" data-token-group="surface"></div>
+
+        <h3>Borders &amp; Interactive</h3>
+        <div class="token-grid" data-token-group="interactive"></div>
+      </section>
+
+      <section id="typography">
+        <h2>Typography</h2>
+        <p class="section-intro">
+          <strong>Libre Baskerville</strong> — headers &amp; pet names.
+          <strong>Source Sans 3</strong> — body, labels, and buttons.
+        </p>
+
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-h1">Heading 1</span><code>32px / 40px · Libre Baskerville Bold</code></div>
+          <div class="type-h1">Track every paw print</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-h2">Heading 2</span><code>24px / 32px · Libre Baskerville Bold</code></div>
+          <div class="type-h2">Reminders</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-h3">Heading 3</span><code>20px / 28px · Libre Baskerville Regular</code></div>
+          <div class="type-h3">Veterinary records</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-h4">Heading 4</span><code>18px / 24px · Libre Baskerville Regular</code></div>
+          <div class="type-h4">Oliver · Golden Retriever</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-body-lg">Body Large</span><code>18px / 26px · Source Sans 3 Regular</code></div>
+          <div class="type-body-lg">Everything your pet needs, in one place.</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-body">Body</span><code>16px / 24px · Source Sans 3 Regular</code></div>
+          <div class="type-body">Next vet visit scheduled for March 14 at 2:30 PM.</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-label">Label / Button</span><code>14–16px · Source Sans 3 SemiBold</code></div>
+          <div class="type-label">Pet name · Mark complete</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta"><span class="type-caption">Caption</span><code>12px / 16px · Source Sans 3 Regular</code></div>
+          <div class="type-caption">Updated 2 hours ago · Required field</div>
+        </div>
+      </section>
+
+      <section id="spacing">
+        <h2>Spacing &amp; Radius</h2>
+        <p class="section-intro">Derived from component specs — cards use 16px padding, buttons 14×24px, 48px min touch height.</p>
+
+        <div id="spacingScale"></div>
+
+        <h3>Border Radius</h3>
+        <div class="radius-row">
+          <div><div class="radius-demo" style="border-radius: 8px">8px</div><p class="type-caption" style="margin-top:8px;text-align:center">sm · buttons, inputs</p></div>
+          <div><div class="radius-demo" style="border-radius: 12px">12px</div><p class="type-caption" style="margin-top:8px;text-align:center">md · cards</p></div>
+          <div><div class="radius-demo" style="border-radius: 20px">20px</div><p class="type-caption" style="margin-top:8px;text-align:center">lg · pill actions</p></div>
+          <div><div class="radius-demo" style="border-radius: 50%">50%</div><p class="type-caption" style="margin-top:8px;text-align:center">full · avatars</p></div>
+        </div>
+      </section>
+
+      <section id="buttons">
+        <h2>Buttons</h2>
+        <p class="section-intro">Three variants — primary, secondary, outline. Min height 48px, radius 8px.</p>
+        <div class="component-panel">
+          <div class="component-row">
+            <button class="btn btn-primary" type="button">Get started</button>
+            <button class="btn btn-secondary" type="button">Secondary</button>
+            <button class="btn btn-outline" type="button">I have an account</button>
+            <button class="btn btn-primary is-disabled" type="button" disabled>Disabled</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="inputs">
+        <h2>Inputs</h2>
+        <p class="section-intro">Label + 48px field. Accent focus ring, red border on error.</p>
+        <div class="component-panel">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="field is-error">
+            <label for="pet-name">Pet name</label>
+            <input id="pet-name" type="text" value="" placeholder="Required" aria-invalid="true" />
+            <div class="field-error">Pet name is required</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cards">
+        <h2>Cards</h2>
+        <p class="section-intro">Production card components — neutral surfaces, type-colored icons only, tertiary alert badges on pet profiles.</p>
+        <div class="card-grid">
+          <div>
+            <div class="card-label">ReminderCard · upcoming</div>
+            <article class="reminder-card">
+              <div class="reminder-header">
+                <div class="reminder-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-reminder-medication)" stroke-width="2" stroke-linecap="round"><path d="M10.5 20.5 3.5 13 8 8.5l7 7-4.5 5z"/><path d="m14 8 6.5 6.5-2 2L12 10l2-2z"/></svg>
+                </div>
+                <div class="reminder-content">
+                  <div class="reminder-title">Heartgard</div>
+                  <div class="reminder-pet">Oliver</div>
+                  <div class="reminder-time">Mar 14, 2026 · 8:00 AM</div>
+                </div>
+                <div class="reminder-recurring" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1v4h4"/><path d="M3 11V9a4 4 0 0 1 4-4h5"/><path d="M7 23v-4H3"/><path d="M21 13v2a4 4 0 0 1-4 4h-5"/></svg>
+                </div>
+              </div>
+              <div class="reminder-actions">
+                <button class="complete-btn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  Mark complete
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <div class="card-label">ReminderCard · completed</div>
+            <article class="reminder-card is-completed">
+              <div class="reminder-header">
+                <div class="reminder-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-reminder-vet)" stroke-width="2"><path d="M12 6v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+                </div>
+                <div class="reminder-content">
+                  <div class="reminder-title">Annual checkup</div>
+                  <div class="reminder-pet">Luna</div>
+                  <div class="reminder-time">Feb 28, 2026 · 2:30 PM</div>
+                </div>
+              </div>
+              <div class="reminder-completed-row">
+                <div class="completed-status">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                  Completed
+                </div>
+                <div class="completed-actions">
+                  <span class="chip-btn chip-btn-secondary">Undo</span>
+                  <span class="chip-btn chip-btn-danger">Delete</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <div class="card-label">PetCard</div>
+            <article class="pet-card">
+              <div class="pet-card-header">
+                <div class="pet-avatar-wrap">
+                  <div class="pet-avatar">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 12.5c0-2.5 1.5-4 3-4s2.5 1 3 2.5c.5-1.5 1.5-2.5 3-2.5s3 1.5 3 4c0 3.5-3.5 6.5-6 8.5-2.5-2-6-5-6-8.5z"/></svg>
+                  </div>
+                </div>
+                <div class="pet-info">
+                  <div class="pet-name">Oliver</div>
+                  <div class="pet-detail">Golden Retriever · Dog</div>
+                  <div class="pet-detail">4 years old · 65 lbs</div>
+                </div>
+                <div class="pet-edit" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                </div>
+              </div>
+              <div class="pet-badges">
+                <span class="alert-badge">
+                  <svg viewBox="0 0 24 24" fill="var(--color-error)"><path d="M12 2 1 21h22L12 2zm0 4 7.5 13h-15L12 6zm-1 5v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
+                  <span>Allergies</span>
+                </span>
+                <span class="alert-badge">
+                  <svg viewBox="0 0 24 24" fill="var(--color-reminder-medication)"><path d="M10.5 20.5 3.5 13 8 8.5l7 7-4.5 5z"/></svg>
+                  <span>Medication</span>
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <div class="card-label">BirthdayCard · upcoming</div>
+            <article class="birthday-card">
+              <div class="birthday-header">
+                <div class="birthday-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 12.5c0-2.5 1.5-4 3-4s2.5 1 3 2.5c.5-1.5 1.5-2.5 3-2.5s3 1.5 3 4c0 3.5-3.5 6.5-6 8.5-2.5-2-6-5-6-8.5z"/></svg>
+                </div>
+                <div>
+                  <div class="birthday-name">Luna</div>
+                  <div class="birthday-msg">Turns 3 in 12 days</div>
+                </div>
+                <div class="birthday-countdown">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  <span class="days-counter">12</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="reminder-types">
+        <h2>Reminder Type Colors</h2>
+        <p class="section-intro">Category colors apply to reminder icons only — not card backgrounds or labels.</p>
+        <div class="reminder-legend" id="reminderLegend"></div>
+      </section>
+
+      <section id="tokens">
+        <h2>Token Export</h2>
+        <p class="section-intro">CSS custom properties mirror the React Native token structure for web or documentation use.</p>
+        <div class="code-block">
+          <pre id="tokenExport"></pre>
+        </div>
+      </section>
+    </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
+
+  <script>
+    const colorTokens = {
+      brand: [
+        { name: "primary", var: "--color-primary", value: "#37393B" },
+        { name: "secondary", var: "--color-secondary", value: "#6B7280" },
+        { name: "accent", var: "--color-accent", value: "#907A6C" },
+        { name: "primaryLight", var: "--color-primary-light", value: "#4B4D4F" },
+        { name: "primaryDark", var: "--color-primary-dark", value: "#2A2C2E" },
+        { name: "accentLight", var: "--color-accent-light", value: "#A89486" },
+        { name: "accentDark", var: "--color-accent-dark", value: "#786552" },
+      ],
+      semantic: [
+        { name: "success", var: "--color-success", value: "#10B981" },
+        { name: "warning", var: "--color-warning", value: "#F59E0B" },
+        { name: "error", var: "--color-error", value: "#DC2626" },
+        { name: "info", var: "--color-info", value: "#3B82F6" },
+      ],
+      surface: [
+        { name: "background", var: "--color-bg", value: "#FFFFFF" },
+        { name: "backgroundSecondary", var: "--color-bg-secondary", value: "#F9FAFB" },
+        { name: "backgroundTertiary", var: "--color-bg-tertiary", value: "#F3F4F6" },
+        { name: "text", var: "--color-text", value: "#37393B" },
+        { name: "textSecondary", var: "--color-text-secondary", value: "#6B7280" },
+        { name: "textTertiary", var: "--color-text-tertiary", value: "#9CA3AF" },
+      ],
+      interactive: [
+        { name: "border", var: "--color-border", value: "#E5E7EB" },
+        { name: "borderFocus", var: "--color-border-focus", value: "#907A6C" },
+        { name: "buttonPrimary", var: "--color-btn-primary", value: "#37393B" },
+        { name: "buttonSecondary", var: "--color-btn-secondary", value: "#F3F4F6" },
+        { name: "inputBorderFocus", var: "--color-input-border-focus", value: "#907A6C" },
+      ],
+    };
+
+    const spacingTokens = [
+      { token: "space-1", px: 4 },
+      { token: "space-2", px: 6 },
+      { token: "space-3", px: 8 },
+      { token: "space-4", px: 12 },
+      { token: "space-5", px: 16 },
+      { token: "space-6", px: 24 },
+      { token: "space-7", px: 32 },
+      { token: "space-8", px: 48 },
+    ];
+
+    const reminderTypes = [
+      { label: "Vet visit", color: "var(--color-reminder-vet)" },
+      { label: "Medication", color: "var(--color-reminder-medication)" },
+      { label: "Flea & tick", color: "var(--color-reminder-flea)" },
+      { label: "Grooming", color: "var(--color-reminder-grooming)" },
+      { label: "Vaccination", color: "var(--color-reminder-vaccination)" },
+      { label: "Birthday", color: "var(--color-reminder-birthday)" },
+      { label: "Other", color: "var(--color-reminder-other)" },
+    ];
+
+    function renderSwatches() {
+      Object.entries(colorTokens).forEach(([group, tokens]) => {
+        const container = document.querySelector(`[data-token-group="${group}"]`);
+        if (!container) return;
+        container.innerHTML = tokens.map(t => `
+          <div class="swatch">
+            <div class="swatch-color" style="background: ${t.value}"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">${t.name}</div>
+              <div class="swatch-value" data-copy="${t.value}" title="Click to copy">${t.value}</div>
+            </div>
+          </div>
+        `).join("");
+      });
+    }
+
+    function renderSpacing() {
+      const el = document.getElementById("spacingScale");
+      el.innerHTML = spacingTokens.map(s => `
+        <div class="spacing-row">
+          <div class="spacing-block" style="width:${s.px}px;height:24px"></div>
+          <span class="spacing-label">--${s.token} · ${s.px}px</span>
+        </div>
+      `).join("");
+    }
+
+    function renderReminderLegend() {
+      document.getElementById("reminderLegend").innerHTML = reminderTypes.map(r => `
+        <span class="legend-chip">
+          <span class="legend-dot" style="background:${r.color}"></span>
+          ${r.label}
+        </span>
+      `).join("");
+    }
+
+    function renderTokenExport() {
+      const lines = [
+        "/* Owen Design Tokens — light theme */",
+        ":root {",
+        ...Object.values(colorTokens).flat().map(t => `  ${t.var}: ${t.value};`),
+        ...spacingTokens.map(s => `  --${s.token}: ${s.px}px;`),
+        "  --radius-sm: 8px;",
+        "  --radius-md: 12px;",
+        "  --radius-lg: 20px;",
+        "  --font-header: 'Libre Baskerville', Georgia, serif;",
+        "  --font-body: 'Source Sans 3', system-ui, sans-serif;",
+        "}",
+      ];
+      document.getElementById("tokenExport").textContent = lines.join("\n");
+    }
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1600);
+    }
+
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest("[data-copy]");
+      if (!target) return;
+      navigator.clipboard.writeText(target.dataset.copy).then(() => showToast("Copied " + target.dataset.copy));
+    });
+
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.body.dataset.theme === "dark";
+      document.body.dataset.theme = isDark ? "light" : "dark";
+      themeToggle.textContent = isDark ? "Switch to dark mode" : "Switch to light mode";
+      themeToggle.setAttribute("aria-pressed", String(!isDark));
+    });
+
+    renderSwatches();
+    renderSpacing();
+    renderReminderLegend();
+    renderTokenExport();
+  </script>
+</body>
+</html>

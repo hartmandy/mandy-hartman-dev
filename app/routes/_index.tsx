@@ -8,11 +8,11 @@ import { BLOGS_QUERY, HOME_QUERY } from "~/sanity/queries";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Mandy Hartman | Front-end Software Engineer" },
+    { title: "Mandy Hartman | UX Engineer" },
     {
       name: "description",
       content:
-        "Front-end software engineer specializing in React, Remix, and TypeScript.",
+        "UX engineer specializing in design systems, accessible interfaces, and React.",
     },
   ];
 };
@@ -35,33 +35,30 @@ export default function Home() {
 
   return (
     <div className="m-auto">
-      <header className="mt-10 border-b border-neutral-700 pb-8">
+      <header className="mt-10 pb-8">
         <p className="mb-6 text-xs font-bold uppercase tracking-[0.35em] text-neutral-700">
-          Front-end Software Engineer
+          UX Engineer
         </p>
         <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-end">
           <h1 className="text-5xl leading-none text-neutral-800 md:text-7xl xl:text-8xl">
-            Building sharp, accessible web interfaces with React, Remix, and
-            TypeScript.
+            Designing and building interfaces where research, usability, and
+            craft meet.
           </h1>
           <p className="text-lg font-normal leading-relaxed md:text-xl">
-            I&apos;m Mandy Hartman, a front-end engineer focused on thoughtful
-            product experiences, durable UI systems, and the craft of shipping
-            useful software.
+            I&apos;m Mandy Hartman, a UX engineer who works across research,
+            interaction design, and front-end implementation — turning fuzzy
+            product problems into clear, shippable experiences.
           </p>
         </div>
       </header>
 
-      <figure className="overflow-hidden rounded-lg border border-neutral-700">
+      <div className="overflow-hidden rounded-lg border border-neutral-700">
         <img
           src="/home.png"
           alt="Workspace at the desk"
-          className="aspect-[21/9] w-full object-cover object-center grayscale transition-all duration-300 hover:grayscale-0"
+          className="block w-full grayscale transition-all duration-300 hover:grayscale-0"
         />
-        <figcaption className="border-t border-neutral-700 px-4 py-3 text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">
-          Field notes from the desk
-        </figcaption>
-      </figure>
+      </div>
 
       <section className="grid gap-4 border-b border-neutral-700 py-8 md:grid-cols-3">
         <div className="rounded-lg border border-neutral-700 p-5">
@@ -69,8 +66,8 @@ export default function Home() {
             Specialty
           </p>
           <p className="mt-4 text-2xl font-normal text-neutral-800">
-            React, Remix, TypeScript, design systems, and web
-            experiences.
+            Design systems, prototyping, accessibility, React, and end-to-end
+            product work.
           </p>
         </div>
         <div className="rounded-lg border border-neutral-700 p-5 md:col-span-2">
@@ -78,9 +75,9 @@ export default function Home() {
             Field Notes
           </p>
           <p className="mt-4 text-2xl font-normal text-neutral-800">
-            I write about the decisions behind interfaces: how components hold
-            together, where performance matters, and what makes front-end work
-            feel clear for the people using it.
+            I write about the overlap of UX and engineering: how research informs
+            build decisions, what makes design systems stick, and where the
+            details of an interface change how people feel using it.
           </p>
         </div>
       </section>
@@ -112,8 +109,8 @@ export default function Home() {
         ) : (
           <div className="rounded-lg border border-neutral-700 p-5">
             <p className="text-lg font-normal">
-              New writing is coming soon. Check back for notes on front-end
-              engineering, React, Remix, and TypeScript.
+              New writing is coming soon. Check back for notes on UX,
+              design systems, and building accessible product experiences.
             </p>
           </div>
         )}

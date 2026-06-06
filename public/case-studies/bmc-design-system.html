@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMC Yearbook — Design System</title>
+  <meta name="description" content="Brand guidelines and design system for the Black Mountain College Yearbook digital archive." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens ─────────────────────────────────────────────── */
+    :root {
+      /* Brand */
+      --color-primary: #479B80;
+      --color-primary-rgb: 71, 155, 128;
+      --color-primary-hover: #000000;
+
+      /* Neutrals */
+      --color-white: #ffffff;
+      --color-black: #000000;
+      --color-gray-100: #f3f4f6;
+      --color-gray-400: #9ca3af;
+      --color-gray-500: #6b7280;
+      --color-gray-700: #374151;
+      --color-gray-900: #111827;
+      --color-zinc-100: #f4f4f5;
+      --color-zinc-800: #27272a;
+      --color-zinc-900: #18181b;
+
+      /* Typography */
+      --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-display: "Inter", var(--font-sans);
+
+      --font-weight-light: 300;
+      --font-weight-normal: 400;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+
+      --tracking-wide: 0.025em;
+      --tracking-wider: 0.05em;
+
+      /* Type scale */
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --text-5xl: 3rem;
+      --text-6xl: 3.75rem;
+      --text-8xl: 6rem;
+      --text-9xl: 8rem;
+
+      /* Spacing (Tailwind-aligned) */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+
+      /* Layout */
+      --container-max: 72rem;
+      --radius-md: 0.375rem;
+      --radius-full: 9999px;
+
+      /* Effects */
+      --transition-fast: 75ms ease;
+      --transition-base: 200ms ease;
+    }
+
+    /* ── Base ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: var(--font-weight-light);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-black);
+      background: var(--color-white);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────── */
+    .hero {
+      padding: var(--space-20) 0 var(--space-16);
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .hero__eyebrow {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-primary);
+      margin: 0 0 var(--space-4);
+    }
+
+    .hero__title {
+      font-size: clamp(var(--text-4xl), 8vw, var(--text-8xl));
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: 0 0 var(--space-6);
+      max-width: 14ch;
+    }
+
+    .hero__subtitle {
+      font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
+      font-weight: var(--font-weight-light);
+      max-width: 42rem;
+      margin: 0 0 var(--space-8);
+      color: var(--color-gray-700);
+    }
+
+    .hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+    }
+
+    .hero__meta dt {
+      font-weight: var(--font-weight-bold);
+      color: var(--color-black);
+      display: inline;
+    }
+
+    .hero__meta dd {
+      display: inline;
+      margin: 0;
+    }
+
+    .hero__meta div::after {
+      content: " · ";
+      margin: 0 var(--space-2);
+      opacity: 0.4;
+    }
+
+    .hero__meta div:last-child::after { content: none; }
+
+    /* ── Sections ────────────────────────────────────────────────── */
+    .section {
+      padding: var(--space-16) 0;
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .section__label {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-primary);
+      margin: 0 0 var(--space-2);
+    }
+
+    .section__title {
+      font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+      font-weight: var(--font-weight-semibold);
+      margin: 0 0 var(--space-4);
+    }
+
+    .section__desc {
+      font-size: var(--text-lg);
+      color: var(--color-gray-700);
+      max-width: 40rem;
+      margin: 0 0 var(--space-10);
+    }
+
+    /* ── Brand principles ────────────────────────────────────────── */
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-10);
+    }
+
+    .principle {
+      padding-top: var(--space-4);
+      border-top: 2px solid var(--color-primary);
+    }
+
+    .principle h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-semibold);
+      margin: 0 0 var(--space-2);
+    }
+
+    .principle p {
+      margin: 0;
+      font-size: var(--text-sm);
+      color: var(--color-gray-700);
+    }
+
+    /* ── Logo ────────────────────────────────────────────────────── */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .logo-card {
+      padding: var(--space-10);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
+      min-height: 200px;
+    }
+
+    .logo-card--light { background: var(--color-gray-100); }
+    .logo-card--dark { background: var(--color-black); color: var(--color-white); }
+    .logo-card--primary { background: var(--color-primary); color: var(--color-white); }
+
+    .logo-card__caption {
+      font-size: var(--text-xs);
+      opacity: 0.6;
+      text-align: center;
+    }
+
+    .logo-card__name {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--text-base);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    /* ── Color swatches ──────────────────────────────────────────── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .swatch__chip {
+      height: 96px;
+    }
+
+    .swatch__info {
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-white);
+    }
+
+    .swatch__name {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-semibold);
+      margin: 0 0 var(--space-1);
+    }
+
+    .swatch__value {
+      font-size: var(--text-xs);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      color: var(--color-gray-500);
+      margin: 0;
+    }
+
+    .swatch__token {
+      font-size: var(--text-xs);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      color: var(--color-primary);
+      margin: var(--space-1) 0 0;
+    }
+
+    /* ── Token table ─────────────────────────────────────────────── */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+      margin-top: var(--space-8);
+    }
+
+    .token-table th,
+    .token-table td {
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .token-table th {
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-gray-500);
+    }
+
+    .token-table code {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: var(--text-xs);
+      background: var(--color-zinc-100);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* ── Typography specimens ────────────────────────────────────── */
+    .type-specimen {
+      padding: var(--space-8) 0;
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .type-specimen:last-child { border-bottom: none; }
+
+    .type-specimen__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+      font-size: var(--text-xs);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      color: var(--color-gray-500);
+    }
+
+    .type-hero {
+      font-size: clamp(var(--text-5xl), 7vw, var(--text-8xl));
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .type-page-title {
+      font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+      font-weight: var(--font-weight-semibold);
+      margin: 0;
+    }
+
+    .type-section {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-light);
+      margin: 0;
+    }
+
+    .type-body-lg {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-light);
+      letter-spacing: var(--tracking-wide);
+      max-width: 36rem;
+      margin: 0;
+    }
+
+    .type-body {
+      font-size: var(--text-base);
+      color: var(--color-gray-700);
+      line-height: 1.7;
+      max-width: 36rem;
+      margin: 0;
+    }
+
+    .type-label {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-primary);
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .type-caption {
+      font-size: var(--text-xs);
+      opacity: 0.6;
+      margin: 0;
+    }
+
+    /* ── Spacing scale ───────────────────────────────────────────── */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .spacing-row__label {
+      width: 80px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: var(--text-xs);
+      color: var(--color-gray-500);
+    }
+
+    .spacing-row__bar {
+      height: 24px;
+      background: var(--color-primary);
+      opacity: 0.35;
+      border-radius: 2px;
+    }
+
+    .spacing-row__value {
+      font-size: var(--text-xs);
+      color: var(--color-gray-500);
+    }
+
+    /* ── Components ──────────────────────────────────────────────── */
+    .component-grid {
+      display: grid;
+      gap: var(--space-10);
+    }
+
+    .component-block {
+      padding: var(--space-8);
+      background: var(--color-gray-100);
+      border-radius: var(--radius-md);
+    }
+
+    .component-block__title {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-gray-500);
+      margin: 0 0 var(--space-6);
+    }
+
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-block;
+      background: var(--color-primary);
+      color: var(--color-white);
+      font-family: inherit;
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wider);
+      padding: var(--space-4) 2.75rem;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition-base);
+    }
+
+    .btn-primary:hover { background: var(--color-primary-hover); }
+
+    .btn-search {
+      display: inline-block;
+      background: var(--color-black);
+      color: var(--color-white);
+      font-family: inherit;
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wider);
+      padding: var(--space-2) var(--space-3);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background var(--transition-base);
+    }
+
+    .btn-search:hover { background: var(--color-gray-700); }
+
+    .link-primary {
+      color: var(--color-primary);
+      font-weight: var(--font-weight-bold);
+      text-decoration: none;
+      cursor: pointer;
+      transition: text-decoration var(--transition-fast);
+    }
+
+    .link-primary:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .link-back {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-semibold);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      transition: text-underline-offset var(--transition-fast);
+    }
+
+    .link-back:hover { text-underline-offset: 2px; }
+
+    /* Search input */
+    .search-field {
+      display: flex;
+      align-items: stretch;
+      max-width: 480px;
+      gap: var(--space-2);
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: var(--color-zinc-100);
+      border-radius: var(--radius-md);
+      padding: 0 var(--space-3);
+      gap: var(--space-2);
+    }
+
+    .search-input-wrap svg {
+      flex-shrink: 0;
+      color: var(--color-gray-400);
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: var(--text-sm);
+      color: var(--color-gray-900);
+      padding: var(--space-2) 0;
+      outline: none;
+    }
+
+    /* Biography grid tile */
+    .bio-grid-demo {
+      background: var(--color-white);
+      padding: var(--space-6);
+      border-radius: var(--radius-md);
+    }
+
+    .bio-grid {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .bio-grid {
+        gap: var(--space-6);
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .bio-grid {
+        gap: var(--space-10);
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .bio-tile {
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+
+    .bio-tile img {
+      width: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .bio-tile__text {
+      white-space: normal;
+      margin-top: var(--space-4);
+    }
+
+    .bio-tile__name {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-normal);
+      margin: 0;
+    }
+
+    .bio-tile__nickname {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-semibold);
+      margin: 0;
+    }
+
+    /* 404 block */
+    .bio-details {
+      border-top: 1px solid var(--color-black);
+      border-bottom: 1px solid var(--color-black);
+      padding: var(--space-10) var(--space-8);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-10);
+      background: var(--color-white);
+    }
+
+    .bio-details__label {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-primary);
+      text-transform: uppercase;
+      margin: 0 0 var(--space-2);
+    }
+
+    .bio-details__value {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-light);
+      letter-spacing: var(--tracking-wide);
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* Bio details grid */
+    .error-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      align-items: flex-start;
+      background: var(--color-white);
+      padding: var(--space-6);
+      border-radius: var(--radius-md);
+    }
+
+    .error-demo__code {
+      font-size: var(--text-9xl);
+      color: var(--color-primary);
+      line-height: 1;
+      margin: 0;
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .error-demo__image {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .error-demo__image img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    /* 404 block */
+    .code-block {
+      margin-top: var(--space-4);
+      padding: var(--space-4);
+      background: var(--color-zinc-900);
+      color: #e5e7eb;
+      border-radius: var(--radius-md);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: var(--text-xs);
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    .code-block .token-prop { color: #93c5fd; }
+    .code-block .token-val { color: #86efac; }
+
+    @media (max-width: 768px) {
+      .hero { padding-top: var(--space-12); }
+    }
+  </style>
+</head>
+<body>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <p class="hero__eyebrow">Design System</p>
+        <h1 class="hero__title">Black Mountain College Yearbook</h1>
+        <p class="hero__subtitle">
+          Visual language for a digital archive of student life at Black Mountain College (1933–1957).
+          Editorial typography, archival photography, and restrained color define an interface that
+          stays out of the way of the material.
+        </p>
+        <dl class="hero__meta">
+          <div><dt>Platform</dt> <dd>Remix + Tailwind CSS</dd></div>
+          <div><dt>CMS</dt> <dd>Sanity Studio</dd></div>
+          <div><dt>Partner</dt> <dd>BMC Museum + Arts Center</dd></div>
+        </dl>
+
+        <div class="principles">
+          <article class="principle">
+            <h3>Editorial first</h3>
+            <p>Large responsive type and overlapping layouts let content breathe like a printed yearbook spread.</p>
+          </article>
+          <article class="principle">
+            <h3>Archival restraint</h3>
+            <p>Grayscale photography and neutral surfaces keep focus on historical material, not UI chrome.</p>
+          </article>
+          <article class="principle">
+            <h3>Single accent</h3>
+            <p>Sage green (<code style="font-size: 0.85em">#479B80</code>) marks interactive elements and metadata labels — used sparingly.</p>
+          </article>
+          <article class="principle">
+            <h3>Accessible structure</h3>
+            <p>Semantic HTML, clear hierarchy, and high-contrast text on light backgrounds throughout.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand / Logo -->
+    <section class="section" id="brand">
+      <div class="container">
+        <p class="section__label">01 — Brand</p>
+        <h2 class="section__title">Logo &amp; mark</h2>
+        <p class="section__desc">
+          The BMC Yearbook mark is an abstract geometric form rendered as inline SVG with
+          <code>currentColor</code>, allowing it to adapt to any surface. Pair with the wordmark
+          “BMC Yearbook” in bold weight.
+        </p>
+
+        <div class="logo-grid">
+          <div class="logo-card logo-card--light">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-label="BMC Yearbook logo" style="color: var(--color-primary)">
+              <path d="M53.5968 20.4638C51.9443 16.3892 49.52 12.7366 46.3914 9.60793C43.2627 6.47926 39.6101 4.05498 35.5355 2.40251C31.6041 0.808326 27.4522 0 23.1957 0C18.9392 0 14.7873 0.808326 10.8559 2.40251C6.78124 4.05498 3.12867 6.47926 0 9.60793L11.9262 21.5341C18.1407 15.3196 28.2521 15.3196 34.4659 21.5341C40.6797 27.7486 40.6804 37.86 34.4659 44.0738L46.3921 56C49.5207 52.8713 51.945 49.2188 53.5975 45.1441C55.1917 41.2127 56 37.0608 56 32.8043C55.9993 28.5464 55.191 24.3952 53.5968 20.4638Z" fill="currentColor"/>
+              <path d="M11.9254 44.073C18.1399 50.2875 28.2514 50.2875 34.4652 44.073L11.9254 21.5332C5.7109 27.7477 5.7109 37.8585 11.9254 44.073Z" fill="currentColor"/>
+            </svg>
+            <span class="logo-card__name">BMC Yearbook</span>
+            <span class="logo-card__caption">Primary — on light surfaces</span>
+          </div>
+          <div class="logo-card logo-card--dark">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true" style="color: var(--color-white)">
+              <path d="M53.5968 20.4638C51.9443 16.3892 49.52 12.7366 46.3914 9.60793C43.2627 6.47926 39.6101 4.05498 35.5355 2.40251C31.6041 0.808326 27.4522 0 23.1957 0C18.9392 0 14.7873 0.808326 10.8559 2.40251C6.78124 4.05498 3.12867 6.47926 0 9.60793L11.9262 21.5341C18.1407 15.3196 28.2521 15.3196 34.4659 21.5341C40.6797 27.7486 40.6804 37.86 34.4659 44.0738L46.3921 56C49.5207 52.8713 51.945 49.2188 53.5975 45.1441C55.1917 41.2127 56 37.0608 56 32.8043C55.9993 28.5464 55.191 24.3952 53.5968 20.4638Z" fill="currentColor"/>
+              <path d="M11.9254 44.073C18.1399 50.2875 28.2514 50.2875 34.4652 44.073L11.9254 21.5332C5.7109 27.7477 5.7109 37.8585 11.9254 44.073Z" fill="currentColor"/>
+            </svg>
+            <span class="logo-card__name">BMC Yearbook</span>
+            <span class="logo-card__caption">Reversed — on dark surfaces</span>
+          </div>
+          <div class="logo-card logo-card--primary">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true" style="color: var(--color-white)">
+              <path d="M53.5968 20.4638C51.9443 16.3892 49.52 12.7366 46.3914 9.60793C43.2627 6.47926 39.6101 4.05498 35.5355 2.40251C31.6041 0.808326 27.4522 0 23.1957 0C18.9392 0 14.7873 0.808326 10.8559 2.40251C6.78124 4.05498 3.12867 6.47926 0 9.60793L11.9262 21.5341C18.1407 15.3196 28.2521 15.3196 34.4659 21.5341C40.6797 27.7486 40.6804 37.86 34.4659 44.0738L46.3921 56C49.5207 52.8713 51.945 49.2188 53.5975 45.1441C55.1917 41.2127 56 37.0608 56 32.8043C55.9993 28.5464 55.191 24.3952 53.5968 20.4638Z" fill="currentColor"/>
+              <path d="M11.9254 44.073C18.1399 50.2875 28.2514 50.2875 34.4652 44.073L11.9254 21.5332C5.7109 27.7477 5.7109 37.8585 11.9254 44.073Z" fill="currentColor"/>
+            </svg>
+            <span class="logo-card__caption">Mark only — accent surface</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colors -->
+    <section class="section" id="colors">
+      <div class="container">
+        <p class="section__label">02 — Colors</p>
+        <h2 class="section__title">Color tokens</h2>
+        <p class="section__desc">
+          The palette is intentionally minimal. One brand accent on a neutral foundation supports
+          both light and dark modes. Tokens map to Tailwind utilities in the production app.
+        </p>
+
+        <div class="color-grid">
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #479B80"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Primary</p>
+              <p class="swatch__value">#479B80 · rgb(71, 155, 128)</p>
+              <p class="swatch__token">--color-primary · bg-primary</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #000000"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Black</p>
+              <p class="swatch__value">#000000</p>
+              <p class="swatch__token">--color-black · hover state</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #ffffff; border-bottom: 1px solid #f3f4f6"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">White</p>
+              <p class="swatch__value">#ffffff</p>
+              <p class="swatch__token">--color-white · page bg</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #f3f4f6"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Gray 100</p>
+              <p class="swatch__value">#f3f4f6</p>
+              <p class="swatch__token">Nav, footer surfaces</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #9ca3af"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Gray 400</p>
+              <p class="swatch__value">#9ca3af</p>
+              <p class="swatch__token">Icons, placeholders</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #6b7280"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Gray 500</p>
+              <p class="swatch__value">#6b7280</p>
+              <p class="swatch__token">Captions, secondary text</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #374151"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Gray 700</p>
+              <p class="swatch__value">#374151</p>
+              <p class="swatch__token">Body text, button hover</p>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__chip" style="background: #f4f4f5"></div>
+            <div class="swatch__info">
+              <p class="swatch__name">Zinc 100</p>
+              <p class="swatch__value">#f4f4f5</p>
+              <p class="swatch__token">Search input background</p>
+            </div>
+          </div>
+        </div>
+
+        <table class="token-table" aria-label="CSS custom properties">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--color-primary</code></td><td>#479B80</td><td>CTAs, links, metadata labels, 404 accent</td></tr>
+            <tr><td><code>--color-primary-hover</code></td><td>#000000</td><td>Primary button hover</td></tr>
+            <tr><td><code>--color-gray-100</code></td><td>#f3f4f6</td><td>Navigation bar, footer</td></tr>
+            <tr><td><code>--color-zinc-100</code></td><td>#f4f4f5</td><td>Form field backgrounds</td></tr>
+            <tr><td><code>--color-gray-700</code></td><td>#374151</td><td>Article body, secondary buttons</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="section" id="typography">
+      <div class="container">
+        <p class="section__label">03 — Typography</p>
+        <h2 class="section__title">Type system</h2>
+        <p class="section__desc">
+          The production app uses Tailwind’s default sans-serif stack with light body weight and
+          semibold headings. Laviossa Medium is registered as a display font but the live site
+          relies on system sans for performance and consistency.
+        </p>
+
+        <table class="token-table" aria-label="Font tokens">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Family</th>
+              <th>Weights</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--font-sans</code></td>
+              <td>System UI / Tailwind sans-serif</td>
+              <td>300 light · 600 semibold · 700 bold</td>
+            </tr>
+            <tr>
+              <td><code>font-laviossa</code></td>
+              <td>Laviossa Medium (registered, optional)</td>
+              <td>500 medium</td>
+            </tr>
+            <tr>
+              <td><code>--tracking-wide</code></td>
+              <td>0.025em</td>
+              <td>Body copy, bio details</td>
+            </tr>
+            <tr>
+              <td><code>--tracking-wider</code></td>
+              <td>0.05em</td>
+              <td>Navigation, buttons</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: var(--space-12)">
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Hero H1</span>
+              <span>text-5xl → text-8xl</span>
+              <span>font-semibold</span>
+            </div>
+            <p class="type-hero">Interwoven Histories</p>
+          </div>
+
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Page title</span>
+              <span>text-3xl → text-8xl</span>
+              <span>font-semibold</span>
+            </div>
+            <p class="type-page-title">Biographies</p>
+          </div>
+
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Section heading</span>
+              <span>text-xl → text-4xl</span>
+              <span>font-light</span>
+            </div>
+            <p class="type-section">Students at Black Mountain College</p>
+          </div>
+
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Body large</span>
+              <span>text-md → text-4xl</span>
+              <span>font-light · tracking-wide</span>
+            </div>
+            <p class="type-body-lg">A digital archive documenting the lives and work of BMC students from 1933 to 1957.</p>
+          </div>
+
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Body</span>
+              <span>text-sm → text-base</span>
+              <span>text-gray-700 · leading-relaxed</span>
+            </div>
+            <p class="type-body">Black Mountain College was an experimental liberal arts college in North Carolina that attracted artists, writers, and thinkers who would shape 20th-century American culture.</p>
+          </div>
+
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Metadata label</span>
+              <span>text-xs → text-lg</span>
+              <span>font-bold · text-primary · uppercase</span>
+            </div>
+            <p class="type-label">Focus</p>
+          </div>
+
+          <div class="type-specimen">
+            <div class="type-specimen__meta">
+              <span>Caption</span>
+              <span>text-xs</span>
+              <span>opacity-60</span>
+            </div>
+            <p class="type-caption">1948 Buckminster Fuller Architecture Class. Courtesy of Western Regional Archives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spacing -->
+    <section class="section" id="spacing">
+      <div class="container">
+        <p class="section__label">04 — Spacing</p>
+        <h2 class="section__title">Spacing &amp; layout tokens</h2>
+        <p class="section__desc">
+          Spacing follows Tailwind’s 4px base scale. Editorial layouts also use arbitrary
+          negative margins for overlapping image-and-text compositions on the homepage.
+        </p>
+
+        <div style="max-width: 480px">
+          <div class="spacing-row">
+            <span class="spacing-row__label">space-2</span>
+            <div class="spacing-row__bar" style="width: 0.5rem"></div>
+            <span class="spacing-row__value">8px · 0.5rem</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-row__label">space-4</span>
+            <div class="spacing-row__bar" style="width: 1rem"></div>
+            <span class="spacing-row__value">16px · 1rem</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-row__label">space-6</span>
+            <div class="spacing-row__bar" style="width: 1.5rem"></div>
+            <span class="spacing-row__value">24px · 1.5rem</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-row__label">space-8</span>
+            <div class="spacing-row__bar" style="width: 2rem"></div>
+            <span class="spacing-row__value">32px · 2rem</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-row__label">space-12</span>
+            <div class="spacing-row__bar" style="width: 3rem"></div>
+            <span class="spacing-row__value">48px · 3rem</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-row__label">space-20</span>
+            <div class="spacing-row__bar" style="width: 5rem"></div>
+            <span class="spacing-row__value">80px · 5rem</span>
+          </div>
+        </div>
+
+        <table class="token-table">
+          <thead>
+            <tr>
+              <th>Layout token</th>
+              <th>Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>container</code></td><td>max 72rem · px-6</td><td>Main content wrapper</td></tr>
+            <tr><td><code>rounded-full</code></td><td>9999px</td><td>Primary CTA buttons</td></tr>
+            <tr><td><code>rounded-md</code></td><td>0.375rem</td><td>Search inputs, secondary buttons</td></tr>
+            <tr><td><code>gap-[300px]</code></td><td>300px</td><td>Homepage section rhythm (lg+)</td></tr>
+            <tr><td><code>-mr-[460px]</code></td><td>−460px</td><td>Hero text/image overlap</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section class="section" id="components">
+      <div class="container">
+        <p class="section__label">05 — Components</p>
+        <h2 class="section__title">UI patterns</h2>
+        <p class="section__desc">
+          Components are styled with Tailwind utility classes. Below are the core patterns used
+          across search, biography pages, and editorial layouts.
+        </p>
+
+        <div class="component-grid">
+
+          <div class="component-block">
+            <p class="component-block__title">Buttons &amp; links</p>
+            <div class="component-row">
+              <a href="#" class="btn-primary">Explore Now</a>
+              <button type="button" class="btn-search">Search</button>
+              <a href="#" class="link-primary">View collection →</a>
+              <button type="button" class="link-back">← Go Back</button>
+            </div>
+            <div class="code-block"><span class="token-prop">className</span>=<span class="token-val">"bg-primary hover:bg-black text-white py-4 px-11 rounded-full tracking-wider font-bold"</span></div>
+          </div>
+
+          <div class="component-block">
+            <p class="component-block__title">Search field</p>
+            <form class="search-field" role="search" onsubmit="return false">
+              <div class="search-input-wrap">
+                <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"/>
+                </svg>
+                <input class="search-input" type="search" placeholder="Search biographies…" aria-label="Search biographies" />
+              </div>
+              <button type="submit" class="btn-search">Search</button>
+            </form>
+            <div class="code-block"><span class="token-prop">input</span>: <span class="token-val">bg-zinc-100 rounded-md</span> · <span class="token-prop">button</span>: <span class="token-val">bg-black hover:bg-gray-700 rounded-md</span></div>
+          </div>
+
+          <div class="component-block">
+            <p class="component-block__title">Biography metadata grid</p>
+            <div class="bio-details">
+              <div>
+                <p class="bio-details__label">Focus</p>
+                <p class="bio-details__value">Art / Design / Craft</p>
+              </div>
+              <div>
+                <p class="bio-details__label">Role</p>
+                <p class="bio-details__value">Student</p>
+              </div>
+              <div>
+                <p class="bio-details__label">Attendance</p>
+                <p class="bio-details__value">1944 – 1948</p>
+              </div>
+              <div>
+                <p class="bio-details__label">Birth</p>
+                <p class="bio-details__value">1925<br />Asheville, NC</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="component-block">
+            <p class="component-block__title">Biography grid tile</p>
+            <div class="bio-grid-demo">
+              <div class="bio-grid">
+                <a href="#" class="bio-tile">
+                  <img src="asawa.png" alt="Photograph of Ruth Asawa from BMC" loading="lazy" />
+                  <div class="bio-tile__text">
+                    <h2 class="bio-tile__name">Ruth Asawa</h2>
+                  </div>
+                </a>
+                <a href="#" class="bio-tile">
+                  <img src="albers.png" alt="Photograph of Josef Albers from BMC" loading="lazy" />
+                  <div class="bio-tile__text">
+                    <h2 class="bio-tile__name">Josef Albers</h2>
+                  </div>
+                </a>
+                <a href="#" class="bio-tile">
+                  <img src="cage.png" alt="Photograph of John Cage from BMC" loading="lazy" />
+                  <div class="bio-tile__text">
+                    <h2 class="bio-tile__name">John Cage</h2>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="code-block"><span class="token-val">grid gap-4 md:gap-6 lg:gap-10 md:grid-cols-3 lg:grid-cols-4 · object-cover filter grayscale · text-xl name</span></div>
+          </div>
+
+          <div class="component-block">
+            <p class="component-block__title">404 error state</p>
+            <div class="error-demo">
+              <div>
+                <p class="error-demo__code">404</p>
+                <p style="font-size: var(--text-2xl); margin: var(--space-2) 0">Something's Wrong</p>
+                <p style="font-size: var(--text-lg); font-weight: 300; max-width: 28rem; margin: 0">
+                  Like a BMC art piece, this page is avant-garde… as in, it avant-gone anywhere.
+                </p>
+              </div>
+              <div class="error-demo__image">
+                <img src="404.jpeg" alt="1948 Buckminster Fuller Architecture Class at Black Mountain College" loading="lazy" />
+                <p class="type-caption" style="margin-top: var(--space-2)">1948 Buckminster Fuller Architecture Class. Courtesy of Western Regional Archives.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

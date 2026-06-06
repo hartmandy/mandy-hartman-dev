@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juniper Wildlife — Design System</title>
+  <meta name="description" content="Brand guidelines, design tokens, and component library for Juniper Wildlife — a wildlife rehabilitation wiki." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Design Tokens (from app/app.css) ─── */
+    :root {
+      --radius: 0.625rem;
+      --radius-sm: calc(var(--radius) - 4px);
+      --radius-md: calc(var(--radius) - 2px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+
+      --background: oklch(0.81 0.03 111.77);
+      --foreground: oklch(0.27 0.02 134.22);
+      --card: oklch(0.81 0.03 111.77);
+      --card-foreground: oklch(0.27 0.02 134.22);
+      --primary: oklch(0.56 0.03 135.73);
+      --primary-foreground: oklch(0.98 0.01 111.77);
+      --secondary: oklch(0.89 0.13 98.37);
+      --secondary-foreground: oklch(0.27 0.02 134.22);
+      --muted: oklch(0.75 0.02 111.77);
+      --muted-foreground: oklch(0.5 0.015 111.77);
+      --accent: oklch(0.76 0.03 111.82);
+      --accent-foreground: oklch(0.27 0.02 134.22);
+      --destructive: oklch(0.577 0.245 27.325);
+      --border: oklch(0.75 0.015 111.77);
+      --input: oklch(0.75 0.015 111.77);
+      --ring: oklch(0.45 0.02 128.92);
+      --chart-1: oklch(0.65 0.14 38.54);
+      --chart-2: oklch(0.52 0.02 130.34);
+      --chart-3: oklch(0.45 0.02 128.92);
+      --chart-4: oklch(0.81 0.13 99.11);
+      --chart-5: oklch(0.65 0.14 38.54);
+      --chip-primary: oklch(0.27 0.02 134.22);
+      --chip-primary-foreground: oklch(0.81 0.03 111.77);
+      --chip-secondary: oklch(0.65 0.14 38.54);
+      --chip-secondary-foreground: oklch(0.27 0.02 134.22);
+
+      --shadow-xs: 0 1px 2px oklch(0.27 0.02 134.22 / 0.05);
+      --shadow-sm: 0 1px 3px oklch(0.27 0.02 134.22 / 0.08), 0 1px 2px oklch(0.27 0.02 134.22 / 0.04);
+      --shadow-md: 0 4px 6px oklch(0.27 0.02 134.22 / 0.07), 0 2px 4px oklch(0.27 0.02 134.22 / 0.04);
+      --shadow-lg: 0 10px 15px oklch(0.27 0.02 134.22 / 0.08), 0 4px 6px oklch(0.27 0.02 134.22 / 0.04);
+
+      --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+    }
+
+    .dark {
+      --background: oklch(0.46 0.02 130.41);
+      --foreground: oklch(0.92 0.02 111.77);
+      --card: oklch(0.45 0.02 128.92);
+      --card-foreground: oklch(0.81 0.03 111.77);
+      --primary: oklch(0.56 0.03 135.73);
+      --primary-foreground: oklch(0.98 0.01 111.77);
+      --secondary: oklch(0.83 0.14 98.41);
+      --secondary-foreground: oklch(0.46 0.02 130.41);
+      --muted: oklch(0.4 0.015 130.41);
+      --muted-foreground: oklch(0.65 0.015 130.41);
+      --accent: oklch(0.41 0.02 130.5);
+      --accent-foreground: oklch(0.92 0.02 111.77);
+      --destructive: oklch(0.704 0.191 22.216);
+      --border: oklch(0.55 0.02 130.41);
+      --input: oklch(0.55 0.02 130.41);
+      --ring: oklch(0.52 0.02 130.34);
+      --chip-primary: oklch(0.81 0.03 111.77);
+      --chip-primary-foreground: oklch(0.27 0.02 134.22);
+      --chip-secondary: oklch(0.65 0.14 38.54);
+      --chip-secondary-foreground: oklch(0.27 0.02 134.22);
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: var(--font-ui);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body { min-height: 100vh; }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── Layout ─── */
+    .theme-toggle {
+      position: fixed;
+      top: var(--space-4);
+      right: var(--space-4);
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 3px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--muted);
+    }
+
+    .theme-toggle button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      border-radius: calc(var(--radius-lg) - 2px);
+      background: transparent;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .theme-toggle button:hover { color: var(--foreground); }
+    .theme-toggle button.active {
+      background: var(--background);
+      color: var(--foreground);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .hero {
+      padding: var(--space-20) var(--space-6) var(--space-12);
+      max-width: 56rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: var(--space-8);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
+      width: 100%;
+      margin-bottom: var(--space-4);
+    }
+
+    .brand-wordmark-wrap {
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-wordmark-wrap .brand-wordmark {
+      grid-area: 1 / 1;
+    }
+
+    .brand-icon {
+      width: 3rem;
+      height: 3rem;
+      flex-shrink: 0;
+      background: var(--foreground);
+      mask: url("juniper.svg") center / contain no-repeat;
+      -webkit-mask: url("juniper.svg") center / contain no-repeat;
+    }
+
+    .brand-wordmark {
+      height: 2.5rem;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .wordmark-sample {
+      height: 2.75rem;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .wordmark-sample-lg {
+      height: 3.5rem;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .light .brand-wordmark-dark,
+    .dark .brand-wordmark-light,
+    .light .wordmark-sample-dark,
+    .dark .wordmark-sample-light,
+    .light .wordmark-sample-lg-dark,
+    .dark .wordmark-sample-lg-light {
+      display: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.375rem 0.75rem;
+      border-radius: 9999px;
+      background: var(--accent);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .hero-lead {
+      font-family: var(--font-mono);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      max-width: 40rem;
+      margin: 0 auto var(--space-8);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-3);
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .hero-meta span {
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--card);
+    }
+
+    .layout {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 var(--space-6) var(--space-20);
+    }
+
+    section {
+      margin-bottom: var(--space-16);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: var(--space-2);
+    }
+
+    section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
+    }
+
+    .section-desc {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      max-width: 42rem;
+      margin-bottom: var(--space-8);
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--muted-foreground);
+    }
+
+    .panel-body { padding: var(--space-5); }
+
+    /* ─── Color Swatches ─── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+      gap: var(--space-4);
+    }
+
+    .swatch {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .swatch-color {
+      height: 5rem;
+    }
+
+    .swatch-info {
+      padding: var(--space-3);
+    }
+
+    .swatch-name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    .swatch-token {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--muted-foreground);
+      word-break: break-all;
+    }
+
+    .palette-row {
+      display: flex;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 3.5rem;
+      margin-bottom: var(--space-8);
+    }
+
+    .palette-row div { flex: 1; }
+
+    /* ─── Typography ─── */
+    .type-specimen { margin-bottom: var(--space-8); }
+
+    .type-specimen .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted-foreground);
+      margin-bottom: var(--space-2);
+    }
+
+    .type-heading-1 {
+      font-family: var(--font-ui);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    .type-heading-2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .type-heading-3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .type-body-lg {
+      font-family: var(--font-mono);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--muted-foreground);
+    }
+
+    .type-body {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+
+    .type-caption {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .type-meta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .font-stack-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+      .font-stack-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .font-card {
+      padding: var(--space-5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+    }
+
+    .font-card .sample {
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+      line-height: 1.2;
+    }
+
+    .font-card .role {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    .font-card .stack {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--muted-foreground);
+    }
+
+    /* ─── Token Table ─── */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+    }
+
+    .token-table th,
+    .token-table td {
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .token-table th {
+      font-weight: 600;
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .token-table td code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--primary);
+    }
+
+    .token-preview {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: var(--space-2);
+      border: 1px solid var(--border);
+    }
+
+    /* ─── Components ─── */
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      height: 2.25rem;
+      padding: 0 var(--space-4);
+      border-radius: var(--radius-md);
+      font-family: var(--font-ui);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px oklch(from var(--ring) l c h / 0.5);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+    .btn-primary:hover { filter: brightness(0.95); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--secondary-foreground);
+    }
+    .btn-secondary:hover { filter: brightness(0.97); }
+
+    .btn-outline {
+      background: var(--background);
+      color: var(--foreground);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-xs);
+    }
+    .btn-outline:hover { background: var(--accent); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--foreground);
+    }
+    .btn-ghost:hover { background: var(--accent); }
+
+    .btn-destructive {
+      background: var(--destructive);
+      color: white;
+    }
+    .btn-destructive:hover { filter: brightness(0.95); }
+
+    .btn-link {
+      background: transparent;
+      color: var(--primary);
+      padding: 0;
+      height: auto;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .btn-sm { height: 2rem; padding: 0 0.75rem; font-size: 0.8125rem; }
+    .btn-lg { height: 2.5rem; padding: 0 1.5rem; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .chip-primary {
+      background: var(--chip-secondary);
+      color: var(--chip-secondary-foreground);
+    }
+
+    .chip-secondary {
+      background: var(--chip-primary);
+      color: var(--chip-primary-foreground);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--radius-md);
+      font-size: 0.75rem;
+      background: var(--muted);
+      color: var(--muted-foreground);
+      border: 1px solid var(--border);
+    }
+
+    .input {
+      height: 2.25rem;
+      width: 100%;
+      max-width: 20rem;
+      padding: 0 0.75rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--input);
+      background: transparent;
+      font-family: var(--font-ui);
+      font-size: 0.875rem;
+      color: var(--foreground);
+      box-shadow: var(--shadow-xs);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .input::placeholder { color: var(--muted-foreground); }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px oklch(from var(--ring) l c h / 0.5);
+    }
+
+    .label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: var(--space-2);
+    }
+
+    .field { margin-bottom: var(--space-4); }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      border-color: oklch(from var(--primary) l c h / 0.5);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-image {
+      aspect-ratio: 16 / 9;
+      background: var(--muted);
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body { padding: var(--space-6); }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .card-text {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .card-link:hover { color: var(--primary); text-decoration: none; }
+
+    .card-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .callout {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--secondary);
+      color: var(--secondary-foreground);
+      text-align: left;
+    }
+
+    .callout svg { flex-shrink: 0; margin-top: 2px; }
+
+    .callout p {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-2);
+    }
+
+    .callout a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: inherit;
+    }
+
+    .tabs {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: var(--radius-lg);
+      background: var(--muted);
+      gap: 2px;
+    }
+
+    .tabs button {
+      padding: 0.375rem 0.875rem;
+      border: none;
+      border-radius: calc(var(--radius-lg) - 2px);
+      background: transparent;
+      font-family: var(--font-ui);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+    }
+
+    .tabs button.active {
+      background: var(--background);
+      color: var(--foreground);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .family-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .family-card:hover {
+      border-color: oklch(from var(--primary) l c h / 0.5);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+    }
+
+    .family-card-thumb {
+      width: 5rem;
+      height: 5rem;
+      border-radius: var(--radius-md);
+      background: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: oklch(from var(--muted-foreground) l c h / 0.5);
+      flex-shrink: 0;
+    }
+
+    .family-card h4 {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .family-card .scientific {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--muted-foreground);
+    }
+
+    .principles {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+      .principles { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .principle {
+      padding: var(--space-5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+    }
+
+    .principle h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .principle p {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    .stack-info {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .stack-item {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 0.8125rem;
+    }
+
+    .stack-item strong {
+      min-width: 7rem;
+      font-weight: 600;
+    }
+
+    .stack-item span {
+      font-family: var(--font-mono);
+      color: var(--muted-foreground);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="theme-toggle" role="group" aria-label="Color scheme">
+    <button type="button" data-theme="light" class="active" title="Light mode" aria-label="Light mode">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button type="button" data-theme="dark" title="Dark mode" aria-label="Dark mode">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+
+  <div class="hero">
+    <div class="hero-brand">
+      <div class="brand-logo">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <div class="brand-wordmark-wrap">
+          <img src="logo-light.png" alt="Juniper" class="brand-wordmark brand-wordmark-light" />
+          <img src="logo-dark.png" alt="" aria-hidden="true" class="brand-wordmark brand-wordmark-dark" />
+        </div>
+      </div>
+      <p class="hero-eyebrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
+        Design System
+      </p>
+    </div>
+    <p class="hero-lead">
+      A sage-toned design language for a wildlife rehabilitation wiki — built with semantic tokens, accessible components, and a calm, evidence-first aesthetic.
+    </p>
+    <div class="hero-meta">
+      <span>React Router 7</span>
+      <span>Tailwind CSS v4</span>
+      <span>shadcn/ui + Radix</span>
+      <span>OKLCH color space</span>
+    </div>
+  </div>
+
+  <div class="layout">
+    <main>
+      <!-- Overview -->
+      <section id="overview">
+        <p class="section-label">01 — Overview</p>
+        <h2>Design Principles</h2>
+        <p class="section-desc">
+          Juniper's visual identity draws from forest understory greens, warm terracotta accents, and soft sage backgrounds. The system prioritizes readability for long-form care guides while keeping navigation and actions clear.
+        </p>
+        <div class="principles">
+          <div class="principle">
+            <h3>Calm &amp; Grounded</h3>
+            <p>Low-chroma sage backgrounds reduce visual noise so rehabilitators can focus on critical care information.</p>
+          </div>
+          <div class="principle">
+            <h3>Semantic First</h3>
+            <p>Every color maps to a role — background, foreground, primary, muted — enabling automatic light/dark adaptation.</p>
+          </div>
+          <div class="principle">
+            <h3>Evidence-Forward</h3>
+            <p>Monospace body copy signals technical precision. Disclaimers and callouts use high-contrast secondary surfaces.</p>
+          </div>
+          <div class="principle">
+            <h3>Composable UI</h3>
+            <p>Radix primitives + CVA variants keep components accessible and consistent across wiki, directory, and shop flows.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section id="colors">
+        <p class="section-label">02 — Color</p>
+        <h2>Color Palette</h2>
+        <p class="section-desc">
+          Colors are defined in OKLCH for perceptually uniform lightness across hues. Semantic tokens live in CSS custom properties and map to Tailwind utilities via <code>@theme inline</code>.
+        </p>
+
+        <div class="palette-row" aria-label="Brand hue spectrum">
+          <div style="background: var(--background)" title="Sage"></div>
+          <div style="background: var(--primary)" title="Medium sage"></div>
+          <div style="background: var(--secondary)" title="Warm yellow"></div>
+          <div style="background: var(--chip-secondary)" title="Terracotta"></div>
+          <div style="background: var(--foreground)" title="Forest"></div>
+        </div>
+
+        <div class="panel" style="margin-bottom: var(--space-8)">
+          <div class="panel-header">Semantic Tokens</div>
+          <div class="panel-body">
+            <div class="color-grid">
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--background)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Background</div>
+                  <div class="swatch-token">--background</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--foreground)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Foreground</div>
+                  <div class="swatch-token">--foreground</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--primary)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Primary</div>
+                  <div class="swatch-token">--primary</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--secondary)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Secondary</div>
+                  <div class="swatch-token">--secondary</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--muted)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Muted</div>
+                  <div class="swatch-token">--muted</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--accent)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Accent</div>
+                  <div class="swatch-token">--accent</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--destructive)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Destructive</div>
+                  <div class="swatch-token">--destructive</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--border)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Border</div>
+                  <div class="swatch-token">--border</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">Chart &amp; Chip Accents</div>
+          <div class="panel-body">
+            <div class="color-grid">
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--chart-1)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Terracotta</div>
+                  <div class="swatch-token">--chart-1</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--chart-2)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Sage</div>
+                  <div class="swatch-token">--chart-2</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--chart-4)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Warm Yellow</div>
+                  <div class="swatch-token">--chart-4</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: var(--chip-secondary)"></div>
+                <div class="swatch-info">
+                  <div class="swatch-name">Chip Primary</div>
+                  <div class="swatch-token">--chip-secondary</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section id="typography">
+        <p class="section-label">03 — Typography</p>
+        <h2>Type System</h2>
+        <p class="section-desc">
+          The Juniper wordmark is an image asset (<code>logo-light.png</code> / <code>logo-dark.png</code>), not a web font — no download required. UI headings use system sans; body copy uses monospace.
+        </p>
+
+        <div class="font-stack-grid">
+          <div class="font-card">
+            <div class="sample" style="display:flex;align-items:center;justify-content:center;min-height:3.5rem">
+              <img src="logo-light.png" alt="Juniper" class="wordmark-sample wordmark-sample-light" />
+              <img src="logo-dark.png" alt="" aria-hidden="true" class="wordmark-sample wordmark-sample-dark" />
+            </div>
+            <div class="role">Brand — Wordmark</div>
+            <div class="stack">logo-light.png · logo-dark.png</div>
+          </div>
+          <div class="font-card">
+            <div class="sample" style="font-family: var(--font-ui)">Aa</div>
+            <div class="role">UI — System Sans</div>
+            <div class="stack">Headings, labels, buttons, nav</div>
+          </div>
+          <div class="font-card">
+            <div class="sample" style="font-family: var(--font-mono)">Aa</div>
+            <div class="role">Body — IBM Plex Mono</div>
+            <div class="stack">Paragraphs, summaries, code</div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: var(--space-8)">
+          <div class="panel-header">Type Scale</div>
+          <div class="panel-body">
+            <div class="type-specimen">
+              <div class="label">Brand / Wordmark</div>
+              <img src="logo-light.png" alt="Juniper" class="wordmark-sample-lg wordmark-sample-lg-light" />
+              <img src="logo-dark.png" alt="" aria-hidden="true" class="wordmark-sample-lg wordmark-sample-lg-dark" />
+              <div class="type-caption" style="margin-top: var(--space-2)">logo-light.png in light mode · logo-dark.png in dark mode</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Hero Heading</div>
+              <div class="type-heading-1">Wildlife Rehabilitation Resource</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-4xl → text-6xl · font-bold · tracking-tight</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Heading 1</div>
+              <div class="type-heading-1">Featured Care Guides</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-4xl → text-7xl · font-bold · tracking-tight</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Heading 2</div>
+              <div class="type-heading-2">Essential Protocols</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-2xl → text-3xl · font-bold</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Heading 3</div>
+              <div class="type-heading-3">Eastern Cottontail</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-lg · font-semibold</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Lead / Body Large</div>
+              <div class="type-body-lg">Evidence-based care protocols and resources for wildlife rehabilitators working with native species.</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-lg → text-xl · text-muted-foreground · leading-relaxed</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Body</div>
+              <div class="type-body">Nestlings require supplemental heat between 85–90°F. Monitor hydration status and weight gain daily during the first week of care.</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-sm · font-mono · leading-relaxed</div>
+            </div>
+            <div class="type-specimen">
+              <div class="label">Caption / Meta</div>
+              <div class="type-meta">Sylvilagus floridanus</div>
+              <div class="type-caption" style="margin-top: var(--space-2)">text-xs · uppercase · tracking-wider</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tokens -->
+      <section id="tokens">
+        <p class="section-label">04 — Tokens</p>
+        <h2>Design Tokens</h2>
+        <p class="section-desc">
+          Spacing, radius, and shadow tokens ensure consistent rhythm across cards, forms, and navigation. Radius derives from a single <code>--radius</code> base of 0.625rem (10px).
+        </p>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Border Radius</div>
+          <div class="panel-body" style="overflow-x: auto">
+            <table class="token-table">
+              <thead>
+                <tr><th>Token</th><th>Value</th><th>Preview</th><th>Tailwind</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>--radius-sm</code></td>
+                  <td>6px</td>
+                  <td><span class="token-preview" style="width:3rem;height:1.5rem;border-radius:var(--radius-sm);background:var(--accent)"></span></td>
+                  <td><code>rounded-sm</code></td>
+                </tr>
+                <tr>
+                  <td><code>--radius-md</code></td>
+                  <td>8px</td>
+                  <td><span class="token-preview" style="width:3rem;height:1.5rem;border-radius:var(--radius-md);background:var(--accent)"></span></td>
+                  <td><code>rounded-md</code></td>
+                </tr>
+                <tr>
+                  <td><code>--radius</code></td>
+                  <td>10px</td>
+                  <td><span class="token-preview" style="width:3rem;height:1.5rem;border-radius:var(--radius-lg);background:var(--accent)"></span></td>
+                  <td><code>rounded-lg</code></td>
+                </tr>
+                <tr>
+                  <td><code>--radius-xl</code></td>
+                  <td>14px</td>
+                  <td><span class="token-preview" style="width:3rem;height:1.5rem;border-radius:var(--radius-xl);background:var(--accent)"></span></td>
+                  <td><code>rounded-xl</code></td>
+                </tr>
+                <tr>
+                  <td>—</td>
+                  <td>full</td>
+                  <td><span class="token-preview" style="width:3rem;height:1.5rem;border-radius:9999px;background:var(--accent)"></span></td>
+                  <td><code>rounded-full</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Spacing Scale</div>
+          <div class="panel-body" style="overflow-x: auto">
+            <table class="token-table">
+              <thead>
+                <tr><th>Token</th><th>Value</th><th>Common Use</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>--space-1</code></td><td>4px</td><td>Icon gaps, tight padding</td></tr>
+                <tr><td><code>--space-2</code></td><td>8px</td><td>Chip padding, inline gaps</td></tr>
+                <tr><td><code>--space-3</code></td><td>12px</td><td>Form field spacing</td></tr>
+                <tr><td><code>--space-4</code></td><td>16px</td><td>Card padding, grid gaps</td></tr>
+                <tr><td><code>--space-6</code></td><td>24px</td><td>Section inner padding</td></tr>
+                <tr><td><code>--space-8</code></td><td>32px</td><td>Section headings margin</td></tr>
+                <tr><td><code>--space-10</code></td><td>40px</td><td>Page section gaps</td></tr>
+                <tr><td><code>--space-16</code></td><td>64px</td><td>Hero vertical padding</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">Elevation</div>
+          <div class="panel-body">
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-6)">
+              <div style="padding:var(--space-5);border-radius:var(--radius-lg);background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-xs)">
+                <div style="font-size:0.75rem;font-weight:600;margin-bottom:4px">shadow-xs</div>
+                <div style="font-size:0.6875rem;color:var(--muted-foreground)">Inputs, outline buttons</div>
+              </div>
+              <div style="padding:var(--space-5);border-radius:var(--radius-lg);background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+                <div style="font-size:0.75rem;font-weight:600;margin-bottom:4px">shadow-sm</div>
+                <div style="font-size:0.6875rem;color:var(--muted-foreground)">Cards, active tabs</div>
+              </div>
+              <div style="padding:var(--space-5);border-radius:var(--radius-lg);background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-md)">
+                <div style="font-size:0.75rem;font-weight:600;margin-bottom:4px">shadow-md</div>
+                <div style="font-size:0.6875rem;color:var(--muted-foreground)">Dropdowns, selects</div>
+              </div>
+              <div style="padding:var(--space-5);border-radius:var(--radius-lg);background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-lg)">
+                <div style="font-size:0.75rem;font-weight:600;margin-bottom:4px">shadow-lg</div>
+                <div style="font-size:0.6875rem;color:var(--muted-foreground)">Dialogs, sheets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Components -->
+      <section id="components">
+        <p class="section-label">05 — Components</p>
+        <h2>Component Library</h2>
+        <p class="section-desc">
+          Built on Radix UI primitives with class-variance-authority for variants. Components use semantic tokens and support light/dark modes out of the box.
+        </p>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Buttons</div>
+          <div class="panel-body">
+            <div class="component-row">
+              <button class="btn btn-primary" type="button">Primary</button>
+              <button class="btn btn-secondary" type="button">Secondary</button>
+              <button class="btn btn-outline" type="button">Outline</button>
+              <button class="btn btn-ghost" type="button">Ghost</button>
+              <button class="btn btn-destructive" type="button">Destructive</button>
+              <button class="btn btn-link" type="button">Link</button>
+            </div>
+            <div class="component-row">
+              <button class="btn btn-primary btn-sm" type="button">Small</button>
+              <button class="btn btn-primary" type="button">Default</button>
+              <button class="btn btn-primary btn-lg" type="button">Large</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Chips &amp; Tags</div>
+          <div class="panel-body">
+            <div class="component-row">
+              <span class="chip chip-primary">Mammals</span>
+              <span class="chip chip-secondary">Northeast</span>
+              <span class="chip chip-primary">Orphan Care</span>
+              <span class="tag">Sylvilagus floridanus</span>
+              <span class="tag">Critical</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Form Controls</div>
+          <div class="panel-body">
+            <div class="field">
+              <label class="label" for="demo-search">Search species</label>
+              <input class="input" id="demo-search" type="search" placeholder="e.g. Eastern Cottontail" />
+            </div>
+            <div class="tabs" role="tablist">
+              <button type="button" class="active" role="tab" aria-selected="true">All</button>
+              <button type="button" role="tab" aria-selected="false">Mammals</button>
+              <button type="button" role="tab" aria-selected="false">Birds</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Disclaimer Callout</div>
+          <div class="panel-body">
+            <div class="callout">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <div>
+                <p>This resource is for licensed wildlife rehabilitators. Always consult local regulations and a veterinarian before administering care.</p>
+                <a href="#">Full disclaimer →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: var(--space-6)">
+          <div class="panel-header">Directory Card</div>
+          <div class="panel-body">
+            <a href="#" class="family-card">
+              <div class="family-card-thumb">L</div>
+              <div>
+                <h4>Leporidae</h4>
+                <div class="scientific">Rabbits &amp; Hares</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">Article Cards</div>
+          <div class="panel-body">
+            <div class="card-grid">
+              <article class="card">
+                <div class="card-image">
+                  <img src="animal1.png" alt="Eastern Cottontail" />
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">Eastern Cottontail Orphan Care</h3>
+                  <p class="card-text">Temperature, hydration, and feeding protocols for nestling and juvenile cottontails through release preparation.</p>
+                  <span class="card-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    Read full guide
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                  </span>
+                </div>
+              </article>
+              <article class="card">
+                <div class="card-image">
+                  <img src="animal2.png" alt="Raptor" />
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">Raptor Intake Assessment</h3>
+                  <p class="card-text">Initial evaluation checklist for injured raptors including fracture assessment, emaciation scoring, and stabilization.</p>
+                  <span class="card-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    Read full guide
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                  </span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stack -->
+      <section id="stack">
+        <p class="section-label">06 — Implementation</p>
+        <h2>Tech Stack</h2>
+        <p class="section-desc">
+          The design system is implemented as CSS custom properties consumed by Tailwind v4, with React components composed from accessible Radix primitives.
+        </p>
+        <div class="stack-info">
+          <div class="stack-item"><strong>Framework</strong><span>React Router 7 (SSR)</span></div>
+          <div class="stack-item"><strong>Styling</strong><span>Tailwind CSS v4 · @theme inline · OKLCH tokens</span></div>
+          <div class="stack-item"><strong>Components</strong><span>shadcn/ui (new-york) · Radix UI · CVA</span></div>
+          <div class="stack-item"><strong>CMS</strong><span>Sanity · Portable Text · Visual Editing</span></div>
+          <div class="stack-item"><strong>Dark Mode</strong><span>Cookie-persisted · light / dark / system</span></div>
+          <div class="stack-item"><strong>Source</strong><span>app/app.css · app/components/ui/*</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const buttons = document.querySelectorAll(".theme-toggle button");
+    const stored = localStorage.getItem("juniper-ds-theme");
+
+    function setTheme(theme) {
+      html.classList.remove("light", "dark");
+      html.classList.add(theme);
+      buttons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.theme === theme);
+      });
+      localStorage.setItem("juniper-ds-theme", theme);
+    }
+
+    if (stored === "dark" || stored === "light") {
+      setTheme(stored);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => setTheme(btn.dataset.theme));
+    });
+
+    document.querySelectorAll(".tabs button").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tab.closest(".tabs").querySelectorAll("button").forEach((t) => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+      });
+    });
+  </script>
+</body>
+</html>
