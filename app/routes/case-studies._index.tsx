@@ -36,7 +36,7 @@ function CaseStudyListItem({
           href={`/case-studies/${study.slug}`}
           className="inline-flex items-center text-lg hover:font-bold"
         >
-          View Case Study <ArrowRightIcon />
+          Case Study <ArrowRightIcon />
         </a>
         {study.liveUrl ? (
           <a
@@ -45,7 +45,7 @@ function CaseStudyListItem({
             rel="noreferrer"
             className="inline-flex items-center text-lg hover:font-bold"
           >
-            View Live Project <ArrowRightIcon />
+            Live Project <ArrowRightIcon />
           </a>
         ) : null}
       </div>
