@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtu Studios — Signal Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --graphite: #0B0B0C;
+    --graphite-2: #141416;
+    --bone: #E8E7E3;
+    --bone-2: #DCDBD6;
+    --signal: #E8FF5C;
+    --beacon: #1F3DFF;
+
+    --g-70: rgba(11, 11, 12, 0.70);
+    --g-50: rgba(11, 11, 12, 0.50);
+    --g-20: rgba(11, 11, 12, 0.12);
+    --g-10: rgba(11, 11, 12, 0.08);
+
+    --b-70: rgba(232, 231, 227, 0.70);
+    --b-50: rgba(232, 231, 227, 0.50);
+    --b-20: rgba(232, 231, 227, 0.20);
+    --b-10: rgba(232, 231, 227, 0.10);
+
+    --sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --display: "Host Grotesk", "Helvetica Neue", "Inter Tight", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --bg: var(--bone);
+    --fg: var(--graphite);
+    --surface: #F5F4F0;
+    --muted: var(--g-50);
+    --rule: var(--g-20);
+    --rule-soft: var(--g-10);
+    --radius: 4px;
+    --radius-md: 6px;
+    --radius-pill: 999px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-theme="dark"] {
+    --bg: var(--graphite);
+    --fg: var(--bone);
+    --surface: var(--graphite-2);
+    --muted: var(--b-50);
+    --rule: var(--b-20);
+    --rule-soft: var(--b-10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  ::selection { background: var(--signal); color: var(--graphite); }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  .display {
+    font-family: var(--display);
+    letter-spacing: -0.03em;
+  }
+  .mono {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .mono-sm {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  em { font-style: italic; font-weight: inherit; }
+
+  .mark {
+    background: linear-gradient(transparent 8%, var(--signal) 8%, var(--signal) 92%, transparent 92%);
+    padding: 0 0.04em;
+    margin: 0 0.02em;
+    color: var(--graphite);
+  }
+  .beacon-mark {
+    background: linear-gradient(transparent 8%, var(--beacon) 8%, var(--beacon) 92%, transparent 92%);
+    padding: 0 0.04em;
+    margin: 0 0.02em;
+    color: var(--bone);
+  }
+
+  /* ─── Nav ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    transition: background 0.4s var(--ease);
+  }
+  .nav-left { display: flex; align-items: center; gap: 22px; }
+  .nav-logo svg { height: 32px; width: auto; fill: currentColor; color: var(--fg); }
+  .nav-sep { width: 1px; height: 16px; background: var(--rule); }
+  .nav-tag { color: var(--fg); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 150ms ease;
+  }
+  .nav-links a:hover { color: var(--fg); }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--fg);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 150ms ease, transform 160ms var(--ease);
+  }
+  .theme-toggle:hover { border-color: var(--fg); transform: translateY(-1px); }
+  .theme-toggle .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); }
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 40px 120px; }
+  @media (max-width: 720px) {
+    .nav { padding: 16px 22px; }
+    .nav-links { display: none; }
+    .page { padding: 0 22px 80px; }
+  }
+
+  /* ─── Cover ─── */
+  .cover {
+    padding: 72px 0 80px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 80px;
+  }
+  .cover-eyebrow {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .eb {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .eb.ghost { border: 1px solid var(--rule); color: var(--fg); }
+  .eb.filled { background: var(--graphite); color: var(--signal); }
+  [data-theme="dark"] .eb.filled { background: var(--signal); color: var(--graphite); }
+  .eb.dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+  }
+  [data-theme="dark"] .eb.dot::before { background: var(--graphite); }
+
+  .cover h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(48px, 9vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin-bottom: 28px;
+  }
+  .cover h1 em { font-style: italic; font-weight: 800; }
+  .cover-lede {
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 52ch;
+    margin-bottom: 40px;
+  }
+  .cover-lede strong { color: var(--fg); font-weight: 500; }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 720px) { .cover-meta { grid-template-columns: 1fr 1fr; } }
+  .cover-meta-item {
+    padding: 20px 0;
+    border-right: 1px solid var(--rule);
+    padding-right: 24px;
+    margin-right: 24px;
+  }
+  .cover-meta-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .cover-meta-item .label { color: var(--muted); margin-bottom: 6px; }
+  .cover-meta-item .value {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Sections ─── */
+  .section { margin-bottom: 100px; scroll-margin-top: 80px; }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+  .s-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+  }
+  .s-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .s-desc {
+    grid-column: 2;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 56ch;
+    margin-top: 12px;
+  }
+  .sub-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  .sub-label:first-of-type { margin-top: 0; }
+
+  /* ─── Colors ─── */
+  .pal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+  @media (max-width: 720px) { .pal-grid { grid-template-columns: 1fr 1fr; } }
+  .pal { overflow: hidden; }
+  .pal-sw {
+    height: 120px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pal-name { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .pal-hex { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; opacity: 0.75; }
+  .pal-foot {
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule-soft);
+    border-top: none;
+  }
+  .pal-role { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+    font-size: 14px;
+  }
+  .token-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .token-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: middle;
+  }
+  .token-table .sw-cell { display: flex; align-items: center; gap: 12px; }
+  .mini-sw {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+    border: 1px solid var(--rule);
+  }
+  .token-table code {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ─── Typography ─── */
+  .type-card {
+    border: 1px solid var(--rule);
+    padding: 36px;
+    margin-bottom: 16px;
+    background: var(--surface);
+  }
+  .type-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .type-name { color: var(--muted); margin-bottom: 4px; }
+  .type-role { font-size: 14px; color: var(--muted); }
+  .type-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .type-pill {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+  .type-sample-display {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 16px;
+  }
+  .type-sample-body {
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 48ch;
+    margin-bottom: 16px;
+  }
+  .type-sample-mono { color: var(--muted); }
+
+  .scale-row {
+    display: grid;
+    grid-template-columns: 100px 180px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  @media (max-width: 720px) {
+    .scale-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .scale-label { color: var(--muted); }
+  .scale-spec {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* ─── Logo ─── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 720px) { .logo-grid { grid-template-columns: 1fr; } }
+  .logo-box {
+    border: 1px solid var(--rule);
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    min-height: 200px;
+  }
+  .logo-box.dark { background: var(--graphite); border-color: var(--b-20); }
+  .logo-box.light { background: var(--bone); border-color: var(--g-20); }
+  .logo-box.signal { background: var(--signal); border-color: transparent; }
+  .logo-mark {
+    height: 48px;
+    width: auto;
+    fill: currentColor;
+  }
+  .logo-box.light .logo-mark { color: #0B0B0C; }
+  .logo-box.dark .logo-mark { color: #E8E7E3; }
+  .logo-box.signal .logo-mark { color: #0B0B0C; }
+  .logo-wordmark {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    fill: currentColor;
+    color: #E8E7E3;
+  }
+  .logo-caption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-align: center;
+  }
+  .logo-caption code {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: none;
+  }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 720px) { .rules-grid { grid-template-columns: 1fr; } }
+  .rule {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    background: var(--surface);
+  }
+  .rule h4 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rule p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .do { color: var(--signal); filter: brightness(0.85); }
+  [data-theme="dark"] .do { filter: none; }
+  .dont { color: #c44; }
+
+  .clearspace {
+    border: 1px solid var(--rule);
+    padding: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 24px;
+    background: var(--surface);
+  }
+  .clearspace-mark {
+    height: 40px;
+    width: auto;
+    fill: currentColor;
+    color: var(--fg);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+  .cs-border {
+    position: absolute;
+    border: 1px dashed var(--signal);
+    opacity: 0.4;
+    inset: 32px;
+    border-radius: var(--radius-md);
+  }
+  .cs-label {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+  }
+
+  /* ─── Components ─── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 720px) { .comp-grid { grid-template-columns: 1fr; } }
+  .comp {
+    border: 1px solid var(--rule);
+    padding: 32px;
+    background: var(--surface);
+  }
+  .comp.dark-panel {
+    background: var(--graphite);
+    border-color: var(--b-20);
+    color: var(--bone);
+  }
+  .comp-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .comp.dark-panel .comp-label { color: var(--b-50); }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: var(--radius-pill);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: none;
+    cursor: default;
+    transition: transform 160ms var(--ease);
+  }
+  .btn-primary { background: var(--graphite); color: var(--signal); }
+  .btn-outline {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--rule);
+  }
+  .btn-signal { background: var(--signal); color: var(--graphite); }
+  .btn-beacon { background: var(--beacon); color: var(--bone); }
+  .btn .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .btn-primary .dot { background: var(--signal); }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .badge-ghost { border: 1px solid var(--rule); color: var(--fg); }
+  .badge-filled { background: var(--graphite); color: var(--signal); }
+  .badge-signal { background: var(--signal); color: var(--graphite); }
+  .badge-dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+  }
+
+  .input-demo {
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(20px, 2.4vw, 28px);
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    outline: none;
+  }
+  .input-demo::placeholder {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .code-block {
+    margin-top: 16px;
+    background: var(--graphite);
+    color: var(--bone);
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+  }
+  .code-block .kw { color: var(--signal); }
+  .code-block .cm { color: var(--b-50); }
+
+  blockquote.demo-quote {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    max-width: 22ch;
+  }
+  blockquote.demo-quote .q { color: var(--beacon); font-weight: 800; }
+
+  /* ─── Layout / Motion ─── */
+  .layout-demo {
+    border: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    margin-top: 24px;
+  }
+  @media (max-width: 720px) { .layout-demo { grid-template-columns: 1fr; } }
+  .layout-cell {
+    padding: 28px;
+    border-right: 1px solid var(--rule);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .layout-cell:last-child { border-right: none; }
+  .layout-cell.dark {
+    background: var(--graphite);
+    color: var(--bone);
+    border-right-color: var(--b-20);
+  }
+  .layout-cell .cell-label { color: var(--muted); }
+  .layout-cell.dark .cell-label { color: var(--b-50); }
+  .layout-cell p { font-size: 15px; line-height: 1.45; color: var(--muted); }
+  .layout-cell.dark p { color: var(--b-70); }
+  .layout-cell p strong { color: var(--fg); font-weight: 500; }
+  .layout-cell.dark p strong { color: var(--bone); }
+
+  .motion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 720px) { .motion-grid { grid-template-columns: 1fr; } }
+  .motion-card {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    background: var(--surface);
+  }
+  .motion-card h4 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .motion-card p { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 16px; }
+  .motion-card code {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .motion-demo {
+    height: 4px;
+    background: var(--rule-soft);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .motion-demo span {
+    display: block;
+    height: 100%;
+    width: 60%;
+    background: var(--signal);
+    border-radius: 2px;
+    animation: pulse 2s infinite var(--ease);
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scaleX(1); }
+    50% { opacity: 0.4; transform: scaleX(0.7); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal-demo {
+    animation: fadeUp 1s var(--ease) forwards;
+  }
+
+  /* ─── Footer ─── */
+  .guide-footer {
+    margin-top: 100px;
+    padding: 48px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .guide-footer .wordmark {
+    max-width: 400px;
+    height: auto;
+    fill: currentColor;
+    color: var(--fg);
+  }
+</style>
+</head>
+<body>
+
+<!-- Inline SVG symbols — no external asset files needed -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="virtu-mark" viewBox="0 0 481.38 517.06">
+    <path d="M320.91,160.47H481.38a0,0,0,0,1,0,0V320.95a0,0,0,0,1,0,0h0A160.47,160.47,0,0,1,320.91,160.47v0A0,0,0,0,1,320.91,160.47Z"/>
+    <path d="M0,160.46H320.91A160.46,160.46,0,0,0,160.46,0h0A160.46,160.46,0,0,0,0,160.46Z"/>
+    <path d="M0,196.12H160.47a0,0,0,0,1,0,0V356.59a0,0,0,0,1,0,0h0A160.47,160.47,0,0,1,0,196.12v0A0,0,0,0,1,0,196.12Z" transform="translate(160.47 552.71) rotate(-180)"/>
+    <path d="M481.38,356.61v0H160.47v0A160.46,160.46,0,0,0,320.93,517.06h0A160.45,160.45,0,0,0,481.38,356.61Z"/>
+  </symbol>
+  <symbol id="virtu-wordmark" viewBox="0 0 677 214">
+    <path d="M609.928 66.3671H676.6V132.802C658.917 132.802 641.959 125.803 629.456 113.344C616.953 100.885 609.928 83.9867 609.928 66.3671Z"/>
+    <path d="M676.6 147.565H543.271C543.262 156.292 544.98 164.935 548.328 172.999C551.675 181.063 556.586 188.391 562.778 194.562C568.971 200.732 576.324 205.626 584.417 208.961C592.51 212.297 601.184 214.009 609.942 214C618.699 214.007 627.371 212.293 635.462 208.957C643.554 205.621 650.905 200.727 657.097 194.557C663.288 188.386 668.198 181.059 671.544 172.996C674.891 164.933 676.609 156.291 676.6 147.565Z"/>
+    <path d="M476.6 66.3671L609.928 66.3671C609.928 48.7655 602.911 31.8848 590.421 19.4386C577.93 6.99233 560.989 0.000111958 543.325 0.000111958C534.568 -0.0159149 525.894 1.68889 517.8 5.01697C509.705 8.34505 502.348 13.2311 496.151 19.3954C489.953 25.5598 485.036 32.8814 481.681 40.9414C478.326 49.0014 476.6 57.6414 476.6 66.3671Z"/>
+    <path d="M543.271 147.552H476.6V81.1169C494.282 81.1169 511.24 88.1162 523.743 100.575C536.247 113.034 543.271 129.932 543.271 147.552Z"/>
+    <path d="M36.6 175.8L0 75.6H27.4L52.4 151.2L77.2 75.6H104.4L68 175.8H36.6Z"/>
+    <path d="M115.552 175.8V75.6H141.552V175.8H115.552ZM128.752 60.2C121.793 60.2 116.152 54.5588 116.152 47.6C116.152 40.6412 121.793 35 128.752 35C135.71 35 141.352 40.6412 141.352 47.6C141.352 54.5588 135.71 60.2 128.752 60.2Z"/>
+    <path d="M157.934 175.8V75.6H183.934V91.8C186.468 86.7333 189.734 82.8 193.734 80C197.734 77.0667 202.334 75.6 207.534 75.6H220.134V98.8H204.934C200.134 98.8 196.134 100.067 192.934 102.6C189.868 105.133 187.601 108.933 186.134 114C184.668 119.067 183.934 125.333 183.934 132.8V175.8H157.934Z"/>
+    <path d="M274.506 175.8C267.84 175.8 262.173 175.067 257.506 173.6C252.973 172 249.573 169 247.306 164.6C245.04 160.067 243.906 153.6 243.906 145.2V98.8H226.906V75.6H270.013H269.506C255.368 75.6 243.906 64.1385 243.906 50H269.906L270.013 75.6H294.906V98.8H270.013L269.906 142C269.906 145.333 270.24 147.867 270.906 149.6C271.573 151.2 272.84 152.267 274.706 152.8C276.573 153.333 279.106 153.6 282.306 153.6H294.306V175.8H274.506Z"/>
+    <path d="M340 178.2C328.667 178.2 319.667 174.333 313 166.6C306.467 158.733 303.2 147.333 303.2 132.4V75.6H329.2V130C329.2 138.533 330.8 145.067 334 149.6C337.333 154 342.133 156.2 348.4 156.2C355.467 156.2 360.933 153.733 364.8 148.8C368.667 143.733 370.6 136.733 370.6 127.8V75.8H396.6V175.8H370.6V161.2C367.667 166.4 363.667 170.533 358.6 173.6C353.533 176.667 347.333 178.2 340 178.2Z"/>
+  </symbol>
+</svg>
+
+<header class="nav">
+  <div class="nav-left">
+    <a href="#" class="nav-logo" aria-label="Virtu">
+      <svg viewBox="0 0 481.38 517.06" aria-hidden="true"><use href="#virtu-mark"/></svg>
+    </a>
+    <span class="nav-sep"></span>
+    <span class="nav-tag mono">Signal · Design System</span>
+  </div>
+  <div class="nav-right">
+    <nav class="nav-links">
+      <a href="#brand">Brand</a>
+      <a href="#color">Color</a>
+      <a href="#type">Type</a>
+      <a href="#logo">Logo</a>
+      <a href="#components">Components</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+      <span class="dot"></span>
+      <span id="themeLabel">Dark</span>
+    </button>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- Cover -->
+  <section class="cover" id="brand">
+    <div class="cover-eyebrow">
+      <span class="eb ghost dot">Brand Identity</span>
+      <span class="eb filled">Virtu · Signal Vol. 01</span>
+    </div>
+    <h1 class="display">Design <em>system</em> &amp;<br><span class="mark">brand</span> guide.</h1>
+    <p class="cover-lede">
+      <strong>Signal</strong> is the visual language for Virtu Studios — an editorial, architectural system built on paper-and-ink contrast, monospace metadata, and a single electric accent. Bone paper, Graphite ink, Signal lime.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label mono">Studio</div>
+        <div class="value">Virtu</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label mono">System</div>
+        <div class="value">Signal</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label mono">Revision</div>
+        <div class="value">2026.04</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label mono">Tagline</div>
+        <div class="value" style="font-size:16px;line-height:1.3">A studio for founders</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 Color -->
+  <section class="section" id="color">
+    <div class="section-head">
+      <span class="s-num">01</span>
+      <div>
+        <h2 class="s-title">Color system</h2>
+        <p class="s-desc">Six literal brand colors that never flip, plus semantic tokens that adapt across light and dark modes. Graphite is ink. Bone is paper. Signal is the accent that cuts through both.</p>
+      </div>
+    </div>
+
+    <div class="sub-label">Literal palette — fixed values</div>
+    <div class="pal-grid">
+      <div class="pal">
+        <div class="pal-sw" style="background:#0B0B0C;color:#E8E7E3">
+          <span class="pal-name">Graphite</span>
+          <span class="pal-hex">#0B0B0C</span>
+        </div>
+        <div class="pal-foot"><div class="pal-role">Ink · dark mode background · primary text on light</div></div>
+      </div>
+      <div class="pal">
+        <div class="pal-sw" style="background:#141416;color:#E8E7E3">
+          <span class="pal-name">Graphite 2</span>
+          <span class="pal-hex">#141416</span>
+        </div>
+        <div class="pal-foot"><div class="pal-role">Raised surface on dark · cards · popovers</div></div>
+      </div>
+      <div class="pal">
+        <div class="pal-sw" style="background:#E8E7E3;color:#0B0B0C">
+          <span class="pal-name">Bone</span>
+          <span class="pal-hex">#E8E7E3</span>
+        </div>
+        <div class="pal-foot"><div class="pal-role">Paper · light mode background · text on dark</div></div>
+      </div>
+      <div class="pal">
+        <div class="pal-sw" style="background:#DCDBD6;color:#0B0B0C">
+          <span class="pal-name">Bone 2</span>
+          <span class="pal-hex">#DCDBD6</span>
+        </div>
+        <div class="pal-foot"><div class="pal-role">Muted paper · secondary surfaces · disabled states</div></div>
+      </div>
+      <div class="pal">
+        <div class="pal-sw" style="background:#E8FF5C;color:#0B0B0C">
+          <span class="pal-name">Signal</span>
+          <span class="pal-hex">#E8FF5C</span>
+        </div>
+        <div class="pal-foot"><div class="pal-role">Primary accent · highlights · selection · CTAs on dark</div></div>
+      </div>
+      <div class="pal">
+        <div class="pal-sw" style="background:#1F3DFF;color:#E8E7E3">
+          <span class="pal-name">Beacon</span>
+          <span class="pal-hex">#1F3DFF</span>
+        </div>
+        <div class="pal-foot"><div class="pal-role">Secondary accent · pull quotes · editorial emphasis</div></div>
+      </div>
+    </div>
+
+    <div class="sub-label">Semantic tokens — mode-aware</div>
+    <table class="token-table">
+      <thead>
+        <tr>
+          <th>Token</th>
+          <th>Light mode</th>
+          <th>Dark mode</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>--background</code></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#E8E7E3"></span> Bone</div></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#0B0B0C"></span> Graphite</div></td>
+          <td>Page ground</td>
+        </tr>
+        <tr>
+          <td><code>--foreground</code></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#0B0B0C"></span> Graphite</div></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#E8E7E3"></span> Bone</div></td>
+          <td>Body text, icons</td>
+        </tr>
+        <tr>
+          <td><code>--primary</code></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#0B0B0C"></span> Graphite</div></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#E8FF5C"></span> Signal</div></td>
+          <td>Primary actions — flips on dark</td>
+        </tr>
+        <tr>
+          <td><code>--accent</code></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#E8FF5C"></span> Signal</div></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:#E8FF5C"></span> Signal</div></td>
+          <td>Hover states, focus rings, selection</td>
+        </tr>
+        <tr>
+          <td><code>--border</code></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:rgba(11,11,12,0.12)"></span> Graphite 12%</div></td>
+          <td><div class="sw-cell"><span class="mini-sw" style="background:rgba(255,255,255,0.14)"></span> Bone 14%</div></td>
+          <td>Hairline rules, grid dividers</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 02 Typography -->
+  <section class="section" id="type">
+    <div class="section-head">
+      <span class="s-num">02</span>
+      <div>
+        <h2 class="s-title">Typography</h2>
+        <p class="s-desc">Three type roles: Host Grotesk for display headlines with italic emphasis, Inter Tight for body copy, and JetBrains Mono for metadata labels. Tight tracking on display; wide tracking on mono.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-header">
+        <div>
+          <div class="type-name mono">Display · Host Grotesk</div>
+          <div class="type-role">Headlines, hero type, pull quotes, stat numbers</div>
+        </div>
+        <div class="type-pills">
+          <span class="type-pill">800 extrabold</span>
+          <span class="type-pill">Italic emphasis</span>
+          <span class="type-pill">−0.03 to −0.05em tracking</span>
+        </div>
+      </div>
+      <div class="type-sample-display">
+        Your <em>vision</em>,<br>
+        <span class="mark">engineered</span>.
+      </div>
+      <div class="type-sample-body">Use <strong style="color:var(--fg);font-weight:500">italic weight</strong> within display type for emphasis — never a separate color. Signal highlight marks draw attention to key words without breaking the typographic rhythm.</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-header">
+        <div>
+          <div class="type-name mono">Sans · Inter Tight</div>
+          <div class="type-role">Body copy, UI labels, form fields, navigation fallbacks</div>
+        </div>
+        <div class="type-pills">
+          <span class="type-pill">400–600</span>
+          <span class="type-pill">ss01 + cv11 features</span>
+          <span class="type-pill">19px / 1.45 lede</span>
+        </div>
+      </div>
+      <div class="type-sample-body" style="color:var(--fg)">
+        Virtu is a studio for founders. We take on four projects a year and ship small, specific things, well — the product you described in the first call, built exactly like you described it.
+      </div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-header">
+        <div>
+          <div class="type-name mono">Mono · JetBrains Mono</div>
+          <div class="type-role">Eyebrows, section labels, nav links, badges, metadata</div>
+        </div>
+        <div class="type-pills">
+          <span class="type-pill">10–10.5px</span>
+          <span class="type-pill">0.14–0.16em tracking</span>
+          <span class="type-pill">Always uppercase</span>
+        </div>
+      </div>
+      <div class="type-sample-mono mono">Now booking · Q3 2026 — est. 2022 — A · Studio — 01 / 03</div>
+    </div>
+
+    <div class="sub-label">Type scale</div>
+    <div class="scale-row">
+      <span class="scale-label mono">Hero</span>
+      <span class="scale-spec">clamp(64px, 12vw, 192px)</span>
+      <span class="display" style="font-weight:800;font-size:clamp(32px,6vw,72px);letter-spacing:-0.05em;line-height:0.95">Display</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-label mono">Section</span>
+      <span class="scale-spec">clamp(28px, 3.2vw, 40px)</span>
+      <span class="display" style="font-weight:700;font-size:clamp(24px,3vw,36px);letter-spacing:-0.025em">Section title</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-label mono">Lede</span>
+      <span class="scale-spec">19px / 1.45</span>
+      <span style="font-size:19px;line-height:1.45;color:var(--muted)">Body lede paragraph text</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-label mono">Meta</span>
+      <span class="scale-spec">10.5px / 0.16em</span>
+      <span class="mono" style="color:var(--muted)">Metadata label</span>
+    </div>
+  </section>
+
+  <!-- 03 Logo -->
+  <section class="section" id="logo">
+    <div class="section-head">
+      <span class="s-num">03</span>
+      <div>
+        <h2 class="s-title">Logo &amp; mark</h2>
+        <p class="s-desc">The Virtu mark is a geometric symbol built from four quarter-circle forms — modular, architectural, and scalable. The wordmark pairs custom letterforms with the mark for lockups.</p>
+      </div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-box light">
+        <svg class="logo-mark" viewBox="0 0 481.38 517.06" aria-hidden="true"><use href="#virtu-mark"/></svg>
+        <span class="logo-caption">Mark on Bone · Light</span>
+      </div>
+      <div class="logo-box dark">
+        <svg class="logo-mark" viewBox="0 0 481.38 517.06" aria-hidden="true"><use href="#virtu-mark"/></svg>
+        <span class="logo-caption" style="color:var(--b-50)">Mark on Graphite · Dark</span>
+      </div>
+      <div class="logo-box signal">
+        <svg class="logo-mark" viewBox="0 0 481.38 517.06" aria-hidden="true"><use href="#virtu-mark"/></svg>
+        <span class="logo-caption" style="color:var(--graphite)">Mark on Signal · Accent</span>
+      </div>
+      <div class="logo-box dark">
+        <svg class="logo-wordmark" viewBox="0 0 677 214" aria-label="Virtu"><use href="#virtu-wordmark"/></svg>
+        <span class="logo-caption" style="color:var(--b-50)">Wordmark · Footer lockup</span>
+      </div>
+    </div>
+
+    <div class="clearspace">
+      <div class="cs-border"></div>
+      <span class="cs-label mono">1× mark height clearspace</span>
+      <svg class="clearspace-mark" viewBox="0 0 481.38 517.06" aria-hidden="true"><use href="#virtu-mark"/></svg>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule">
+        <h4><span class="do">✓</span> Do</h4>
+        <p>Use Graphite or Bone fills that match the background contrast. Keep the mark at integer pixel heights (32px nav, 48px+ hero). Pair with mono tagline separated by a 1px rule.</p>
+      </div>
+      <div class="rule">
+        <h4><span class="dont">✗</span> Don't</h4>
+        <p>Don't rotate, stretch, or add drop shadows. Don't place the mark on busy photography without a solid ground. Don't use Signal as a mark fill except in deliberate accent contexts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Components -->
+  <section class="section" id="components">
+    <div class="section-head">
+      <span class="s-num">04</span>
+      <div>
+        <h2 class="s-title">Components &amp; patterns</h2>
+        <p class="s-desc">Signal favors pill-shaped CTAs, hairline borders, and editorial grid cells. Components use sharp 4px radii (architectural, not soft) with monospace labels on interactive elements.</p>
+      </div>
+    </div>
+
+    <div class="comp-grid">
+      <div class="comp">
+        <div class="comp-label">Buttons · CTAs</div>
+        <div class="btn-row">
+          <span class="btn btn-primary"><span class="dot"></span> Book a call</span>
+          <span class="btn btn-outline">See work</span>
+          <span class="btn btn-signal">Start a project</span>
+          <span class="btn btn-beacon">Learn more</span>
+        </div>
+      </div>
+      <div class="comp">
+        <div class="comp-label">Badges · Eyebrows</div>
+        <div class="badge-row">
+          <span class="badge badge-ghost badge-dot">Now booking · Q3 2026</span>
+          <span class="badge badge-filled">Virtu · № 04</span>
+          <span class="badge badge-signal">Signal</span>
+        </div>
+      </div>
+      <div class="comp">
+        <div class="comp-label">Search / Input</div>
+        <input class="input-demo" type="text" placeholder="Search projects…" readonly>
+      </div>
+      <div class="comp dark-panel">
+        <div class="comp-label">Pull quote</div>
+        <blockquote class="demo-quote">
+          <span class="q">“</span>A small studio. Four projects a year.<span class="q">”</span>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="sub-label">Code block</div>
+    <div class="code-block"><span class="cm">// Graphite ground · Bone text · Signal syntax</span>
+<span class="kw">const</span> studio = {
+  name: <span class="cm">"Virtu"</span>,
+  system: <span class="cm">"Signal"</span>,
+  projectsPerYear: <span class="kw">4</span>,
+  accent: <span class="cm">"#E8FF5C"</span>
+};</div>
+
+    <div class="sub-label">Editorial grid layout</div>
+    <div class="layout-demo">
+      <div class="layout-cell">
+        <span class="cell-label mono">A · Studio — 01 / 03</span>
+        <p><strong>Virtu is a studio for founders.</strong> We take on four projects a year and ship small, specific things, well.</p>
+        <div class="btn-row" style="margin-top:auto">
+          <span class="btn btn-primary" style="font-size:10px;padding:10px 16px">Start a project</span>
+        </div>
+      </div>
+      <div class="layout-cell">
+        <span class="cell-label mono">B · Practice — 02 / 03</span>
+        <p class="display" style="font-weight:800;font-size:44px;letter-spacing:-0.03em;line-height:0.95;color:var(--fg)">4<em>/yr</em></p>
+        <p>Projects, capped</p>
+      </div>
+      <div class="layout-cell dark">
+        <span class="cell-label mono">C · Promise — 03 / 03</span>
+        <p class="display" style="font-weight:800;font-size:28px;letter-spacing:-0.03em;line-height:0.95;color:var(--bone)">
+          A <em>small</em> studio.<br>
+          <span class="mark">Four</span> projects a year.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Motion & Spacing -->
+  <section class="section" id="motion">
+    <div class="section-head">
+      <span class="s-num">05</span>
+      <div>
+        <h2 class="s-title">Motion, radius &amp; spacing</h2>
+        <p class="s-desc">Animations use a shared easing curve. Layout max-width is 1360px with 40px horizontal padding. Border radius stays sharp at 4px — architectural, not friendly-rounded.</p>
+      </div>
+    </div>
+
+    <div class="motion-grid">
+      <div class="motion-card reveal-demo">
+        <h4>fadeUp</h4>
+        <p>Hero entrances. 1s duration, 20px Y translate.</p>
+        <code>cubic-bezier(0.16, 1, 0.3, 1)</code>
+      </div>
+      <div class="motion-card">
+        <h4>scrollPulse</h4>
+        <p>Scroll indicators. 2s infinite opacity + height pulse.</p>
+        <div class="motion-demo"><span></span></div>
+      </div>
+      <div class="motion-card">
+        <h4>Hover lift</h4>
+        <p>CTAs translate −1px on hover. 160ms ease. Used on pills and nav actions.</p>
+        <code>transform: translateY(-1px)</code>
+      </div>
+    </div>
+
+    <div class="sub-label">Radius tokens</div>
+    <table class="token-table">
+      <thead>
+        <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--radius</code></td><td>4px (0.25rem)</td><td>Cards, inputs, code blocks</td></tr>
+        <tr><td><code>--radius-md</code></td><td>6px</td><td>Shadcn button default</td></tr>
+        <tr><td><code>--radius-pill</code></td><td>999px</td><td>CTAs, badges, eyebrows</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="guide-footer">
+    <svg class="wordmark" viewBox="0 0 677 214" aria-label="Virtu"><use href="#virtu-wordmark"/></svg>
+  </footer>
+
+</main>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const label = document.getElementById('themeLabel');
+  const root = document.documentElement;
+
+  toggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    label.textContent = isDark ? 'Dark' : 'Light';
+  });
+</script>
+</body>
+</html>

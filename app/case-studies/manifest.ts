@@ -24,6 +24,14 @@ export const caseStudies: CaseStudy[] = [
     htmlPath: "walden-design-system.html",
   },
   {
+    slug: "virtu-design-system",
+    title: "Virtu Design System",
+    blurb:
+      "Virtu Studios is a software development studio that builds web and mobile applications for clients and internal projects.",
+    htmlPath: "virtu-design-system.html",
+    liveUrl: "https://virtu-studios.com",
+  },
+  {
     slug: "bmc-design-system",
     title: "BMC Yearbook Design System",
     blurb:
