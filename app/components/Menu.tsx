@@ -28,14 +28,6 @@ const Menu = () => {
           </li>
           <li>
             <a
-              href="/blog"
-              className="text-neutral-700 hover:text-black hover:font-bold transition-all"
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
               href="/case-studies"
               className="text-neutral-700 hover:text-black hover:font-bold transition-all"
             >
@@ -94,15 +86,6 @@ const Menu = () => {
                 onClick={() => setIsOpen(false)}
               >
                 Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="/blog"
-                className="block text-lg text-neutral-700 hover:text-black hover:font-bold transition-all"
-                onClick={() => setIsOpen(false)}
-              >
-                Blog
               </a>
             </li>
             <li>

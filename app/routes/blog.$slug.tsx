@@ -27,11 +27,11 @@ export default function Post() {
   return (
     <div className="m-auto">
       <a
-        href="/blog"
-        className="mt-11 pb-8 text-lg flex items-center gap-2 hover:font-bold transition-all"
+        href="/"
+        className="mt-11 flex items-center gap-2 pb-8 text-lg transition-all hover:font-bold"
       >
         <svg
-          className="w-4 h-4"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -43,7 +43,7 @@ export default function Post() {
             d="M15 19l-7-7 7-7"
           />
         </svg>
-        Back to Blog
+        Back to Home
       </a>
       <div className="grid gap-2 md:gap-0 md:grid-cols-2 border-t border-b border-neutral-700">
         <SanityImage
