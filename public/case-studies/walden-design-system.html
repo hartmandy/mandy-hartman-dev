@@ -13,15 +13,15 @@
         font-weight: 400 600;
         font-display: block;
         src:
-          url("vintage-webfont.woff2") format("woff2"),
-          url("vintage-webfont.woff") format("woff");
+          url("./vintage-webfont.woff2") format("woff2"),
+          url("./vintage-webfont.woff") format("woff");
       }
       @font-face {
         font-family: "DM Sans";
         font-style: normal;
         font-weight: 300 600;
         font-display: block;
-        src: url("dm-sans.woff2") format("woff2");
+        src: url("./dm-sans.woff2") format("woff2");
       }
 
       /* ── Light mode tokens (mirrors app/app.css) ── */
@@ -31,12 +31,12 @@
         --paper: #faf9f7;
         --stone: #e8e6e1;
         --surface: #ffffff;
-        --soft: rgba(26, 26, 26, 0.5);
-        --faint: rgba(26, 26, 26, 0.25);
         --hairline: rgba(26, 26, 26, 0.08);
 
         --celadon: #93a696;
+        --celadon-badge: #56715a;
         --clay: #b36a40;
+        --clay-badge: #9d5e39;
         --kiln: #2d2a26;
         --ash: #495e70;
         --celadon-light: #e8f0e9;
@@ -55,7 +55,7 @@
         --secondary: #f5f4f3;
         --secondary-foreground: #1a1a1a;
         --muted: #f5f4f3;
-        --muted-foreground: rgba(26, 26, 26, 0.5);
+        --muted-foreground: #6a6a70;
         --accent: #efedea;
         --accent-foreground: #1a1a1a;
         --destructive: #b36a40;
@@ -94,12 +94,12 @@
         --paper: #0e0e10;
         --stone: #2a2a2e;
         --surface: #18181b;
-        --soft: rgba(232, 230, 225, 0.6);
-        --faint: rgba(232, 230, 225, 0.3);
         --hairline: rgba(232, 230, 225, 0.08);
 
         --celadon: #b0c2b3;
+        --celadon-badge: #56715a;
         --clay: #d08661;
+        --clay-badge: #9d5e39;
         --kiln: #b5b1ac;
         --ash: #738899;
         --celadon-light: rgba(176, 194, 179, 0.12);
@@ -118,7 +118,7 @@
         --secondary: #27272a;
         --secondary-foreground: #e8e6e1;
         --muted: #27272a;
-        --muted-foreground: rgba(232, 230, 225, 0.6);
+        --muted-foreground: #b5b1ac;
         --accent: #1c1c1f;
         --accent-foreground: #e8e6e1;
         --destructive: #d08661;
@@ -170,7 +170,7 @@
         font-size: 11px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--soft);
+        color: var(--muted-foreground);
         font-weight: 500;
       }
 
@@ -233,7 +233,7 @@
       }
 
       .token-value {
-        color: var(--soft);
+        color: var(--muted-foreground);
         font-size: 12px;
         text-align: right;
       }
@@ -318,17 +318,127 @@
       .badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
         font-size: 10px;
         font-weight: 500;
         padding: 2px 8px;
         border-radius: 9999px;
+        border: 1px solid transparent;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
-      .badge-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
+      .badge-celadon {
+        border-color: color-mix(in srgb, var(--celadon) 20%, transparent);
+        background: var(--celadon-light);
+        color: var(--celadon-badge);
+      }
+
+      .badge-clay {
+        border-color: color-mix(in srgb, var(--clay) 20%, transparent);
+        background: var(--clay-light);
+        color: var(--clay-badge);
+      }
+
+      .badge-celadon-subtle {
+        border-color: color-mix(in srgb, var(--celadon) 20%, transparent);
+        background: color-mix(in srgb, var(--celadon) 10%, transparent);
+        color: var(--celadon-badge);
+      }
+
+      .badge-clay-subtle {
+        border-color: color-mix(in srgb, var(--clay) 20%, transparent);
+        background: color-mix(in srgb, var(--clay) 10%, transparent);
+        color: var(--clay-badge);
+      }
+
+      .badge-ash {
+        border-color: color-mix(in srgb, var(--ash) 20%, transparent);
+        background: var(--ash-light);
+        color: var(--ash);
+      }
+
+      .badge-muted {
+        border-color: var(--border);
+        background: var(--muted);
+        color: var(--muted-foreground);
+      }
+
+      .pitch-card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--card-foreground);
+        text-align: left;
+        transition: border-color 0.2s ease;
+      }
+
+      .pitch-card:hover {
+        border-color: color-mix(in srgb, var(--foreground) 10%, transparent);
+      }
+
+      .pitch-card-preview {
+        min-height: 180px;
+        max-height: 180px;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border);
+        background: var(--paper);
+        padding: 20px;
+      }
+
+      .pitch-card-preview p {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--muted-foreground);
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .pitch-card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--card);
+        padding: 20px;
+      }
+
+      .pitch-card-title {
+        font-family: "Vintage", serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.4;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .pitch-card-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        color: var(--muted-foreground);
+      }
+
+      .pitch-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 9999px;
+        background: var(--celadon-light);
+        color: var(--celadon-badge);
+        font-size: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 2px solid var(--card);
+        box-shadow: 0 0 0 1px var(--border);
       }
 
       .input-demo {
@@ -346,7 +456,7 @@
         transition: border-color 0.15s, box-shadow 0.15s;
       }
       .input-demo::placeholder {
-        color: var(--faint);
+        color: var(--muted-foreground);
       }
       .input-demo:focus {
         border-color: var(--ring);
@@ -385,27 +495,6 @@
         border-color: var(--celadon);
         transform: translateY(-1px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
-      }
-
-      .nav-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 12px;
-        border-radius: var(--radius-lg);
-        font-size: 14px;
-        color: var(--muted-foreground);
-        transition: all 0.15s ease;
-        cursor: pointer;
-      }
-      .nav-item:hover {
-        background: color-mix(in srgb, var(--stone) 40%, transparent);
-        color: var(--foreground);
-      }
-      .nav-item.active {
-        background: var(--card);
-        color: var(--foreground);
-        border: 1px solid var(--stone);
       }
 
       .radius-demo {
@@ -511,7 +600,7 @@
           </button>
           <div class="eyebrow hidden sm:flex items-center gap-6">
             <span>Design System</span>
-            <span style="color: var(--faint)">/</span>
+            <span style="color: var(--muted-foreground)">/</span>
             <span>Production</span>
           </div>
         </div>
@@ -530,7 +619,7 @@
       <footer class="mt-32 grid grid-cols-1 md:grid-cols-12 gap-10 max-w-6xl">
         <div class="md:col-span-5">
           <p class="eyebrow mb-3">Source of truth</p>
-          <p class="text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             Mirrors <code class="inline">app/app.css</code> — Tailwind v4 +
             shadcn/ui. Toggle dark mode above to preview both themes. Built for
             Figma import and portfolio reference.
@@ -541,27 +630,27 @@
           <ol class="text-[15px] leading-[1.9]" style="color: var(--foreground)">
             <li class="flex justify-between">
               <span>01 — Typography</span
-              ><span style="color: var(--faint)">p. 02</span>
+              ><span style="color: var(--muted-foreground)">p. 02</span>
             </li>
             <li class="flex justify-between">
               <span>02 — Color</span
-              ><span style="color: var(--faint)">p. 03</span>
+              ><span style="color: var(--muted-foreground)">p. 03</span>
             </li>
             <li class="flex justify-between">
               <span>03 — Semantic tokens</span
-              ><span style="color: var(--faint)">p. 04</span>
+              ><span style="color: var(--muted-foreground)">p. 04</span>
             </li>
             <li class="flex justify-between">
               <span>04 — Radius &amp; spacing</span
-              ><span style="color: var(--faint)">p. 05</span>
+              ><span style="color: var(--muted-foreground)">p. 05</span>
             </li>
             <li class="flex justify-between">
               <span>05 — Components</span
-              ><span style="color: var(--faint)">p. 06</span>
+              ><span style="color: var(--muted-foreground)">p. 06</span>
             </li>
             <li class="flex justify-between">
               <span>06 — Motion</span
-              ><span style="color: var(--faint)">p. 07</span>
+              ><span style="color: var(--muted-foreground)">p. 07</span>
             </li>
           </ol>
         </div>
@@ -583,7 +672,7 @@
           >
             Typography
           </h2>
-          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             Two families. Vintage for display moments. DM Sans for everything
             else. Avoid <code class="inline">font-bold</code> — this system
             favors medium and semibold.
@@ -595,27 +684,27 @@
         <div class="panel p-10">
           <div class="flex items-baseline justify-between mb-8">
             <p class="eyebrow">Display</p>
-            <p class="eyebrow" style="color: var(--faint)">font-display · Vintage</p>
+            <p class="eyebrow" style="color: var(--muted-foreground)">font-display · Vintage</p>
           </div>
           <p class="font-display text-[72px] leading-[0.95]" style="font-weight: 500">Aa</p>
           <p class="font-display text-[22px] mt-6" style="font-weight: 500; color: var(--foreground)">
             Pitch Editor · Cycle 4
           </p>
-          <p class="text-[13px] mt-4" style="color: var(--soft)">
+          <p class="text-[13px] mt-4" style="color: var(--muted-foreground)">
             Weights 400–600 · Tailwind: <code class="inline">font-display</code>
           </p>
         </div>
         <div class="panel p-10">
           <div class="flex items-baseline justify-between mb-8">
             <p class="eyebrow">UI / Body</p>
-            <p class="eyebrow" style="color: var(--faint)">font-sans · DM Sans</p>
+            <p class="eyebrow" style="color: var(--muted-foreground)">font-sans · DM Sans</p>
           </div>
           <p class="text-[72px] leading-[0.95]" style="font-weight: 500">Aa</p>
           <p class="text-[14px] mt-6 leading-[1.65]" style="color: var(--foreground)">
             Default body size is 14px. Most interface copy, buttons, labels, and
             form fields use <code class="inline">text-sm</code>.
           </p>
-          <p class="text-[13px] mt-4" style="color: var(--soft)">
+          <p class="text-[13px] mt-4" style="color: var(--muted-foreground)">
             Weights 300–600 · Tailwind: <code class="inline">font-sans</code> (default)
           </p>
         </div>
@@ -667,19 +756,19 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div>
             <p class="text-sm font-light mb-1">Light · 300</p>
-            <p class="text-[12px]" style="color: var(--soft)">font-light</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">font-light</p>
           </div>
           <div>
             <p class="text-sm font-normal mb-1">Normal · 400</p>
-            <p class="text-[12px]" style="color: var(--soft)">font-normal</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">font-normal</p>
           </div>
           <div>
             <p class="text-sm font-medium mb-1">Medium · 500</p>
-            <p class="text-[12px]" style="color: var(--soft)">font-medium</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">font-medium</p>
           </div>
           <div>
             <p class="text-sm font-semibold mb-1">Semibold · 600</p>
-            <p class="text-[12px]" style="color: var(--soft)">font-semibold</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">font-semibold</p>
           </div>
         </div>
       </div>
@@ -697,7 +786,7 @@
           <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
             Color
           </h2>
-          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             Foundation neutrals plus the Ceramic accent palette. Each accent has
             a full-strength value and a <code class="inline">-light</code> background
             variant for badges and status fills.
@@ -712,37 +801,37 @@
           <div class="chip" style="background: var(--paper); box-shadow: var(--chip-shadow)"></div>
           <p class="font-display text-[18px] mt-4" style="font-weight: 500">Paper</p>
           <p class="text-[12px] mt-1 token-name">--paper</p>
-          <p class="text-[12px]" style="color: var(--soft)">#FAF9F7 · bg-paper</p>
+          <p class="text-[12px]" style="color: var(--muted-foreground)">#FAF9F7 · bg-paper</p>
         </div>
         <div>
           <div class="chip" style="background: var(--ink)"></div>
           <p class="font-display text-[18px] mt-4" style="font-weight: 500">Ink</p>
           <p class="text-[12px] mt-1 token-name">--ink</p>
-          <p class="text-[12px]" style="color: var(--soft)">#1A1A1A · text-ink</p>
+          <p class="text-[12px]" style="color: var(--muted-foreground)">#1A1A1A · text-ink</p>
         </div>
         <div>
           <div class="chip" style="background: var(--stone)"></div>
           <p class="font-display text-[18px] mt-4" style="font-weight: 500">Stone</p>
           <p class="text-[12px] mt-1 token-name">--stone</p>
-          <p class="text-[12px]" style="color: var(--soft)">#E8E6E1 · border-stone</p>
+          <p class="text-[12px]" style="color: var(--muted-foreground)">#E8E6E1 · border-stone</p>
         </div>
         <div>
           <div class="chip" style="background: var(--surface); box-shadow: var(--chip-shadow)"></div>
           <p class="font-display text-[18px] mt-4" style="font-weight: 500">Surface</p>
           <p class="text-[12px] mt-1 token-name">--card / --surface</p>
-          <p class="text-[12px]" style="color: var(--soft)">#FFFFFF · bg-card</p>
+          <p class="text-[12px]" style="color: var(--muted-foreground)">#FFFFFF · bg-card</p>
         </div>
         <div>
-          <div class="chip" style="background: var(--soft)"></div>
-          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Soft</p>
-          <p class="text-[12px] mt-1 token-name">--soft</p>
-          <p class="text-[12px]" style="color: var(--soft)">50% ink · secondary text</p>
+          <div class="chip" style="background: var(--muted)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Muted</p>
+          <p class="text-[12px] mt-1 token-name">--muted</p>
+          <p class="text-[12px]" style="color: var(--muted-foreground)">#F5F4F3 · bg-muted</p>
         </div>
         <div>
-          <div class="chip" style="background: var(--faint)"></div>
-          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Faint</p>
-          <p class="text-[12px] mt-1 token-name">--faint</p>
-          <p class="text-[12px]" style="color: var(--soft)">25% ink · placeholders</p>
+          <div class="chip" style="background: var(--muted-foreground)"></div>
+          <p class="font-display text-[18px] mt-4" style="font-weight: 500">Muted foreground</p>
+          <p class="text-[12px] mt-1 token-name">--muted-foreground</p>
+          <p class="text-[12px]" style="color: var(--muted-foreground)">#6A6A70 · text-muted-foreground</p>
         </div>
       </div>
 
@@ -756,8 +845,8 @@
           </div>
           <p class="font-display text-[20px]" style="font-weight: 500">Celadon</p>
           <p class="text-[12px] mt-2 token-name">--celadon / --celadon-light</p>
-          <p class="text-[12px] mt-1" style="color: var(--soft)">#93A696 / #E8F0E9</p>
-          <p class="text-[12px] mt-3" style="color: var(--soft)">Primary accent · success · focus ring · cycles</p>
+          <p class="text-[12px] mt-1" style="color: var(--muted-foreground)">#93A696 / #E8F0E9</p>
+          <p class="text-[12px] mt-3" style="color: var(--muted-foreground)">Primary accent · success · focus ring · cycles</p>
         </div>
         <div class="panel p-6">
           <div class="chip-pair mb-4">
@@ -766,8 +855,8 @@
           </div>
           <p class="font-display text-[20px]" style="font-weight: 500">Clay</p>
           <p class="text-[12px] mt-2 token-name">--clay / --clay-light</p>
-          <p class="text-[12px] mt-1" style="color: var(--soft)">#B36A40 / #FDF3ED</p>
-          <p class="text-[12px] mt-3" style="color: var(--soft)">Destructive · warnings · warmth</p>
+          <p class="text-[12px] mt-1" style="color: var(--muted-foreground)">#B36A40 / #FDF3ED</p>
+          <p class="text-[12px] mt-3" style="color: var(--muted-foreground)">Destructive · warnings · warmth</p>
         </div>
         <div class="panel p-6">
           <div class="chip-pair mb-4">
@@ -776,8 +865,8 @@
           </div>
           <p class="font-display text-[20px]" style="font-weight: 500">Kiln</p>
           <p class="text-[12px] mt-2 token-name">--kiln / --kiln-light</p>
-          <p class="text-[12px] mt-1" style="color: var(--soft)">#2D2A26 / #F5F4F3</p>
-          <p class="text-[12px] mt-3" style="color: var(--soft)">Deep neutral · code tokens</p>
+          <p class="text-[12px] mt-1" style="color: var(--muted-foreground)">#2D2A26 / #F5F4F3</p>
+          <p class="text-[12px] mt-3" style="color: var(--muted-foreground)">Deep neutral · code tokens</p>
         </div>
         <div class="panel p-6">
           <div class="chip-pair mb-4">
@@ -786,35 +875,26 @@
           </div>
           <p class="font-display text-[20px]" style="font-weight: 500">Ash</p>
           <p class="text-[12px] mt-2 token-name">--ash / --ash-light</p>
-          <p class="text-[12px] mt-1" style="color: var(--soft)">#495E70 / #EEF1F3</p>
-          <p class="text-[12px] mt-3" style="color: var(--soft)">Informational · secondary accent</p>
+          <p class="text-[12px] mt-1" style="color: var(--muted-foreground)">#495E70 / #EEF1F3</p>
+          <p class="text-[12px] mt-3" style="color: var(--muted-foreground)">Informational · secondary accent</p>
         </div>
       </div>
 
       <!-- Badge patterns -->
       <p class="eyebrow mb-6">Badge patterns</p>
       <div class="panel p-10 flex flex-wrap gap-3 mb-6">
-        <span class="badge" style="background: var(--celadon-light); color: var(--celadon)">
-          <span class="badge-dot" style="background: var(--celadon)"></span>
-          In Progress
-        </span>
-        <span class="badge" style="background: var(--clay-light); color: var(--clay)">
-          <span class="badge-dot" style="background: var(--clay)"></span>
-          Shaping
-        </span>
-        <span class="badge" style="background: var(--ash-light); color: var(--ash)">
-          Cycle 4
-        </span>
-        <span class="badge" style="background: var(--kiln-light); color: var(--kiln)">
-          Draft
-        </span>
-        <span class="badge" style="background: color-mix(in srgb, var(--muted) 40%, transparent); color: var(--muted-foreground)">
-          Only you
-        </span>
+        <span class="badge badge-celadon">Ready to Bet</span>
+        <span class="badge badge-clay">In Review</span>
+        <span class="badge badge-ash">Draft</span>
+        <span class="badge badge-muted">Shelved</span>
+        <span class="badge badge-celadon-subtle">Cycle 4</span>
+        <span class="badge badge-clay-subtle">Shaping</span>
       </div>
-      <p class="text-[13px] max-w-2xl leading-[1.7]" style="color: var(--soft)">
-        Pattern: <code class="inline">bg-{color}-light text-{color} rounded-full text-[10px] font-medium</code>.
-        Use full color for icons and dots; light variant for the fill.
+      <p class="text-[13px] max-w-2xl leading-[1.7]" style="color: var(--muted-foreground)">
+        Production utilities: <code class="inline">badge-celadon</code>,
+        <code class="inline">badge-clay</code>,
+        <code class="inline">badge-celadon-subtle</code>,
+        <code class="inline">badge-clay-subtle</code> — light fill, badge text color, 20% accent border, uppercase tracking.
       </p>
 
       <!-- Charts -->
@@ -855,7 +935,7 @@
           <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
             Semantic tokens
           </h2>
-          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             shadcn/ui components consume these automatically. Map them as aliases
             in Figma — they flip when you toggle dark mode above.
           </p>
@@ -903,7 +983,7 @@
           <div class="token-swatch" style="background: var(--muted-foreground)"></div>
           <span class="token-name">--muted-foreground</span>
           <span class="token-class">text-muted-foreground</span>
-          <span class="token-value">50% opacity</span>
+          <span class="token-value" id="val-muted-foreground">#6A6A70</span>
         </div>
         <div class="token-row" style="grid-template-columns: 48px 180px 1fr 140px">
           <div class="token-swatch" style="background: var(--accent)"></div>
@@ -995,7 +1075,7 @@
           <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
             Radius &amp; spacing
           </h2>
-          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             Base radius is 10px (<code class="inline">0.625rem</code>). Spacing
             follows Tailwind's 4px grid.
           </p>
@@ -1009,32 +1089,32 @@
             <div class="text-center">
               <div class="radius-demo" style="border-radius: var(--radius-sm)">sm</div>
               <p class="text-[11px] mt-3 token-name">6px</p>
-              <p class="text-[11px]" style="color: var(--soft)">rounded-sm</p>
+              <p class="text-[11px]" style="color: var(--muted-foreground)">rounded-sm</p>
             </div>
             <div class="text-center">
               <div class="radius-demo" style="border-radius: var(--radius-md)">md</div>
               <p class="text-[11px] mt-3 token-name">8px</p>
-              <p class="text-[11px]" style="color: var(--soft)">rounded-md</p>
+              <p class="text-[11px]" style="color: var(--muted-foreground)">rounded-md</p>
             </div>
             <div class="text-center">
               <div class="radius-demo" style="border-radius: var(--radius-lg)">lg</div>
               <p class="text-[11px] mt-3 token-name">10px</p>
-              <p class="text-[11px]" style="color: var(--soft)">rounded-lg</p>
+              <p class="text-[11px]" style="color: var(--muted-foreground)">rounded-lg</p>
             </div>
             <div class="text-center">
               <div class="radius-demo" style="border-radius: var(--radius-xl)">xl</div>
               <p class="text-[11px] mt-3 token-name">14px</p>
-              <p class="text-[11px]" style="color: var(--soft)">rounded-xl</p>
+              <p class="text-[11px]" style="color: var(--muted-foreground)">rounded-xl</p>
             </div>
             <div class="text-center">
               <div class="radius-demo" style="border-radius: 20px">2xl</div>
               <p class="text-[11px] mt-3 token-name">20px</p>
-              <p class="text-[11px]" style="color: var(--soft)">rounded-2xl</p>
+              <p class="text-[11px]" style="color: var(--muted-foreground)">rounded-2xl</p>
             </div>
             <div class="text-center">
               <div class="radius-demo" style="border-radius: 9999px; width: 64px">full</div>
               <p class="text-[11px] mt-3 token-name">50%</p>
-              <p class="text-[11px]" style="color: var(--soft)">badges · avatars</p>
+              <p class="text-[11px]" style="color: var(--muted-foreground)">badges · avatars</p>
             </div>
           </div>
         </div>
@@ -1045,32 +1125,32 @@
             <div class="flex items-center gap-4">
               <span class="text-[11px] w-12 token-name">4px</span>
               <div class="spacing-bar" style="width: 4px"></div>
-              <span class="text-[11px]" style="color: var(--soft)">gap-1 · list items</span>
+              <span class="text-[11px]" style="color: var(--muted-foreground)">gap-1 · list items</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-[11px] w-12 token-name">8px</span>
               <div class="spacing-bar" style="width: 8px"></div>
-              <span class="text-[11px]" style="color: var(--soft)">gap-2 · tight groups</span>
+              <span class="text-[11px]" style="color: var(--muted-foreground)">gap-2 · tight groups</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-[11px] w-12 token-name">12px</span>
               <div class="spacing-bar" style="width: 12px"></div>
-              <span class="text-[11px]" style="color: var(--soft)">p-3 · small buttons</span>
+              <span class="text-[11px]" style="color: var(--muted-foreground)">p-3 · small buttons</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-[11px] w-12 token-name">16px</span>
               <div class="spacing-bar" style="width: 16px"></div>
-              <span class="text-[11px]" style="color: var(--soft)">gap-4 · card padding</span>
+              <span class="text-[11px]" style="color: var(--muted-foreground)">gap-4 · card padding</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-[11px] w-12 token-name">20px</span>
               <div class="spacing-bar" style="width: 20px"></div>
-              <span class="text-[11px]" style="color: var(--soft)">p-5 · card padding (alt)</span>
+              <span class="text-[11px]" style="color: var(--muted-foreground)">p-5 · card padding (alt)</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-[11px] w-12 token-name">24px</span>
               <div class="spacing-bar" style="width: 24px"></div>
-              <span class="text-[11px]" style="color: var(--soft)">gap-6 · section gaps</span>
+              <span class="text-[11px]" style="color: var(--muted-foreground)">gap-6 · section gaps</span>
             </div>
           </div>
         </div>
@@ -1078,21 +1158,21 @@
 
       <div class="panel p-10">
         <p class="eyebrow mb-6">Shadows</p>
-        <p class="text-[14px] mb-8 max-w-2xl leading-[1.7]" style="color: var(--soft)">
+        <p class="text-[14px] mb-8 max-w-2xl leading-[1.7]" style="color: var(--muted-foreground)">
           Prefer borders over shadows for separation. When needed: subtle lift only.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="p-6 rounded-xl bg-card border border-border" style="box-shadow: 0 1px 4px rgba(0,0,0,0.04)">
             <p class="text-sm font-medium mb-1">shadow-sm</p>
-            <p class="text-[12px]" style="color: var(--soft)">Slight lift</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">Slight lift</p>
           </div>
           <div class="p-6 rounded-xl bg-card border border-border" style="box-shadow: 0 4px 12px rgba(0,0,0,0.06)">
             <p class="text-sm font-medium mb-1">shadow-md</p>
-            <p class="text-[12px]" style="color: var(--soft)">Moderate cards</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">Moderate cards</p>
           </div>
           <div class="p-6 rounded-xl bg-card border border-border" style="box-shadow: 0 8px 24px rgba(0,0,0,0.07)">
             <p class="text-sm font-medium mb-1">shadow-lg</p>
-            <p class="text-[12px]" style="color: var(--soft)">Hover-elevated cards</p>
+            <p class="text-[12px]" style="color: var(--muted-foreground)">Hover-elevated cards</p>
           </div>
         </div>
       </div>
@@ -1110,7 +1190,7 @@
           <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
             Components
           </h2>
-          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             shadcn/ui primitives styled with Walden tokens, plus product-level
             patterns from the codebase.
           </p>
@@ -1129,7 +1209,7 @@
           <button class="btn btn-primary btn-icon">+</button>
         </div>
         <div class="pt-6 border-t hairline">
-          <p class="text-[13px] leading-[1.8]" style="color: var(--soft)">
+          <p class="text-[13px] leading-[1.8]" style="color: var(--muted-foreground)">
             shadcn variants: <code class="inline">default</code>,
             <code class="inline">secondary</code>,
             <code class="inline">destructive</code>,
@@ -1149,24 +1229,18 @@
       <p class="eyebrow mb-6">Inputs</p>
       <div class="panel p-10 mb-6 grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
-          <p class="text-[13px] mb-3" style="color: var(--soft)">Text input</p>
+          <p class="text-[13px] mb-3" style="color: var(--muted-foreground)">Text input</p>
           <input class="input-demo" type="text" placeholder="Search pitches…" />
         </div>
         <div>
-          <p class="text-[13px] mb-3" style="color: var(--soft)">Textarea</p>
+          <p class="text-[13px] mb-3" style="color: var(--muted-foreground)">Textarea</p>
           <textarea class="textarea-demo" placeholder="What problem are we solving?"></textarea>
         </div>
       </div>
 
       <!-- Cards -->
       <p class="eyebrow mb-6">Cards</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div class="card-demo">
-          <p class="eyebrow mb-2">Pitch</p>
-          <p class="font-display text-xl mb-2" style="font-weight: 500">Notification preferences</p>
-          <p class="text-sm" style="color: var(--muted-foreground)">Small batch · 2 weeks</p>
-          <span class="badge mt-4" style="background: var(--celadon-light); color: var(--celadon)">Shaping</span>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="card-demo">
           <p class="eyebrow mb-2">Task</p>
           <p class="text-sm font-medium mb-1">Wire up email digest</p>
@@ -1179,58 +1253,40 @@
         </div>
       </div>
 
-      <!-- Navigation -->
-      <p class="eyebrow mb-6">Navigation</p>
-      <div class="panel p-6 max-w-xs mb-6">
-        <div class="nav-item active">
-          <span style="width:16px;text-align:center">◉</span>
-          Pitch Board
-        </div>
-        <div class="nav-item">
-          <span style="width:16px;text-align:center">○</span>
-          Betting Table
-        </div>
-        <div class="nav-item">
-          <span style="width:16px;text-align:center">○</span>
-          Cycles
-        </div>
-        <div class="nav-item">
-          <span style="width:16px;text-align:center">○</span>
-          People
-        </div>
-      </div>
-
-      <!-- Layout sketch -->
-      <p class="eyebrow mb-6">Page layout</p>
-      <div class="panel overflow-hidden" style="height: 280px">
-        <div class="flex h-full">
-          <div class="w-48 shrink-0 border-r hairline p-4" style="background: var(--sidebar)">
-            <p class="font-display text-lg mb-4" style="font-weight: 500">Walden.</p>
-            <div class="nav-item active text-[12px]">Pitch Board</div>
-            <div class="nav-item text-[12px]">Cycles</div>
+      <!-- Pitch board card -->
+      <p class="eyebrow mb-6">Pitch board card</p>
+      <div class="max-w-sm mb-6">
+        <article class="pitch-card">
+          <div class="pitch-card-preview">
+            <p>
+              Users lose track of which pitches are ready for the betting table
+              and which still need shaping. The board should surface status and
+              problem context at a glance without opening every pitch.
+            </p>
           </div>
-          <div class="flex-1 flex flex-col">
-            <div class="border-b hairline px-5 py-3 shrink-0" style="background: var(--background)">
-              <p class="text-sm font-medium">Active Pitches</p>
+          <div class="pitch-card-body">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+              <h3 class="pitch-card-title">Notification preferences</h3>
+              <div class="pitch-avatar" aria-hidden="true">MH</div>
             </div>
-            <div class="flex-1 p-8 overflow-hidden" style="background: var(--background)">
-              <div class="max-w-md">
-                <div class="card-demo text-[12px]">
-                  <p class="font-display text-base mb-1" style="font-weight: 500">Example pitch card</p>
-                  <p style="color: var(--muted-foreground)">max-w-3xl content area</p>
-                </div>
-              </div>
+            <div class="pitch-card-meta">
+              <span>2 days ago</span>
+              <span>·</span>
+              <span class="badge badge-celadon">Ready to Bet</span>
             </div>
           </div>
-        </div>
+        </article>
       </div>
+      <p class="text-[13px] max-w-2xl leading-[1.7]" style="color: var(--muted-foreground)">
+        Matches <code class="inline">PitchCard</code> on the pitch board — paper preview area, truncated title, author avatar, relative date, and status badge inline in the meta row.
+      </p>
 
       <!-- Component inventory -->
       <p class="eyebrow mb-6 mt-16">Component inventory</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="panel p-8">
           <p class="text-sm font-medium mb-4">shadcn/ui primitives</p>
-          <p class="text-[13px] leading-[1.9]" style="color: var(--soft)">
+          <p class="text-[13px] leading-[1.9]" style="color: var(--muted-foreground)">
             Button · Input · Textarea · Card · Dialog · Sheet · Tabs · Select ·
             Combobox · Popover · Dropdown Menu · Avatar · Sidebar · Tooltip ·
             Switch · Toggle · Accordion · Breadcrumb · Skeleton · Sonner
@@ -1238,7 +1294,7 @@
         </div>
         <div class="panel p-8">
           <p class="text-sm font-medium mb-4">Product components</p>
-          <p class="text-[13px] leading-[1.9]" style="color: var(--soft)">
+          <p class="text-[13px] leading-[1.9]" style="color: var(--muted-foreground)">
             CycleBadge · PrivateBadge · OrgBadge · TeamBadge · UserAvatar ·
             UserAvatarGroup · ThemeToggle · AppHeader · UserMenu · BlockEditor ·
             ~80 custom icons in <code class="inline">app/components/icons/</code>
@@ -1259,7 +1315,7 @@
           <h2 class="font-display text-5xl md:text-6xl tracking-tight" style="font-weight: 500">
             Motion
           </h2>
-          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--soft)">
+          <p class="mt-4 max-w-2xl text-[15px] leading-[1.7]" style="color: var(--muted-foreground)">
             Subtle, considered timing. One page-level animation per route — never
             nested.
           </p>
@@ -1271,7 +1327,7 @@
           <p class="eyebrow mb-4">animate-page</p>
           <div class="animate-page-demo p-4 rounded-lg" style="background: var(--celadon-light)">
             <p class="text-sm" style="color: var(--celadon)">Page enter · 500ms ease-out</p>
-            <p class="text-[12px] mt-1" style="color: var(--soft)">fade + 12px up</p>
+            <p class="text-[12px] mt-1" style="color: var(--muted-foreground)">fade + 12px up</p>
           </div>
           <button class="btn btn-outline mt-4 text-[12px]" style="height:28px;padding:0 12px" onclick="replayAnim(this, 'animate-page-demo')">Replay</button>
         </div>
@@ -1279,13 +1335,13 @@
           <p class="eyebrow mb-4">fade-up</p>
           <div class="fade-up-demo p-4 rounded-lg" style="background: var(--clay-light)">
             <p class="text-sm" style="color: var(--clay)">Entry stream · 400ms</p>
-            <p class="text-[12px] mt-1" style="color: var(--soft)">fade + 6px up</p>
+            <p class="text-[12px] mt-1" style="color: var(--muted-foreground)">fade + 6px up</p>
           </div>
           <button class="btn btn-outline mt-4 text-[12px]" style="height:28px;padding:0 12px" onclick="replayAnim(this, 'fade-up-demo')">Replay</button>
         </div>
         <div class="panel p-8">
           <p class="eyebrow mb-4">transitions</p>
-          <p class="text-[13px] leading-[1.8]" style="color: var(--soft)">
+          <p class="text-[13px] leading-[1.8]" style="color: var(--muted-foreground)">
             Nav items: <code class="inline">150ms</code><br />
             Cards: <code class="inline">200ms</code><br />
             Color changes: <code class="inline">transition-colors</code><br />
@@ -1303,7 +1359,7 @@
           <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--kiln); animation-delay: 0.2s"></div>
           <div class="w-10 h-10 rounded-lg fade-up-demo" style="background: var(--celadon); animation-delay: 0.25s"></div>
         </div>
-        <p class="text-[13px] mt-6" style="color: var(--soft)">
+        <p class="text-[13px] mt-6" style="color: var(--muted-foreground)">
           Classes <code class="inline">.d1</code> through
           <code class="inline">.d5</code> add 50ms increments (0.05s – 0.25s)
         </p>
@@ -1318,7 +1374,7 @@
         </div>
         <div class="md:col-span-4">
           <p class="eyebrow mb-2">Source files</p>
-          <p class="text-[13px] leading-[1.7]" style="color: var(--soft)">
+          <p class="text-[13px] leading-[1.7]" style="color: var(--muted-foreground)">
             <code class="inline">app/app.css</code> ·
             <code class="inline">app/components/ui/</code> ·
             <code class="inline">components.json</code>
@@ -1326,7 +1382,7 @@
         </div>
         <div class="md:col-span-4 md:text-right">
           <p class="eyebrow">Design system · Production</p>
-          <p class="text-[13px] mt-1" style="color: var(--faint)">
+          <p class="text-[13px] mt-1" style="color: var(--muted-foreground)">
             Toggle dark mode to preview both themes
           </p>
         </div>
@@ -1353,6 +1409,7 @@
               primary: "#E8E6E1",
               "primary-foreground": "#0E0E10",
               secondary: "#27272A",
+              "muted-foreground": "#B5B1AC",
               accent: "#1C1C1F",
               destructive: "#D08661",
               ring: "#B0C2B3",
@@ -1366,6 +1423,7 @@
               primary: "#1A1A1A",
               "primary-foreground": "#FAF9F7",
               secondary: "#F5F4F3",
+              "muted-foreground": "#6A6A70",
               accent: "#EFEDEA",
               destructive: "#B36A40",
               ring: "#93A696",
