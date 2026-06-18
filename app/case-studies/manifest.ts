@@ -22,6 +22,7 @@ export const caseStudies: CaseStudy[] = [
     blurb:
       "Walden is a project management software built on the ShapeUp methodology. Launching with Virtu Studios in Summer 2026.",
     htmlPath: "walden-design-system.html",
+    liveUrl: "https://walden.so",
   },
   {
     slug: "virtu-design-system",
