@@ -6,11 +6,11 @@ import meGif from "~/data/me.gif";
 export const meta: MetaFunction = () => {
   return [
     { title: "Mandy Hartman | Software Engineer" },
-    {
-      name: "description",
-      content:
-        "Freelance engineer and designer.",
-    },
+    // {
+    //   name: "description",
+    //   content:
+    //     "Freelance engineer and designer.",
+    // },
   ];
 };
 
@@ -20,26 +20,26 @@ const imageFrameClass =
 const tileImageClass = "block h-full w-full object-cover object-center";
 const tileHeightClass = "h-44 md:h-52";
 
-const services = [
-  {
-    title: "Design System Creation",
-    price: "$8k",
-    description:
-      "For teams without a designer or front-end dev. I deliver Figma files, design tokens, and a production-ready component library your app can build on.",
-  },
-  {
-    title: "Custom Shopify Store",
-    price: "$8k",
-    description:
-      "I'll help you launch on Shopify and build a custom storefront tailored to your brand, from setup to a polished, conversion-focused shopping experience.",
-  },
-  {
-    title: "Full App Build: 0 to 1",
-    price: "$20k+",
-    description:
-      "Got a cool idea? I'll take it from zero to one and ship a working product: design, front-end, and the systems to keep it scalable.",
-  },
-];
+// const services = [
+//   {
+//     title: "Design System Creation",
+//     price: "$8k",
+//     description:
+//       "For teams without a designer or front-end dev. I deliver Figma files, design tokens, and a production-ready component library your app can build on.",
+//   },
+//   {
+//     title: "Custom Shopify Store",
+//     price: "$8k",
+//     description:
+//       "I'll help you launch on Shopify and build a custom storefront tailored to your brand, from setup to a polished, conversion-focused shopping experience.",
+//   },
+//   {
+//     title: "Full App Build: 0 to 1",
+//     price: "$20k+",
+//     description:
+//       "Got a cool idea? I'll take it from zero to one and ship a working product: design, front-end, and the systems to keep it scalable.",
+//   },
+// ];
 
 export default function Home() {
   return (
@@ -49,16 +49,16 @@ export default function Home() {
           Mandy Hartman
         </h1>
 
-        <figure className={`${imageFrameClass} mt-8 block max-w-lg`}>
+        {/* <figure className={`${imageFrameClass} mt-8 block max-w-lg`}>
           <img
             src={meGif}
             alt="Mandy Hartman"
             className="block w-full object-cover object-center"
           />
-        </figure>
+        </figure> */}
       </header>
 
-      <section className="border-b border-neutral-700 py-12 md:py-16">
+      {/* <section className="border-b border-neutral-700 py-12 md:py-16">
         <div className="mb-8 md:mb-10">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
             Services
@@ -67,6 +67,7 @@ export default function Home() {
             How I can help
           </h2>
         </div>
+
 
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((service) => (
@@ -115,14 +116,14 @@ export default function Home() {
             Start a project
           </a>
         </div>
-      </section>
+      </section> */}
 
       <div className="mb-8 mt-12">
         <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
-          Design Systems
+          Selected Work
         </p>
         <h2 className="mt-2 text-4xl text-neutral-800 md:text-6xl">
-          Selected work
+          Design Systems
         </h2>
       </div>
 
@@ -165,10 +166,10 @@ export default function Home() {
       <section className="mb-8 mt-12">
         <div className="mb-8 md:mb-10">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
-            Apps
+            Selected Work 
           </p>
           <h2 className="mt-2 text-4xl text-neutral-800 md:text-6xl">
-            Things I've built
+            Apps
           </h2>
         </div>
 
@@ -178,7 +179,7 @@ export default function Home() {
           ))}
         </div>
 
-        <p className="mt-6 text-lg font-normal leading-relaxed text-neutral-700">
+        {/* <p className="mt-6 text-lg font-normal leading-relaxed text-neutral-700">
           Interested in acquiring one of these projects? Reach out at{" "}
           <a
             href="mailto:mandyhartmandev@gmail.com?subject=Project%20acquisition%20inquiry"
@@ -187,7 +188,7 @@ export default function Home() {
             mandyhartmandev@gmail.com
           </a>
           .
-        </p>
+        </p> */}
       </section>
 
     </div>
