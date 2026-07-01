@@ -1,9 +1,6 @@
-import { type MetaFunction, json } from "@remix-run/node";
-import { client } from "~/sanity/client";
-import { useLoaderData } from "@remix-run/react";
-import Card from "~/components/Card";
-import { SanityDocument } from "@sanity/client/csm";
-import { BLOGS_QUERY, HOME_QUERY } from "~/sanity/queries";
+import { type MetaFunction } from "@remix-run/node";
+import ProjectCard from "~/components/ProjectCard";
+import { projects } from "~/data/projects";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,22 +8,9 @@ export const meta: MetaFunction = () => {
     {
       name: "description",
       content:
-        "Software engineer specializing in design systems, accessible interfaces, and React.",
+        "Freelance design systems, custom Shopify stores, and full app builds for teams and founders.",
     },
   ];
-};
-
-export const loader = async () => {
-  const home = await client.fetch(HOME_QUERY);
-  const latestPosts = await client.fetch(BLOGS_QUERY);
-  const configuredPosts =
-    home?.featuredPosts?.filter((post: SanityDocument) => post?.slug) ?? [];
-  const featuredPosts =
-    configuredPosts.length > 0
-      ? configuredPosts
-      : latestPosts.slice(0, 4);
-
-  return json({ home, featuredPosts });
 };
 
 const imageFrameClass =
@@ -35,9 +19,28 @@ const imageFrameClass =
 const tileImageClass = "block h-full w-full object-cover object-center";
 const tileHeightClass = "h-44 md:h-52";
 
-export default function Home() {
-  const { featuredPosts } = useLoaderData<typeof loader>();
+const services = [
+  {
+    title: "Design System Creation",
+    price: "$8k",
+    description:
+      "For teams without a designer or front-end dev. I deliver Figma files, design tokens, and a production-ready component library your app can build on.",
+  },
+  {
+    title: "Custom Shopify Store",
+    price: "$8k",
+    description:
+      "I'll help you launch on Shopify and build a custom storefront tailored to your brand, from setup to a polished, conversion-focused shopping experience.",
+  },
+  {
+    title: "Full App Build: 0 to 1",
+    price: "$20k+",
+    description:
+      "Got a cool idea? I'll take it from zero to one and ship a working product: design, front-end, and the systems to keep it scalable.",
+  },
+];
 
+export default function Home() {
   return (
     <div className="m-auto">
       <header className="mt-10 border-b border-neutral-700 pb-10 md:pb-12">
@@ -45,21 +48,83 @@ export default function Home() {
           Mandy Hartman
         </h1>
 
-        <div className="mt-8 max-w-3xl space-y-5">
-          <p className="text-2xl font-normal leading-snug text-neutral-800 md:text-3xl md:leading-snug">
-            Software engineer specializing in design systems, accessible
-            interfaces, and React.
+        <p className="mt-8 max-w-3xl text-2xl font-normal leading-snug text-neutral-800 md:text-3xl md:leading-snug">
+          Design systems, custom Shopify stores, and full app builds for
+          teams and founders.
+        </p>
+      </header>
+
+      <section className="border-b border-neutral-700 py-12 md:py-16">
+        <div className="mb-8 md:mb-10">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
+            Services
           </p>
-          <p className="text-lg font-normal leading-relaxed text-neutral-700 md:text-xl">
-          Software Engineer who designs and builds, closing the gap between design intent and production code. 10 years in design and 5 years shipping web and mobile applications in <strong>React, React Native, TypeScript, Remix, and Next.js</strong>. I work across the full arc: UX/UI design and prototyping, accessible component-driven front-ends, and contributing to the design systems that keep them consistent.
-          </p>
+          <h2 className="mt-2 text-4xl text-neutral-800 md:text-6xl">
+            How I can help
+          </h2>
         </div>
 
-      </header>
+        <div className="grid gap-4 md:grid-cols-2">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="flex flex-col rounded-lg border border-neutral-700 p-6 md:p-8"
+            >
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="text-2xl font-bold leading-tight text-neutral-800 md:text-3xl">
+                  {service.title}
+                </h3>
+                <span className="whitespace-nowrap text-xl font-bold text-neutral-800 md:text-2xl">
+                  {service.price}
+                </span>
+              </div>
+              <p className="mt-4 text-lg font-normal leading-relaxed text-neutral-700">
+                {service.description}
+              </p>
+            </div>
+          ))}
+
+          <a
+            href="https://www.virtu-studios.com"
+            target="_blank"
+            rel="noreferrer"
+            className="flex flex-col rounded-lg border border-neutral-700 bg-neutral-800 p-6 text-neutral-100 transition-colors hover:bg-neutral-900 md:p-8"
+          >
+            <h3 className="text-2xl font-bold leading-tight md:text-3xl">
+              Need a full team?
+            </h3>
+            <p className="mt-4 text-lg font-normal leading-relaxed text-neutral-300">
+              For larger builds that need designers, engineers, and product
+              support, check out Virtu Studios, the studio I build with.
+            </p>
+            <span className="mt-6 text-sm font-bold uppercase tracking-[0.2em]">
+              Visit Virtu Studios →
+            </span>
+          </a>
+        </div>
+
+        <div className="mt-8">
+          <a
+            href="mailto:mandyhartmandev@gmail.com?subject=Project%20inquiry"
+            className="inline-block rounded-lg bg-neutral-800 px-6 py-3 text-base font-bold text-neutral-100 transition-colors hover:bg-neutral-900"
+          >
+            Start a project
+          </a>
+        </div>
+      </section>
+
+      <div className="mb-8 mt-12">
+        <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
+          Design Systems
+        </p>
+        <h2 className="mt-2 text-4xl text-neutral-800 md:text-6xl">
+          Selected work
+        </h2>
+      </div>
 
       <a
         href="/case-studies/walden-design-system"
-        className={`${imageFrameClass} mt-8 block`}
+        className={`${imageFrameClass} block`}
       >
         <img
           src="/home.png"
@@ -93,75 +158,23 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="border-b border-neutral-700 py-12 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
-          <div className="lg:pt-2">
-            <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
-              About
-            </p>
-            <p className="mt-6 text-3xl font-bold leading-tight text-neutral-800 md:text-4xl">
-              Hi, I'm Mandy 👋
-            </p>
-          </div>
-
-          <div className="space-y-6 text-lg leading-relaxed md:text-xl [&_p]:font-normal">
-            <p>
-            I've spent the last four years building web and mobile apps with Virtu Studios. Right now I'm building our flagship product Walden and shipping client projects. 
-
-            </p>
-            <p>
-            Coming from a background in design, I’ve been front-end leaning and very active in design and product conversations. Lately I’ve been taking on more of a UX engineer role, creating design tokens in Figma, building out full design systems, and building responsive and reusable components to keep our builds consistent, scalable, and shipping quickly. 
-            </p>
-            <p>
-            Before working in software, I spent a decade doing project-based work across museums and archives. I sometimes worked as a designer or web manager, but ultimately found my focus in knowledge management, digital asset management, and digital preservation. What drove me to do this work was to make information more accessible to more people. I hold a BA and MA in design and a MS in information science. 
-
-            </p>
-            <p>
-            I am driven by data and user feedback. Accessibility is important to me and always a consideration in my design and code. I like to build systems and documentation, in design and code, and build products that are scalable, sustainable, and solving a user need.
-
-            </p>
-            <p>
-
-I am open to contract and full-time, remote work as a frontend or UX engineer. <strong>Please email me if you’d like to chat! mandyhartmandev@gmail.com </strong>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className={`${imageFrameClass} my-8`}>
-        <img
-          src="/home4.png"
-          alt=""
-          className="block h-80 w-full object-cover object-center md:h-[28rem]"
-        />
-      </div>
-
       <section className="mb-8 mt-12">
-        <div className="mb-6 border-b border-neutral-700 pb-4">
-          <p className="text-xs font-bold uppercase tracking-[0.35em]">
-            Featured
+        <div className="mb-8 md:mb-10">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-600">
+            Apps
           </p>
           <h2 className="mt-2 text-4xl text-neutral-800 md:text-6xl">
-            Writing
+            Things I've built
           </h2>
         </div>
 
-        {featuredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {featuredPosts.map((post: SanityDocument) => (
-              <Card key={post._id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <div className="rounded-lg border border-neutral-700 p-5">
-            <p className="text-lg font-normal">
-              New writing is coming soon. Check back for notes on software
-              engineering, design systems, and building accessible product
-              experiences.
-            </p>
-          </div>
-        )}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
       </section>
+
     </div>
   );
 }

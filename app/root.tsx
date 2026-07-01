@@ -53,7 +53,7 @@ export default function App() {
         <Links />
       </head>
       <body className="p-4 md:p-8">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-lg border border-neutral-700">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-lg border border-neutral-700">
           {isHome ? (
             <HomeHeader />
           ) : isMinimalHeader ? (

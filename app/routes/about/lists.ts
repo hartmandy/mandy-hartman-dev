@@ -26,7 +26,7 @@ export const jobs = [
     points: [
       "Leading front-end architecture and implementation for a wide range of client projects, delivering high-performance web and mobile applications tailored to industries including cybersecurity, enterprise IT (e.g., Dell), and independent startups.",
       "Collaborating directly with clients and stakeholders to scope features, design intuitive user interfaces, and develop scalable frontend solutions using React, Remix, React Native, and Sanity CMS.",
-      "Working in fast-paced, multi-project environments—balancing design, development, and client communication to ensure successful project delivery on tight timelines.",
+      "Working in fast-paced, multi-project environments, balancing design, development, and client communication to ensure successful project delivery on tight timelines.",
       "Advocating for user-centered design through prototyping, usability feedback loops, and custom component libraries that improved design consistency across client projects.",
     ],
   },
@@ -69,8 +69,8 @@ export const jobs = [
       "Worked with dozens of clients over a decade, helping businesses and organizations establish their digital presence through web design, branding, and marketing materials. Long-term partnerships included:",
     points: [
       "Blowing Rock Art & History Museum (2015-2019): Designed their web presence and digital materials, finding ways to make art and local history feel accessible and exciting online. Created exhibition sites, interactive features, and whatever else helped connect people to the collection.",
-      "Blowing Rock Woodworks (2015-2022): As the in-house designer, developer, and digital marketer for three growing brands, I owned their full digital presence—from building and maintaining e-commerce sites to leading design across web, email, print, and packaging. Also managed SEO, performance, and marketing integrations to create seamless customer experiences and support the companies' evolution from warehouse operations to a destination retail brand.",
-      "Continuum Art (2020-2022): Handled all digital design needs for this contemporary gallery—website design and updates, social media assets, PR materials, and whatever visual content they needed to showcase artists and promote exhibitions and events.",
+      "Blowing Rock Woodworks (2015-2022): As the in-house designer, developer, and digital marketer for three growing brands, I owned their full digital presence, from building and maintaining e-commerce sites to leading design across web, email, print, and packaging. Also managed SEO, performance, and marketing integrations to create seamless customer experiences and support the companies' evolution from warehouse operations to a destination retail brand.",
+      "Continuum Art (2020-2022): Handled all digital design needs for this contemporary gallery: website design and updates, social media assets, PR materials, and whatever visual content they needed to showcase artists and promote exhibitions and events.",
       "Beyond these anchor clients, delivered projects ranging from brand identities to full website redesigns, always focused on understanding what each business needed and delivering work that actually moved the needle for them.",
     ],
   },

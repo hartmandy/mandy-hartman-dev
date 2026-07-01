@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => {
     {
       name: "description",
       content:
-        "Design system and product case studies — documented HTML explorations and UI work.",
+        "Design system and product case studies. Documented HTML explorations and UI work.",
     },
   ];
 };
@@ -62,7 +62,7 @@ export default function CaseStudiesIndex() {
         Case Studies
       </h1>
       <p className="mb-8 max-w-2xl text-lg font-normal leading-relaxed">
-        Documented design systems and interface work — self-contained HTML case
+        Documented design systems and interface work. Self-contained HTML case
         studies you can browse in full below.
       </p>
 
