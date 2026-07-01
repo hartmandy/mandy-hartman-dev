@@ -1,6 +1,7 @@
 import { type MetaFunction } from "@remix-run/node";
 import ProjectCard from "~/components/ProjectCard";
 import { projects } from "~/data/projects";
+import meGif from "~/data/me.gif";
 
 export const meta: MetaFunction = () => {
   return [
@@ -48,10 +49,13 @@ export default function Home() {
           Mandy Hartman
         </h1>
 
-        <p className="mt-8 max-w-3xl text-2xl font-normal leading-snug text-neutral-800 md:text-3xl md:leading-snug">
-          Design systems, custom Shopify stores, and full app builds for
-          teams and founders.
-        </p>
+        <figure className={`${imageFrameClass} mt-8 block max-w-lg`}>
+          <img
+            src={meGif}
+            alt="Mandy Hartman"
+            className="block w-full object-cover object-center"
+          />
+        </figure>
       </header>
 
       <section className="border-b border-neutral-700 py-12 md:py-16">
