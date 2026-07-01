@@ -177,6 +177,17 @@ export default function Home() {
             <ProjectCard key={project.title} project={project} />
           ))}
         </div>
+
+        <p className="mt-6 text-lg font-normal leading-relaxed text-neutral-700">
+          Interested in acquiring one of these projects? Reach out at{" "}
+          <a
+            href="mailto:mandyhartmandev@gmail.com?subject=Project%20acquisition%20inquiry"
+            className="underline hover:font-bold"
+          >
+            mandyhartmandev@gmail.com
+          </a>
+          .
+        </p>
       </section>
 
     </div>

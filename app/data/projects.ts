@@ -33,6 +33,8 @@ export type Project = {
   title: string;
   description: string;
   platforms: Platform[];
+  // Optional badge shown on the card, e.g. "Acquired" or "Client Build".
+  tag?: "Acquired" | "Client Build";
 };
 
 export const projects: Project[] = [
@@ -97,6 +99,7 @@ export const projects: Project[] = [
     { name: "iOS", url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://apps.apple.com/us/app/sports-card-investor/id1533690124&ved=2ahUKEwixurD5w7GVAxVK2MkDHeF4DrEQFnoECC0QAQ&usg=AOvVaw3iDjsfPGRC69ifQcDexIYN" },
     { name: "Android", url: "https://play.google.com/store/apps/details?id=com.pawprofileapp" },
     ],
+    tag: "Client Build",
   },
   {
     logo: bmcLogo,
@@ -105,5 +108,6 @@ export const projects: Project[] = [
     platforms: [
     { name: "Web", url: "https://bmcyearbook.org/" },
     ],
+    tag: "Acquired",
   },
 ];
