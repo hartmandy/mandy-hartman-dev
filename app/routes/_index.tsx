@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => {
     {
       name: "description",
       content:
-        "Freelance design systems, custom Shopify stores, and full app builds for teams and founders.",
+        "Freelance engineer and designer.",
     },
   ];
 };
